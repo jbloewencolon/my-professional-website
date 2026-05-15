@@ -1,0 +1,12 @@
+{
+  "name": "jordan-loewen-colon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal website for Jordan Loewen-Colón — Indigenous Taíno technologist, Responsible AI strategist.",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'Static site — no build step required.'"
+  },
+  "author": "Jordan Loewen-Colón",
+  "license": "UNLICENSED"
+}
