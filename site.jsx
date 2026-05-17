@@ -8,11 +8,11 @@ const { useState, useEffect, useRef } = React;
 // ─────────────────────────────────────────────────────────────────────────────
 
 const TALKS = [
-  { n: "01", title: "Doing AI Differently", sub: "How organizations build technology without losing the human.", len: "45–60 min · keynote or workshop" },
+  { n: "01", title: "Doing AI Differently", sub: "How organizations build technology while staying human.", len: "45–60 min · keynote or workshop" },
   { n: "02", title: "Empire 2.0", sub: "What business leaders need to know about AI, data extraction, and digital colonialism.", len: "45 min · keynote" },
-  { n: "03", title: "The Model Is Not the World", sub: "Why culture, context, and meaning matter in responsible AI.", len: "30–45 min · keynote" },
+  { n: "03", title: "Many Models, One World", sub: "Why culture, context, and meaning matter in responsible AI.", len: "30–45 min · keynote" },
   { n: "04", title: "Human–AI Ensembles", sub: "The future of work beyond automation and replacement.", len: "60 min · keynote + Q&A" },
-  { n: "05", title: "The Data Is Not the Soul", sub: "Ethics, identity, and power in the age of artificial intelligence.", len: "45 min · keynote" },
+  { n: "05", title: "Artificial Opportunity", sub: "Maintaining ethics, identity, and power in the age of artificial intelligence.", len: "45 min · keynote" },
 ];
 
 const WORK = [
@@ -33,8 +33,8 @@ const WORK = [
     note: "On human-AI ensembles that preserve agency, judgment, and interpretive depth." },
   { kind: "Venture",    date: "2022–24",   venue: "Supernova Immersives",   title: "Cofounder & CEO",
     note: "AI-augmented VR for mental health, informed by Internal Family Systems. Founder Institute; $1M+ valuation." },
-  { kind: "Teaching",   date: "Ongoing",   venue: "Queen's University",     title: "Adjunct Professor · AI Ethics Coordinator",
-    note: "12+ courses designed, 1,000+ student projects evaluated. Where the questions get pressure-tested first." },
+  { kind: "Teaching",   date: "Ongoing",   venue: "Queen's University",     title: "Professor · AI, Ethics, and Policy",
+    note: "12+ courses designed, 1,000+ student projects evaluated. The workshop for the important questions." },
 ];
 
 // Lineages — Pending Jordan. Placeholders that read as a real set rather than lorem.
@@ -381,7 +381,7 @@ function Home({ setPage, t }) {
               Toronto, Ontario · traveling for talks.
             </MarginNote>
             <MarginNote tag="Currently">
-              Writing <em>Reality Technologies</em>. Teaching at Queen's. Drafting the Aspen recommendations.
+              Writing <em>Reality Technologies</em>. Teaching at Queen's. Developong tools for governance and standard setting.
             </MarginNote>
             {t.colibri === "surfaced" && (
               <MarginNote tag="Also">
@@ -411,8 +411,7 @@ function Work({ t }) {
         <Grid>
           <Body>
             <p className="lead">
-              Essays, talks, policy, ventures, teaching — one practice, not three buckets.
-              In this lineage they answer to each other.
+              Essays, talks, policy, ventures, teaching. Human Alignment Work.
             </p>
 
             <ol className="work-stream">
@@ -447,8 +446,7 @@ function Work({ t }) {
               different jobs; both jobs matter.
             </MarginNote>
             <MarginNote tag="On omissions">
-              Conference papers, book chapters, and a long tail of podcast appearances live on the CV.
-              They are not the work; they are the receipt.
+              Conference papers, book chapters, and podcast appearances.
             </MarginNote>
             <TalkPhotoNotes />
           </Margin>
@@ -471,15 +469,15 @@ function About({ t }) {
         <div className="apb-grid">
           <figure className="apb-figure">
             <img src="images/portrait-window.jpg" alt="Jordan Loewen-Colón, seated at a wooden table in front of a large industrial window." />
-            <figcaption>Toronto, 2025. Photograph by a friend, not a photographer.</figcaption>
+            <figcaption>Toronto, 2025. Photograph by Dan Campo.</figcaption>
           </figure>
           <div className="apb-text">
-            <p className="kicker-double">Taíno · present tense <span className="pending" title="Pending Jordan sign-off">Pending</span></p>
+            <p className="kicker-double">Taíno · in the present tense <span className="pending" title="Pending Jordan sign-off">Pending</span></p>
             <h1>The model is not the world.</h1>
             <p className="lead apb-lead">
               Jordan Loewen-Colón is an Indigenous Taíno technologist, Responsible AI strategist,
               scholar, educator, and organizational transformation consultant working at the
-              intersection of artificial intelligence, culture, new media, mental health, and data
+              intersection of artificial intelligence, culture, new media, and data
               justice.
             </p>
           </div>
@@ -491,14 +489,13 @@ function About({ t }) {
           <Body>
             <p className="lead">
               The work moves across the lab, the classroom, the startup floor, and the
-              policy arena — bringing technical fluency together with humanistic depth and a clear
+              policy arena, bringing technical fluency together with humanistic depth and a clear
               commitment to communities too often flattened by emerging technologies.
             </p>
 
             <p>
-              He earned a Ph.D. in the study of Religion from Syracuse University and an M.A. from
-              Princeton Theological Seminary. The intellectual path began with theology and
-              philosophy, then moved into the cultural and ethical consequences of AI, virtual
+              He earned a Ph.D. in the study of Religion from Syracuse University and an M.Div. from
+              Princeton Theological Seminary in philosophy and theology. The intellectual path began with philosophy, then moved into the cultural and ethical consequences of AI, virtual
               reality, machine learning, and reality technologies. Drawing on critical theory,
               Indigenous data sovereignty, and thinkers such as Édouard Glissant, he defends the
               <em> Right to Opacity</em>: the principle that people, cultures, and knowledge
@@ -510,25 +507,22 @@ function About({ t }) {
               As Cofounder and CEO of Supernova Immersives, he led a cross-functional team of
               engineers, scientists, and therapists in developing AI-augmented virtual reality for
               mental health. The company built a therapeutic VR experience informed by Internal
-              Family Systems Therapy, entered the Founder Institute accelerator in Silicon Valley,
-              and reached a pre-money valuation exceeding one million dollars.
+              Family Systems Therapy, entered the Founder Institute accelerator in Silicon Valley.
             </p>
 
             <p>
               His policy work confronts what he calls <em>Empire 2.0</em> — the new wave of digital
               extraction in which Indigenous languages, biometric data, cultural knowledge, and
               territorial information are absorbed into AI systems under the language of innovation
-              and open data. As a Tech Policy Writing Fellow at the Aspen Institute, he drafted
+              and open data. He has worked as a Tech Polic Fellow at the Aspen Institute, and drafted
               recommendations bringing OCAP® and the CARE Principles into conversation with
               Access-and-Benefit-Sharing protocols.
             </p>
 
             <p>
-              At Queen's University he serves as Adjunct Professor and AI Ethics Coordinator,
+              At Queen's University he teaches AI, Ethics, and policy at the Smith School of Business and Department of Computing,
               designing more than twelve courses and evaluating over a thousand student projects.
-              He co-authored <em>Preventing AI Extractivism</em>, advocating for human-AI
-              ensembles that preserve agency, judgment, and interpretive depth, and is the author
-              of the forthcoming book <em>Reality Technologies</em>.
+              He recently is currently drafting the manuscript the for the forthcoming book <em>Reality Tecnologies</em>.
               {t.colibri === "footnote" && (
                 <span> He also writes poetry as <a className="colibri-link" href="#" onClick={(e)=>e.preventDefault()}>al colibrí</a>.</span>
               )}
@@ -541,7 +535,7 @@ function About({ t }) {
               <li>The difference between an AI <em>model</em> and an AI <em>system</em>, and why bookers keep using one word when they mean the other.</li>
               <li>What an "ensemble" of human and machine judgment looks like in a workflow that has to ship next quarter.</li>
               <li>Whether <em>opacity</em> can be a design constraint and not just a value statement.</li>
-              <li>Glissant on relation. The same passage, third year running.</li>
+              <li>Glissant on relation and the Right to opacity.</li>
             </ul>
 
             <h2 className="section-head section-head-spaced">
@@ -549,7 +543,7 @@ function About({ t }) {
               <span className="pending" title="Pending Jordan sign-off">Pending</span>
             </h2>
             <p>
-              Names this work answers to — not exhaustive, not ranked. The list updates when the
+              Names and texts my work answers to. Neither exhaustive nor ranked. The list updates when the
               reading list does.
             </p>
             <ul className="lineages">
@@ -567,7 +561,7 @@ function About({ t }) {
           <Margin hidden={!t.marginalia}>
             <MarginNote tag="Degrees">
               Ph.D., Religion · Syracuse University<br/>
-              M.A. · Princeton Theological Seminary
+              M.Div. · Princeton Theological Seminary
             </MarginNote>
             <MarginNote tag="By the numbers">
               $2M+ supported in grant-funded research · 10,000+ downloads of Responsible AI media · 35+ public and academic presentations · 1,000+ student projects evaluated
