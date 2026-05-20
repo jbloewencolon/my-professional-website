@@ -18,18 +18,16 @@ const TALKS = [
 const WORK = [
   { kind: "Essay",      date: "May 2025",  venue: "Harvard Business Review", title: "Research: Do LLMs Have Values?",
     note: "A field study on the values that show up when large language models are pressed. Co-authored.",
-    href: "https://hbr.org/2025/05/research-do-llms-have-values" },
-  { kind: "Talk",       date: "2025",      venue: "Data Natives · Berlin",  title: "Responsible Innovation: Hopes & Fears",
+    href: "https://hbr.org/2025/05/research-do-llms-have-values",
+    img: "images/talk-panel.jpg" },
+  { kind: "Talk",       date: "2024",      venue: "Data Natives · Berlin",  title: "Responsible Innovation: Hopes & Fears",
     note: "A facilitated public mapping of what people actually hope from AI and what they actually fear. The whiteboard is the deliverable.",
     img: "images/talk-whiteboard.jpg" },
-  { kind: "Panel",      date: "2025",      venue: "Data Natives × EIE",     title: "Ethics in Entrepreneurship",
-    note: "On what changes when an ethics conversation has to survive contact with a product roadmap.",
-    img: "images/talk-panel.jpg" },
   { kind: "Policy",     date: "2024",      venue: "Aspen Institute",        title: "AI in Drug Development & Indigenous Knowledge",
     note: "Tech Policy Writing Fellowship. Bringing OCAP®, CARE, and Access-and-Benefit-Sharing into the same room as the model card." },
-  { kind: "Book",       date: "Forthcoming", venue: "—",                    title: "Reality Technologies",
+  { kind: "Book",       date: "Forthcoming", venue: "Fortess Press",                    title: "Reality Technologies",
     note: "A book on AI, VR, and what it means to mistake the model for the world." },
-  { kind: "Co-author",  date: "2024",      venue: "—",                      title: "Preventing AI Extractivism",
+  { kind: "Co-author",  date: "2024",      venue: "Springer: AI & Society",                      title: "Preventing AI Extractivism",
     note: "On human-AI ensembles that preserve agency, judgment, and interpretive depth." },
   { kind: "Venture",    date: "2022–24",   venue: "Supernova Immersives",   title: "Cofounder & CEO",
     note: "AI-augmented VR for mental health, informed by Internal Family Systems. Founder Institute; $1M+ valuation." },
@@ -39,11 +37,11 @@ const WORK = [
 
 // Lineages — Pending Jordan. Placeholders that read as a real set rather than lorem.
 const LINEAGES = [
-  { name: "Édouard Glissant",        meta: "Relation · opacity" },
+  { name: "Édouard Glissant",        meta: "Poetics of Relation · 1990" },
   { name: "Sylvia Wynter",           meta: "On being human · 2003" },
-  { name: "Marisol de la Cadena",    meta: "Earth beings · 2015" },
-  { name: "Kim TallBear",            meta: "Native DNA · 2013" },
-  { name: "Max Liboiron",            meta: "Pollution is colonialism · 2021" },
+  { name: "Katherine Hayles ",       meta: "How we became Posthuman · 1999" },
+  { name: "Vine Deloria",            meta: "God is Red · 1973" },
+  { name: "Gilles Deleuze",          meta: "Difference and Repitition · 1968" },
   { name: "Ruha Benjamin",           meta: "Race after technology · 2019" },
 ];
 
@@ -585,10 +583,10 @@ function Speaking({ t }) {
         <Grid>
           <Body>
             <p className="kicker">Speaking &amp; Consulting</p>
-            <h1 className="page-title">Five topics. One conversation.</h1>
+            <h1 className="page-title">The convesations that need to happen.</h1>
             <p className="lead">
               What follows are not paper abstracts. They are the talks a booker can actually put on a
-              program — workshopped on stages from Berlin to Toronto, calibrated for rooms that
+              program. They have been workshopped on stages from Berlin to Toronto, and calibrated for rooms that
               contain both engineers and the people who pay them.
             </p>
 
@@ -714,7 +712,6 @@ function Contact({ t }) {
             <p className="kicker">Contact</p>
             <h1 className="page-title">The shortest page.</h1>
             <p className="lead">
-              Forms are how you tell serious people you do not want their email.
             </p>
 
             <dl className="contact-dl">
