@@ -52,10 +52,10 @@ const HOME_RECENT = [
   { kind: "Essay",   venue: "Harvard Business Review", date: "May 2025",
     title: "Research: Do LLMs Have Values?",
     href: "https://hbr.org/2025/05/research-do-llms-have-values", external: true },
-  { kind: "Code",    venue: "BookBack", date: "2025",
-    title: "Reclaim the Commons — public-domain reclamation against extractive scraping.",
+  { kind: "Code",    venue: "Github", date: "2025",
+    title: "BookBack: a public-domain reclamation against extractive scraping.",
     href: "https://github.com/jbloewencolon/BookBack", external: true },
-  { kind: "Talk",    venue: "Forthcoming", date: "2025",
+  { kind: "Talk",    venue: "Syracuse University", date: "2026",
     title: "Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them.",
     href: "#work/publications", page: "work/publications" },
   { kind: "Podcast", venue: "Pondering AI", date: "2025",
@@ -71,19 +71,15 @@ const AFFILIATIONS_LOGOS = [
   { name: "Indigenous Values Initiative", short: "IVI",
     href: "https://indigenousvalues.org/",
     logo: "images/affil-ivi.webp",
-    descriptor: "Haudenosaunee values education, Doctrine of Discovery scholarship." },
   { name: "Nera Lake", short: "NL",
     href: "https://www.neralake.com/",
     logo: "images/affil-neralake.png",
-    descriptor: "AI ethics and applied alignment." },
   { name: "Candidly AI", short: "CA",
     href: "https://candidly-ai.com/about/",
     logo: "images/affil-candidly.png",
-    descriptor: "Applied AI for human-facing systems." },
   { name: "Aspen Policy Academy (Tech)", short: "APA",
     href: "https://aspenpolicyacademy.org/tech/",
     logo: "images/affil-aspen.png",
-    descriptor: "Tech Policy Writing Fellowship." },
 ];
 const AFFILIATIONS_TEXT = [
   { name: "FASPE", full: "Fellowship at Auschwitz for the Study of Professional Ethics",
@@ -92,7 +88,7 @@ const AFFILIATIONS_TEXT = [
     href: "https://smith.queensu.ca/" },
   { name: "Founder Institute",
     href: "https://fi.co/" },
-  { name: "TIDEL", full: "The New School",
+  { name: "TIDEL", full: "Union Theological Seminary",
     href: "https://utsnyc.edu/tidel/" },
 ];
 
@@ -100,11 +96,11 @@ function HomeAffiliations({ n = "02" }) {
   return (
     <section className="home-section home-affiliations">
       <h2 className="section-head">
-        <span className="sh-num">{n}</span> Where the work travels
+        <span className="sh-num">{n}</span> The Where and What of my Work
       </h2>
       <p className="lead-mute">
-        Indigenous sovereignty work, applied AI, policy training, universities,
-        humanities ethics. The same questions show up in different rooms.
+        Indigenous sovereignty, applied AI, policy training, universities,
+        humanities ethics. Even though the rooms are different, some questions stay the same.
       </p>
 
       <ul className="affil-logo-grid">
@@ -655,12 +651,12 @@ function Speaking({ t }) {
         <div className="rates-grid">
           <div className="rate-card">
             <div className="rate-label">Keynote</div>
-            <div className="rate-amount">$10–25k</div>
+            <div className="rate-amount">$5–15k</div>
             <div className="rate-note">Domestic. International negotiated per travel.</div>
           </div>
           <div className="rate-card">
             <div className="rate-label">Workshop · per day</div>
-            <div className="rate-amount">$8–15k</div>
+            <div className="rate-amount">$4–12k</div>
             <div className="rate-note">Scope varies with prep and team size.</div>
           </div>
           <div className="rate-card">
