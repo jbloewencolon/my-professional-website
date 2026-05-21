@@ -398,7 +398,7 @@ function Work({ t }) {
     <article className="page page-work">
       <Band variant="bohio" className="work-title-band">
         <div className="wt-kicker">Work</div>
-        <h1>A stream, not three buckets.</h1>
+        <h1>A Signals, Stories, and Speculations.</h1>
       </Band>
 
       <Inner>
