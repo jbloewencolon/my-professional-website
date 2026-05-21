@@ -1,24 +1,26 @@
 [build]
-  # Pure static site — no build step. Babel transpiles the JSX in the browser.
-  publish = "."
-  command = "echo 'No build step.'"
+  publish = "dist"
+  command = "npm ci && npm run build"
 
-# Make the file with the accented character reachable at a clean URL.
-# Netlify URL-encodes the filename automatically, but a redirect spares
-# anyone hand-typing the URL.
-[[redirects]]
-  from = "/"
-  to = "/Jordan Loewen-Colón.html"
-  status = 200
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Resource-Policy = "same-origin"
+    X-Frame-Options = "DENY"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'; upgrade-insecure-requests"
 
-[[redirects]]
-  from = "/index.html"
-  to = "/Jordan Loewen-Colón.html"
-  status = 200
-
-# Long cache for static assets (images, CSS, JS).
 [[headers]]
   for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/app.*.js"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
@@ -28,7 +30,6 @@
     Cache-Control = "public, max-age=3600"
 
 [[headers]]
-  for = "*.jsx"
+  for = "/.well-known/security.txt"
   [headers.values]
-    Cache-Control = "public, max-age=3600"
-    Content-Type = "text/babel; charset=utf-8"
+    Content-Type = "text/plain; charset=utf-8"

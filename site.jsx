@@ -68,16 +68,16 @@ const HOME_RECENT = [
 const AFFILIATIONS_LOGOS = [
   { name: "Indigenous Values Initiative", short: "IVI",
     href: "https://indigenousvalues.org/",
-    logo: "images/affil-ivi.webp",
+    logo: "images/affil-ivi.webp" },
   { name: "Nera Lake", short: "NL",
     href: "https://www.neralake.com/",
-    logo: "images/affil-neralake.png",
+    logo: "images/affil-neralake.png" },
   { name: "Candidly AI", short: "CA",
     href: "https://candidly-ai.com/about/",
-    logo: "images/affil-candidly.png",
+    logo: "images/affil-candidly.png" },
   { name: "Aspen Policy Academy (Tech)", short: "APA",
     href: "https://aspenpolicyacademy.org/tech/",
-    logo: "images/affil-aspen.png",
+    logo: "images/affil-aspen.png" },
 ];
 const AFFILIATIONS_TEXT = [
   { name: "FASPE", full: "Fellowship at Auschwitz for the Study of Professional Ethics",
@@ -104,7 +104,7 @@ function HomeAffiliations({ n = "02" }) {
       <ul className="affil-logo-grid">
         {AFFILIATIONS_LOGOS.map((a) => (
           <li key={a.name} className="affil-logo-item">
-            <a href={a.href} target="_blank" rel="noopener">
+            <a href={a.href} target="_blank" rel="noopener noreferrer">
               <div className={"affil-logo" + (a.logo ? " has-img" : "")} aria-hidden="true">
                 {a.logo
                   ? <img src={a.logo} alt="" loading="lazy" />
@@ -121,7 +121,7 @@ function HomeAffiliations({ n = "02" }) {
       <ul className="affil-text-list">
         {AFFILIATIONS_TEXT.map((a, i) => (
           <li key={a.name}>
-            <a className="inline-link" href={a.href} target="_blank" rel="noopener">{a.name}</a>
+            <a className="inline-link" href={a.href} target="_blank" rel="noopener noreferrer">{a.name}</a>
             {a.full && <span className="affil-full"> — {a.full}</span>}
             {i < AFFILIATIONS_TEXT.length - 1 && <span aria-hidden="true"> · </span>}
           </li>
@@ -289,7 +289,7 @@ function Home({ setPage, t }) {
                   <h2 className="section-head"><span className="sh-num">02</span> Recently</h2>
                   <ul className="recent-list">
                     <li>
-                      <a href="https://hbr.org/2025/05/research-do-llms-have-values" target="_blank" rel="noopener">
+                      <a href="https://hbr.org/2025/05/research-do-llms-have-values" target="_blank" rel="noopener noreferrer">
                         <span className="r-kind">Essay · HBR ·</span> <span className="r-date">May 2025</span>
                         <span className="r-title">Research: Do LLMs Have Values?</span>
                       </a>
@@ -301,7 +301,7 @@ function Home({ setPage, t }) {
                       </a>
                     </li>
                     <li>
-                      <a href="https://link.springer.com/article/10.1007/s00146-026-02931-z" target="_blank" rel="noopener">
+                      <a href="https://link.springer.com/article/10.1007/s00146-026-02931-z" target="_blank" rel="noopener noreferrer">
                         <span className="r-kind">Paper · AI & Society ·</span> <span className="r-date">2026</span>
                         <span className="r-title">Preventing AI Extractivism</span>
                       </a>
@@ -355,7 +355,7 @@ function Home({ setPage, t }) {
               </h2>
               <p className="lead">
                 Booking, consulting, press, advisory. The fastest way is to{" "}
-                <a className="inline-link" href="https://calendly.com/j-l-c" target="_blank" rel="noopener">put fifteen minutes on the calendar</a>{" "}
+                <a className="inline-link" href="https://calendly.com/j-l-c" target="_blank" rel="noopener noreferrer">put fifteen minutes on the calendar</a>{" "}
                 or write to <a className="inline-link" href="mailto:jbl6@queensu.ca">jbl6@queensu.ca</a>.
               </p>
             </section>
@@ -419,7 +419,7 @@ function Work({ t }) {
                     <div className="wi-venue">{w.venue}</div>
                     <h3 className="wi-title">
                       {w.href
-                        ? <a href={w.href} target="_blank" rel="noopener">{w.title} <span className="ext">↗</span></a>
+                        ? <a href={w.href} target="_blank" rel="noopener noreferrer">{w.title} <span className="ext">↗</span></a>
                         : w.title}
                     </h3>
                     <p className="wi-note">{w.note}</p>
@@ -685,7 +685,7 @@ function Speaking({ t }) {
                   className="cal-cta"
                   href="https://calendly.com/j-l-c"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                 >
                   Open Calendly <span className="ext">↗</span>
                 </a>
@@ -721,11 +721,11 @@ function Contact({ t }) {
               </div>
               <div>
                 <dt>LinkedIn</dt>
-                <dd><a className="inline-link" href="https://www.linkedin.com/in/jordanloewencolon/" target="_blank" rel="noopener">/in/jordanloewencolon</a></dd>
+                <dd><a className="inline-link" href="https://www.linkedin.com/in/jordanloewencolon/" target="_blank" rel="noopener noreferrer">/in/jordanloewencolon</a></dd>
               </div>
               <div>
                 <dt>Calendar</dt>
-                <dd><a className="inline-link" href="https://calendly.com/j-l-c" target="_blank" rel="noopener">calendly.com/j-l-c — fifteen-minute intro</a></dd>
+                <dd><a className="inline-link" href="https://calendly.com/j-l-c" target="_blank" rel="noopener noreferrer">calendly.com/j-l-c — fifteen-minute intro</a></dd>
               </div>
               <div>
                 <dt>Press</dt>
@@ -771,8 +771,8 @@ function Footer() {
         <div className="f-col">
           <div className="f-label">Elsewhere</div>
           <div><a href="mailto:jbl6@queensu.ca">Email</a></div>
-          <div><a href="https://www.linkedin.com/in/jordanloewencolon/" target="_blank" rel="noopener">LinkedIn</a></div>
-          <div><a href="https://calendly.com/j-l-c" target="_blank" rel="noopener">Calendar</a></div>
+          <div><a href="https://www.linkedin.com/in/jordanloewencolon/" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+          <div><a href="https://calendly.com/j-l-c" target="_blank" rel="noopener noreferrer">Calendar</a></div>
         </div>
         <div className="f-col">
           <div className="f-label">Colophon <span className="pending">Pending</span></div>

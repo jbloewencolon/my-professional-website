@@ -144,7 +144,7 @@ function PubItem({ p, italicTitle = true }) {
       <div className="pi-main">
         <h4 className={"pi-title " + (italicTitle ? "is-italic" : "")}>
           {p.href
-            ? <a href={p.href} target="_blank" rel="noopener">{p.title}<span className="ext"> ↗</span></a>
+            ? <a href={p.href} target="_blank" rel="noopener noreferrer">{p.title}<span className="ext"> ↗</span></a>
             : <TitleTag>{p.title}</TitleTag>}
           {p.status && <span className="pi-status">{p.status}</span>}
         </h4>
@@ -196,7 +196,7 @@ function PressItem({ p, tagColor = "sun" }) {
       <div className="pr-main">
         <h4 className="pr-title">
           {p.href
-            ? <a href={p.href} target="_blank" rel="noopener">{p.title}<span className="ext"> ↗</span></a>
+            ? <a href={p.href} target="_blank" rel="noopener noreferrer">{p.title}<span className="ext"> ↗</span></a>
             : p.title}
         </h4>
         <div className="pr-venue">{p.venue}</div>
@@ -431,7 +431,7 @@ function WorkProjects({ t, setPage }) {
                       {proj.tags.map((tag) => <li key={tag} className="pc-tag">{tag}</li>)}
                     </ul>
                     <p className="pc-body">{proj.body}</p>
-                    <a className="pc-link" href={proj.href} target="_blank" rel="noopener">
+                    <a className="pc-link" href={proj.href} target="_blank" rel="noopener noreferrer">
                       View on GitHub <span aria-hidden="true">→</span>
                     </a>
                   </div>
@@ -440,7 +440,7 @@ function WorkProjects({ t, setPage }) {
             </ol>
 
             <div className="github-foot">
-              <a className="inline-link" href="https://github.com/jbloewencolon" target="_blank" rel="noopener">
+              <a className="inline-link" href="https://github.com/jbloewencolon" target="_blank" rel="noopener noreferrer">
                 View full profile on GitHub ↗
               </a>
             </div>
@@ -515,7 +515,7 @@ function WorkFlat({ t }) {
                   <div className="wi-main">
                     <div className="wi-venue">{w.venue}</div>
                     <h3 className="wi-title">
-                      {w.href ? <a href={w.href} target="_blank" rel="noopener">{w.title} <span className="ext">↗</span></a> : w.title}
+                      {w.href ? <a href={w.href} target="_blank" rel="noopener noreferrer">{w.title} <span className="ext">↗</span></a> : w.title}
                     </h3>
                     <p className="wi-note">{w.note}</p>
                   </div>
@@ -545,7 +545,7 @@ function HomeRecentlyBuilt({ setPage }) {
       </h2>
       <div className="hrb-grid">
         {HOME_PROJECTS.map((proj, i) => (
-          <a key={i} className="hrb-card" href={proj.href} target="_blank" rel="noopener">
+          <a key={i} className="hrb-card" href={proj.href} target="_blank" rel="noopener noreferrer">
             <h3 className="hrb-title">{proj.title}</h3>
             <p className="hrb-body">{proj.kind}.</p>
             <span className="hrb-link">View on GitHub <span aria-hidden="true">↗</span></span>

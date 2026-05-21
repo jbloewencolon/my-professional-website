@@ -4,9 +4,16 @@
   "private": true,
   "description": "Personal website for Jordan Loewen-Colón — Indigenous Taíno technologist, Responsible AI strategist.",
   "scripts": {
-    "start": "npx serve .",
-    "build": "echo 'Static site — no build step required.'"
+    "start": "npm run build && npx serve dist",
+    "build": "node build.mjs"
   },
   "author": "Jordan Loewen-Colón",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.0"
+  }
 }
