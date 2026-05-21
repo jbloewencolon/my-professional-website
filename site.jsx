@@ -8,11 +8,11 @@ const { useState, useEffect, useRef } = React;
 // ─────────────────────────────────────────────────────────────────────────────
 
 const TALKS = [
-  { n: "01", title: "Doing AI Differently", sub: "How organizations build technology while staying human.", len: "45–60 min · keynote or workshop" },
+  { n: "01", title: "Doing AI Differently", sub: "How orgs can build with AI while staying human.", len: "45–60 min · keynote or workshop" },
   { n: "02", title: "Empire 2.0", sub: "What business leaders need to know about AI, data extraction, and digital colonialism.", len: "45 min · keynote" },
   { n: "03", title: "Many Models, One World", sub: "Why culture, context, and meaning matter in responsible AI.", len: "30–45 min · keynote" },
   { n: "04", title: "Human–AI Ensembles", sub: "The future of work beyond automation and replacement.", len: "60 min · keynote + Q&A" },
-  { n: "05", title: "Artificial Opportunity", sub: "Maintaining ethics, identity, and power in the age of artificial intelligence.", len: "45 min · keynote" },
+  { n: "05", title: "Artificial Opportunity", sub: "The actual promises and problems of artificial intelligence.", len: "45 min · keynote" },
 ];
 
 const WORK = [
@@ -764,7 +764,7 @@ function Footer() {
           <p className="land-ack">
             This site is maintained from Tkaronto (Toronto), Ontario, on the traditional territory of the
             Anishinaabe and Haudenosaunee peoples, and from across the Caribbean diaspora.
-            Jordan writes as Taíno — a continuing people, not a closed chapter.
+            Jordan writes as Taíno: wo m'adan tokodo'aki ibakuaiba'ni.
           </p>
         </div>
         <div className="f-col">
