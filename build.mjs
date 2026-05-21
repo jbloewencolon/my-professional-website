@@ -7,15 +7,21 @@ const ROOT = new URL(".", import.meta.url).pathname;
 const DIST = join(ROOT, "dist");
 
 const SOURCE_FILES = ["tweaks-panel.jsx", "site-work.jsx", "site.jsx"];
-const STATIC_COPY = ["site.css", "images", "robots.txt", ".well-known"];
+const STATIC_COPY = ["images", "robots.txt", ".well-known"];
 
 async function exists(p) {
   try { await stat(p); return true; } catch { return false; }
 }
 
+function hashName(prefix, ext, buffer) {
+  const short = createHash("sha256").update(buffer).digest("hex").slice(0, 10);
+  return { name: `${prefix}.${short}.${ext}`, sri: `sha384-${createHash("sha384").update(buffer).digest("base64")}` };
+}
+
 await rm(DIST, { recursive: true, force: true });
 await mkdir(DIST, { recursive: true });
 
+// JS bundle ------------------------------------------------------------------
 const sources = await Promise.all(
   SOURCE_FILES.map((f) => readFile(join(ROOT, f), "utf8"))
 );
@@ -28,7 +34,7 @@ globalThis.ReactDOM = ReactDOMClient;
 ${sources.join("\n")}
 `;
 
-const result = await build({
+const jsBuild = await build({
   stdin: {
     contents: entryContents,
     loader: "jsx",
@@ -41,16 +47,28 @@ const result = await build({
   write: false,
   legalComments: "none",
   jsx: "transform",
+  define: {
+    "process.env.NODE_ENV": '"production"',
+  },
 });
 
-const jsBuffer = result.outputFiles[0].contents;
-const hash = createHash("sha384").update(jsBuffer).digest("base64");
-const sri = `sha384-${hash}`;
-const shortHash = createHash("sha256").update(jsBuffer).digest("hex").slice(0, 10);
-const jsName = `app.${shortHash}.js`;
+const jsBuffer = jsBuild.outputFiles[0].contents;
+const js = hashName("app", "js", jsBuffer);
+await writeFile(join(DIST, js.name), jsBuffer);
 
-await writeFile(join(DIST, jsName), jsBuffer);
+// CSS bundle -----------------------------------------------------------------
+const cssBuild = await build({
+  entryPoints: [join(ROOT, "site.css")],
+  bundle: true,
+  minify: true,
+  write: false,
+  loader: { ".css": "css" },
+});
+const cssBuffer = cssBuild.outputFiles[0].contents;
+const css = hashName("site", "css", cssBuffer);
+await writeFile(join(DIST, css.name), cssBuffer);
 
+// index.html -----------------------------------------------------------------
 const indexTemplate = await readFile(join(ROOT, "index.html"), "utf8");
 const indexOut = indexTemplate
   .replace(
@@ -58,12 +76,17 @@ const indexOut = indexTemplate
     ""
   )
   .replace(
+    /<link rel="stylesheet" href="site\.css" \/>/,
+    `<link rel="stylesheet" href="/${css.name}" integrity="${css.sri}" crossorigin="anonymous" />`
+  )
+  .replace(
     /<script type="text\/babel" src="tweaks-panel\.jsx"><\/script>\s*<script type="text\/babel" src="site-work\.jsx"><\/script>\s*<script type="text\/babel" src="site\.jsx"><\/script>/m,
-    `<script src="/${jsName}" integrity="${sri}" crossorigin="anonymous" defer></script>`
+    `<script src="/${js.name}" integrity="${js.sri}" crossorigin="anonymous" defer></script>`
   );
 
 await writeFile(join(DIST, "index.html"), indexOut);
 
+// Static assets --------------------------------------------------------------
 for (const item of STATIC_COPY) {
   const src = join(ROOT, item);
   if (await exists(src)) {
@@ -71,4 +94,4 @@ for (const item of STATIC_COPY) {
   }
 }
 
-console.log(`Built ${jsName} (${jsBuffer.length} bytes), SRI ${sri}`);
+console.log(`Built ${js.name} (${jsBuffer.length} bytes), ${css.name} (${cssBuffer.length} bytes)`);

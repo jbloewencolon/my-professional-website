@@ -19,10 +19,10 @@ const WORK = [
   { kind: "Essay",      date: "May 2025",  venue: "Harvard Business Review", title: "Research: Do LLMs Have Values?",
     note: "A field study on the values that show up when large language models are pressed. Co-authored.",
     href: "https://hbr.org/2025/05/research-do-llms-have-values",
-    img: "images/talk-panel.jpg" },
+    img: "images/talk-panel.webp" },
   { kind: "Talk",       date: "2024",      venue: "Data Natives · Berlin",  title: "Responsible Innovation: Hopes & Fears",
     note: "A facilitated public mapping of what people actually hope from AI and what they actually fear. The whiteboard is the deliverable.",
-    img: "images/talk-whiteboard.jpg" },
+    img: "images/talk-whiteboard.webp" },
   { kind: "Policy",     date: "2024",      venue: "Aspen Institute",        title: "AI in Drug Development & Indigenous Knowledge",
     note: "Tech Policy Writing Fellowship. Bringing OCAP®, CARE, and Access-and-Benefit-Sharing into the same room as the model card." },
   { kind: "Book",       date: "Forthcoming", venue: "Fortess Press",                    title: "Reality Technologies",
@@ -68,16 +68,16 @@ const HOME_RECENT = [
 const AFFILIATIONS_LOGOS = [
   { name: "Indigenous Values Initiative", short: "IVI",
     href: "https://indigenousvalues.org/",
-    logo: "images/affil-ivi.webp" },
+    logo: "images/affil-ivi.webp", w: 250, h: 250 },
   { name: "Nera Lake", short: "NL",
     href: "https://www.neralake.com/",
-    logo: "images/affil-neralake.png" },
+    logo: "images/affil-neralake.webp", w: 162, h: 172 },
   { name: "Candidly AI", short: "CA",
     href: "https://candidly-ai.com/about/",
-    logo: "images/affil-candidly.png" },
+    logo: "images/affil-candidly.webp", w: 158, h: 225 },
   { name: "Aspen Policy Academy (Tech)", short: "APA",
     href: "https://aspenpolicyacademy.org/tech/",
-    logo: "images/affil-aspen.png" },
+    logo: "images/affil-aspen.webp", w: 417, h: 237 },
 ];
 const AFFILIATIONS_TEXT = [
   { name: "FASPE", full: "Fellowship at Auschwitz for the Study of Professional Ethics",
@@ -107,7 +107,7 @@ function HomeAffiliations({ n = "02" }) {
             <a href={a.href} target="_blank" rel="noopener noreferrer">
               <div className={"affil-logo" + (a.logo ? " has-img" : "")} aria-hidden="true">
                 {a.logo
-                  ? <img src={a.logo} alt="" loading="lazy" />
+                  ? <img src={a.logo} alt="" width={a.w} height={a.h} loading="lazy" decoding="async" />
                   : <span className="affil-logo-placeholder">{a.short || a.name.split(" ").map((w) => w[0]).join("").slice(0, 3)}</span>}
               </div>
               <div className="affil-name">{a.name}</div>
@@ -364,7 +364,11 @@ function Home({ setPage, t }) {
           <Margin hidden={!t.marginalia}>
             <MarginNote tag="Upcoming · April 22">
               <figure className="mn-figure">
-                <img src="images/talk-artificial-opportunity-flyer.png" alt="Artificial Opportunity — Tolley Professor keynote flyer." loading="lazy" />
+                <picture>
+                  <source type="image/avif" srcSet="images/talk-artificial-opportunity-flyer.avif" />
+                  <source type="image/webp" srcSet="images/talk-artificial-opportunity-flyer.webp" />
+                  <img src="images/talk-artificial-opportunity-flyer.webp" alt="Artificial Opportunity — Tolley Professor keynote flyer." width="1214" height="2000" loading="lazy" decoding="async" />
+                </picture>
                 <figcaption><em>Artificial Opportunity</em> — William P. Tolley Distinguished Teaching Professor keynote. 4 pm, 204 Maxwell Hall, Syracuse.</figcaption>
               </figure>
             </MarginNote>
@@ -426,7 +430,7 @@ function Work({ t }) {
                   </div>
                   {w.img && (
                     <div className="wi-figure">
-                      <img src={w.img} alt="" loading="lazy" />
+                      <img src={w.img} alt="" width="1600" height="1068" loading="lazy" decoding="async" />
                     </div>
                   )}
                 </li>
@@ -462,7 +466,7 @@ function About({ t }) {
       <Band variant="ink-lifted" className="about-portrait-band">
         <div className="apb-grid">
           <figure className="apb-figure">
-            <img src="images/portrait-window.jpg" alt="Jordan Loewen-Colón, seated at a wooden table in front of a large industrial window." />
+            <img src="images/portrait-window.webp" alt="Jordan Loewen-Colón, seated at a wooden table in front of a large industrial window." width="1272" height="1272" decoding="async" fetchpriority="high" />
             <figcaption>Toronto, 2025. Photograph by Dan Campo.</figcaption>
           </figure>
           <div className="apb-text">
