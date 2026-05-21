@@ -42,8 +42,8 @@ const PUBLIC_WRITING = [
 const TALKS_ALL = [
   { year: "2026", title: "Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them.", venue: "Syracuse Humanities Tolley Professor Keynote. Syracuse, NY." },
   { year: "2026", title: "Data Res Nullius: The Doctrine of Discovery in the Age of AI.", venue: "US Indigenous Data Sovereignty and Governance Summit. Tucson, AZ." },
-  { year: "2025", title: "Responsible Innovation: Hopes & Fears.", venue: "Data Natives. Berlin.", img: "images/talk-whiteboard.jpg" },
-  { year: "2025", title: "Ethics in Entrepreneurship.", venue: "Data Natives \u00d7 EIE. Berlin.", img: "images/talk-panel.jpg" },
+  { year: "2025", title: "Responsible Innovation: Hopes & Fears.", venue: "Data Natives. Berlin.", img: "images/talk-whiteboard.webp" },
+  { year: "2025", title: "Ethics in Entrepreneurship.", venue: "Data Natives \u00d7 EIE. Berlin.", img: "images/talk-panel.webp" },
   { year: "2025", title: "Decolonizing AI: Nesting Access Benefit Sharing and Indigenous Data Justice.", venue: "Sustainable AI Conference. University of Bonn, Germany." },
   { year: "2025", title: "Working Across Sectors: Film, Gaming, and AI.", venue: "The Latin Forum, Listo Calisto. Toronto." },
   { year: "2025", title: "Let’s Explore the Alignment Problem — What Do AIs Value?", venue: "Techqueria. New York." },
@@ -161,14 +161,14 @@ function TalkPhotoNotes() {
       <div className="margin-note">
         <div className="mn-tag">Berlin · 2025</div>
         <figure className="mn-figure">
-          <img src="images/talk-whiteboard.jpg" alt="" loading="lazy" />
+          <img src="images/talk-whiteboard.webp" alt="" width="1600" height="1068" loading="lazy" decoding="async" />
           <figcaption><em>Responsible Innovation: Hopes &amp; Fears.</em> Data Natives.</figcaption>
         </figure>
       </div>
       <div className="margin-note">
         <div className="mn-tag">Berlin · 2025</div>
         <figure className="mn-figure">
-          <img src="images/talk-panel.jpg" alt="" loading="lazy" />
+          <img src="images/talk-panel.webp" alt="" width="1600" height="1068" loading="lazy" decoding="async" />
           <figcaption><em>Ethics in Entrepreneurship.</em> Data Natives × EIE.</figcaption>
         </figure>
       </div>
@@ -473,10 +473,10 @@ const WORK_FLAT = [
   ...PUBLIC_WRITING.map((p) => ({ kind: "Essay",      date: p.year, venue: p.venue.replace(/\.$/, ""), title: p.title, note: "Public writing.", href: p.href })),
   { kind: "Talk",      date: "2025", venue: "Data Natives · Berlin", title: "Responsible Innovation: Hopes & Fears",
     note: "A facilitated public mapping of what people actually hope from AI and what they actually fear. The whiteboard is the deliverable.",
-    img: "images/talk-whiteboard.jpg" },
+    img: "images/talk-whiteboard.webp" },
   { kind: "Panel",     date: "2025", venue: "Data Natives × EIE", title: "Ethics in Entrepreneurship",
     note: "On what changes when an ethics conversation has to survive contact with a product roadmap.",
-    img: "images/talk-panel.jpg" },
+    img: "images/talk-panel.webp" },
   { kind: "Policy",    date: "2024", venue: "Aspen Institute", title: "AI in Drug Development & Indigenous Knowledge",
     note: "Tech Policy Writing Fellowship. Bringing OCAP®, CARE, and Access-and-Benefit-Sharing into the same room as the model card." },
   { kind: "Book",      date: "Forthcoming", venue: "—", title: "Reality Technologies",
@@ -520,7 +520,7 @@ function WorkFlat({ t }) {
                     <p className="wi-note">{w.note}</p>
                   </div>
                   {w.img && (
-                    <div className="wi-figure"><img src={w.img} alt="" loading="lazy" /></div>
+                    <div className="wi-figure"><img src={w.img} alt="" width="1600" height="1068" loading="lazy" decoding="async" /></div>
                   )}
                 </li>
               ))}
