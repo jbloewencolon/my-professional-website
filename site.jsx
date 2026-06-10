@@ -150,6 +150,8 @@ function MarginNote({ tag, children }) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function Header({ page, setPage, t }) {
+  const [navOpen, setNavOpen] = useState(false);
+
   const groupedPages = [
     ["home", "Home"],
     ["work", "Work"],
@@ -172,19 +174,28 @@ function Header({ page, setPage, t }) {
     if (k === "work" && page.startsWith("work")) return true;
     return false;
   };
+  const go = (k, e) => { e.preventDefault(); setPage(k); setNavOpen(false); };
   return (
     <React.Fragment>
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <header className="site-header">
-        <a className="wordmark" href="/" onClick={(e) => { e.preventDefault(); setPage("home"); }}>
+        <a className="wordmark" href="/" onClick={(e) => go("home", e)}>
           <span className="wm-first">Jordan</span>
           <span className="wm-second">Loewen-Colón</span>
         </a>
-        <nav className="site-nav">
+        <button className="nav-toggle"
+                aria-label={navOpen ? "Close navigation" : "Open navigation"}
+                aria-expanded={navOpen}
+                onClick={() => setNavOpen(!navOpen)}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </button>
+        <nav className={"site-nav" + (navOpen ? " is-open" : "")} aria-label="Main navigation">
           {pages.map(([k, label]) => (
             <a key={k} href={k === "home" ? "/" : "/" + k}
                className={"nav-link " + (sectionMatch(k) ? "is-active" : "")}
-               onClick={(e) => { e.preventDefault(); setPage(k); }}>
+               onClick={(e) => go(k, e)}>
               {label}
             </a>
           ))}
@@ -680,6 +691,9 @@ function App() {
     "about", "speaking", "contact"
   ];
   const [page, setPage] = useState(() => {
+    if (typeof window === "undefined") return "home";
+    const pre = window.__INITIAL_PAGE__;
+    if (pre && VALID_PAGES.includes(pre)) return pre;
     const p = window.location.pathname.replace(/^\//, "") || "home";
     return VALID_PAGES.includes(p) ? p : "home";
   });
