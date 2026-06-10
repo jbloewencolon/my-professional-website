@@ -1,5 +1,4 @@
-// site.jsx — Jordan Loewen-Colón (Direction B: Caribbean night)
-// Single-file React app. Five pages. SPA hash navigation.
+// site.jsx — Jordan Loewen-Colón
 
 const { useState, useEffect, useRef } = React;
 
@@ -15,37 +14,6 @@ const TALKS = [
   { n: "05", title: "Artificial Opportunity", sub: "The actual promises and problems of artificial intelligence.", len: "45 min · keynote" },
 ];
 
-const WORK = [
-  { kind: "Essay",      date: "May 2025",  venue: "Harvard Business Review", title: "Research: Do LLMs Have Values?",
-    note: "A field study on the values that show up when large language models are pressed. Co-authored.",
-    href: "https://hbr.org/2025/05/research-do-llms-have-values",
-    img: "images/talk-panel.webp" },
-  { kind: "Talk",       date: "2024",      venue: "Data Natives · Berlin",  title: "Responsible Innovation: Hopes & Fears",
-    note: "A facilitated public mapping of what people actually hope from AI and what they actually fear. The whiteboard is the deliverable.",
-    img: "images/talk-whiteboard.webp" },
-  { kind: "Policy",     date: "2024",      venue: "Aspen Institute",        title: "AI in Drug Development & Indigenous Knowledge",
-    note: "Tech Policy Writing Fellowship. Bringing OCAP®, CARE, and Access-and-Benefit-Sharing into the same room as the model card." },
-  { kind: "Book",       date: "Forthcoming", venue: "Fortess Press",                    title: "Reality Technologies",
-    note: "A book on AI, VR, and what it means to mistake the model for the world." },
-  { kind: "Co-author",  date: "2024",      venue: "Springer: AI & Society",                      title: "Preventing AI Extractivism",
-    note: "On human-AI ensembles that preserve agency, judgment, and interpretive depth." },
-  { kind: "Venture",    date: "2022–24",   venue: "Supernova Immersives",   title: "Cofounder & CEO",
-    note: "AI-augmented VR for mental health, informed by Internal Family Systems. Founder Institute; $1M+ valuation." },
-  { kind: "Teaching",   date: "Ongoing",   venue: "Queen's University",     title: "Professor · AI, Ethics, and Policy",
-    note: "12+ courses designed, 1,000+ student projects evaluated. The workshop for the important questions." },
-];
-
-// Lineages — Pending Jordan. Placeholders that read as a real set rather than lorem.
-const LINEAGES = [
-  { name: "Édouard Glissant",        meta: "Poetics of Relation · 1990" },
-  { name: "Sylvia Wynter",           meta: "On being human · 2003" },
-  { name: "Katherine Hayles ",       meta: "How we became Posthuman · 1999" },
-  { name: "Vine Deloria",            meta: "God is Red · 1973" },
-  { name: "Gilles Deleuze",          meta: "Difference and Repitition · 1968" },
-  { name: "Ruha Benjamin",           meta: "Race after technology · 2019" },
-];
-
-// Amendment 03.1 — consolidated Home recent stream.
 const HOME_RECENT = [
   { kind: "Essay",   venue: "Harvard Business Review", date: "May 2025",
     title: "Research: Do LLMs Have Values?",
@@ -55,7 +23,7 @@ const HOME_RECENT = [
     href: "https://github.com/jbloewencolon/BookBack", external: true },
   { kind: "Talk",    venue: "Syracuse University", date: "2026",
     title: "Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them.",
-    href: "#work/publications", page: "work/publications" },
+    href: "/work/publications", page: "work/publications" },
   { kind: "Podcast", venue: "Pondering AI", date: "2025",
     title: "What Does AI Value? — with Kimberly Nevala",
     href: "https://www.youtube.com/watch?v=ZajcadLF_8I", external: true },
@@ -64,7 +32,6 @@ const HOME_RECENT = [
     href: "https://link.springer.com/article/10.1007/s00146-026-02931-z", external: true },
 ];
 
-// Affiliations — featured (with logos / monogram placeholders) + named text list.
 const AFFILIATIONS_LOGOS = [
   { name: "Indigenous Values Initiative", short: "IVI",
     href: "https://indigenousvalues.org/",
@@ -90,6 +57,15 @@ const AFFILIATIONS_TEXT = [
     href: "https://utsnyc.edu/tidel/" },
 ];
 
+const LINEAGES = [
+  { name: "Édouard Glissant",        meta: "Poetics of Relation · 1990" },
+  { name: "Sylvia Wynter",           meta: "On being human · 2003" },
+  { name: "Katherine Hayles",        meta: "How we became Posthuman · 1999" },
+  { name: "Vine Deloria",            meta: "God is Red · 1973" },
+  { name: "Gilles Deleuze",          meta: "Difference and Repetition · 1968" },
+  { name: "Ruha Benjamin",           meta: "Race after technology · 2019" },
+];
+
 function HomeAffiliations({ n = "02" }) {
   return (
     <section className="home-section home-affiliations">
@@ -111,7 +87,6 @@ function HomeAffiliations({ n = "02" }) {
                   : <span className="affil-logo-placeholder">{a.short || a.name.split(" ").map((w) => w[0]).join("").slice(0, 3)}</span>}
               </div>
               <div className="affil-name">{a.name}</div>
-              <div className="affil-descriptor">{a.descriptor}</div>
             </a>
           </li>
         ))}
@@ -144,7 +119,6 @@ function Inner({ children, className = "", first = false, tight = false }) {
 }
 
 function Band({ variant, children, className = "" }) {
-  // variant: clay | bohio | sun | ink-lifted
   return (
     <section className={`band band-${variant} ${className}`}>
       <div className="band-inner">{children}</div>
@@ -176,6 +150,8 @@ function MarginNote({ tag, children }) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function Header({ page, setPage, t }) {
+  const [navOpen, setNavOpen] = useState(false);
+
   const groupedPages = [
     ["home", "Home"],
     ["work", "Work"],
@@ -198,18 +174,28 @@ function Header({ page, setPage, t }) {
     if (k === "work" && page.startsWith("work")) return true;
     return false;
   };
+  const go = (k, e) => { e.preventDefault(); setPage(k); setNavOpen(false); };
   return (
     <React.Fragment>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <header className="site-header">
-        <a className="wordmark" href="#home" onClick={(e) => { e.preventDefault(); setPage("home"); }}>
+        <a className="wordmark" href="/" onClick={(e) => go("home", e)}>
           <span className="wm-first">Jordan</span>
           <span className="wm-second">Loewen-Colón</span>
         </a>
-        <nav className="site-nav">
+        <button className="nav-toggle"
+                aria-label={navOpen ? "Close navigation" : "Open navigation"}
+                aria-expanded={navOpen}
+                onClick={() => setNavOpen(!navOpen)}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </button>
+        <nav className={"site-nav" + (navOpen ? " is-open" : "")} aria-label="Main navigation">
           {pages.map(([k, label]) => (
-            <a key={k} href={"#" + k}
+            <a key={k} href={k === "home" ? "/" : "/" + k}
                className={"nav-link " + (sectionMatch(k) ? "is-active" : "")}
-               onClick={(e) => { e.preventDefault(); setPage(k); }}>
+               onClick={(e) => go(k, e)}>
               {label}
             </a>
           ))}
@@ -229,6 +215,7 @@ function Home({ setPage, t }) {
   useEffect(() => {
     const el = epigraphRef.current;
     if (!el || el.dataset.animated) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     el.dataset.animated = "1";
     const words = el.textContent.split(/(\s+)/);
     el.textContent = "";
@@ -245,7 +232,6 @@ function Home({ setPage, t }) {
 
   return (
     <article className="page page-home">
-      {/* Huge wordmark — Brief 02 item 06 */}
       <header className="home-hero">
         <h1 className="home-name"><span className="wm-line">Jordan</span><span className="wm-line">Loewen-Colón</span></h1>
         <div className="home-subtitle">
@@ -254,7 +240,6 @@ function Home({ setPage, t }) {
         </div>
       </header>
 
-      {/* Clay epigraph band — Brief 02 item 05 */}
       <Band variant="clay" className="epigraph-band">
         <blockquote>
           <p ref={epigraphRef}>The task of perception entails pulverizing the world, but also one of spiritualizing its dust.</p>
@@ -265,93 +250,44 @@ function Home({ setPage, t }) {
       <Inner>
         <Grid>
           <Body>
-            {t.homerecent === "separate" ? (
-              <React.Fragment>
-                <section className="home-section">
-                  <h2 className="section-head"><span className="sh-num">01</span> Talks, this season</h2>
-                  <ul className="talk-list">
-                    {TALKS.slice(0, 3).map((talk) => (
-                      <li key={talk.n} className="talk-item">
-                        <a href="#speaking" onClick={(e) => { e.preventDefault(); setPage("speaking"); }}>
-                          <span className="talk-num">{talk.n}</span>
-                          <span className="talk-title">{talk.title}</span>
-                          <span className="talk-sub">{talk.sub}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                  <a className="quiet-link" href="#speaking" onClick={(e) => { e.preventDefault(); setPage("speaking"); }}>
-                    All five topics &nbsp;→
-                  </a>
-                </section>
+            <section className="home-section">
+              <h2 className="section-head"><span className="sh-num">01</span> Recently</h2>
+              <ul className="home-recent-list">
+                {HOME_RECENT.map((item, i) => (
+                  <li key={i} className="hr-item">
+                    <a href={item.href}
+                       target={item.external ? "_blank" : undefined}
+                       rel={item.external ? "noopener" : undefined}
+                       onClick={item.page ? (e) => { e.preventDefault(); setPage(item.page); } : undefined}>
+                      <span className="hr-kind">{item.kind}</span>
+                      <span className="hr-venue">· {item.venue}</span>
+                      <span className="hr-date">{item.date}</span>
+                      <span className="hr-title">{item.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <nav className="hr-deeper" aria-label="Deeper into the work">
+                <a className="quiet-link" href="/work/publications"
+                   onClick={(e) => { e.preventDefault(); setPage("work/publications"); }}>
+                  All writing &amp; talks →
+                </a>
+                <a className="quiet-link" href="/work/projects"
+                   onClick={(e) => { e.preventDefault(); setPage("work/projects"); }}>
+                  All projects →
+                </a>
+                <a className="quiet-link" href="/work/press"
+                   onClick={(e) => { e.preventDefault(); setPage("work/press"); }}>
+                  All press →
+                </a>
+              </nav>
+            </section>
 
-                <section className="home-section">
-                  <h2 className="section-head"><span className="sh-num">02</span> Recently</h2>
-                  <ul className="recent-list">
-                    <li>
-                      <a href="https://hbr.org/2025/05/research-do-llms-have-values" target="_blank" rel="noopener noreferrer">
-                        <span className="r-kind">Essay · HBR ·</span> <span className="r-date">May 2025</span>
-                        <span className="r-title">Research: Do LLMs Have Values?</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#work" onClick={(e) => { e.preventDefault(); setPage("work"); }}>
-                        <span className="r-kind">Talk ·</span> <span className="r-date">2025</span>
-                        <span className="r-title">Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them.</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://link.springer.com/article/10.1007/s00146-026-02931-z" target="_blank" rel="noopener noreferrer">
-                        <span className="r-kind">Paper · AI & Society ·</span> <span className="r-date">2026</span>
-                        <span className="r-title">Preventing AI Extractivism</span>
-                      </a>
-                    </li>
-                  </ul>
-                </section>
-
-                <HomeRecentlyBuilt setPage={setPage} />
-                <HomeInConversation setPage={setPage} />
-              </React.Fragment>
-            ) : (
-              <section className="home-section">
-                <h2 className="section-head"><span className="sh-num">01</span> Recently</h2>
-                <ul className="home-recent-list">
-                  {HOME_RECENT.map((item, i) => (
-                    <li key={i} className="hr-item">
-                      <a href={item.href}
-                         target={item.external ? "_blank" : undefined}
-                         rel={item.external ? "noopener" : undefined}
-                         onClick={item.page ? (e) => { e.preventDefault(); setPage(item.page); } : undefined}>
-                        <span className="hr-kind">{item.kind}</span>
-                        <span className="hr-venue">· {item.venue}</span>
-                        <span className="hr-date">{item.date}</span>
-                        <span className="hr-title">{item.title}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <nav className="hr-deeper" aria-label="Deeper into the work">
-                  <a className="quiet-link" href="#work/publications"
-                     onClick={(e) => { e.preventDefault(); setPage("work/publications"); }}>
-                    All writing &amp; talks →
-                  </a>
-                  <a className="quiet-link" href="#work/projects"
-                     onClick={(e) => { e.preventDefault(); setPage("work/projects"); }}>
-                    All projects →
-                  </a>
-                  <a className="quiet-link" href="#work/press"
-                     onClick={(e) => { e.preventDefault(); setPage("work/press"); }}>
-                    All press →
-                  </a>
-                </nav>
-              </section>
-            )}
-
-            <HomeAffiliations n={t.homerecent === "separate" ? "05" : "02"} />
+            <HomeAffiliations n="02" />
 
             <section className="home-section">
               <h2 className="section-head">
-                <span className="sh-num">{t.homerecent === "separate" ? "06" : "03"}</span> Start a conversation
+                <span className="sh-num">03</span> Start a conversation
               </h2>
               <p className="lead">
                 Booking, consulting, press, advisory. The fastest way is to{" "}
@@ -362,14 +298,10 @@ function Home({ setPage, t }) {
           </Body>
 
           <Margin hidden={!t.marginalia}>
-            <MarginNote tag="Upcoming · April 22">
+            <MarginNote tag="Berlin · 2025">
               <figure className="mn-figure">
-                <picture>
-                  <source type="image/avif" srcSet="images/talk-artificial-opportunity-flyer.avif" />
-                  <source type="image/webp" srcSet="images/talk-artificial-opportunity-flyer.webp" />
-                  <img src="images/talk-artificial-opportunity-flyer.webp" alt="Artificial Opportunity — Tolley Professor keynote flyer." width="1214" height="2000" loading="lazy" decoding="async" />
-                </picture>
-                <figcaption><em>Artificial Opportunity</em> — William P. Tolley Distinguished Teaching Professor keynote. 4 pm, 204 Maxwell Hall, Syracuse.</figcaption>
+                <img src="images/talk-whiteboard.webp" alt="Jordan Loewen-Colón at the whiteboard during Responsible Innovation: Hopes &amp; Fears at Data Natives Berlin." width="1600" height="1068" loading="lazy" decoding="async" />
+                <figcaption><em>Responsible Innovation: Hopes &amp; Fears</em> — Data Natives, Berlin.</figcaption>
               </figure>
             </MarginNote>
             <MarginNote tag="On view">
@@ -379,7 +311,7 @@ function Home({ setPage, t }) {
               Toronto, Ontario · traveling for talks.
             </MarginNote>
             <MarginNote tag="Currently">
-              Writing <em>Reality Technologies</em>. Teaching at Queen's. Developong tools for governance and standard setting.
+              Writing <em>Reality Technologies</em>. Teaching at Queen's. Developing tools for governance and standard setting.
             </MarginNote>
             {t.colibri === "surfaced" && (
               <MarginNote tag="Also">
@@ -394,75 +326,12 @@ function Home({ setPage, t }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Work
-// ─────────────────────────────────────────────────────────────────────────────
-
-function Work({ t }) {
-  return (
-    <article className="page page-work">
-      <Band variant="bohio" className="work-title-band">
-        <div className="wt-kicker">Work</div>
-        <h1>A Signals, Stories, and Speculations.</h1>
-      </Band>
-
-      <Inner>
-        <Grid>
-          <Body>
-            <p className="lead">
-              Essays, talks, policy, ventures, teaching. Human Alignment Work.
-            </p>
-
-            <ol className="work-stream">
-              {WORK.map((w, i) => (
-                <li key={i} className="work-item">
-                  <div className="wi-meta">
-                    <span className="wi-kind">{w.kind}</span>
-                    <span className="wi-date">{w.date}</span>
-                  </div>
-                  <div className="wi-main">
-                    <div className="wi-venue">{w.venue}</div>
-                    <h3 className="wi-title">
-                      {w.href
-                        ? <a href={w.href} target="_blank" rel="noopener noreferrer">{w.title} <span className="ext">↗</span></a>
-                        : w.title}
-                    </h3>
-                    <p className="wi-note">{w.note}</p>
-                  </div>
-                  {w.img && (
-                    <div className="wi-figure">
-                      <img src={w.img} alt="" width="1600" height="1068" loading="lazy" decoding="async" />
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </Body>
-
-          <Margin hidden={!t.marginalia}>
-            <MarginNote tag="How to read this">
-              Items are tagged but not sorted by importance. The HBR essay and the whiteboard are doing
-              different jobs; both jobs matter.
-            </MarginNote>
-            <MarginNote tag="On omissions">
-              Conference papers, book chapters, and podcast appearances.
-            </MarginNote>
-            <TalkPhotoNotes />
-          </Margin>
-        </Grid>
-      </Inner>
-    </article>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
 // About
 // ─────────────────────────────────────────────────────────────────────────────
 
 function About({ t }) {
   return (
     <article className="page page-about">
-      {/* Portrait band — ink-lifted ground; portrait left, title block right.
-          Brief 02 items 11, 12. */}
       <Band variant="ink-lifted" className="about-portrait-band">
         <div className="apb-grid">
           <figure className="apb-figure">
@@ -470,7 +339,7 @@ function About({ t }) {
             <figcaption>Toronto, 2025. Photograph by Dan Campo.</figcaption>
           </figure>
           <div className="apb-text">
-            <p className="kicker-double">Taíno · in the present tense <span className="pending" title="Pending Jordan sign-off">Pending</span></p>
+            <p className="kicker-double">Taíno · in the present tense</p>
             <h1>The model is not the world.</h1>
             <p className="lead apb-lead">
               Jordan Loewen-Colón is an Indigenous Taíno technologist, Responsible AI strategist,
@@ -512,7 +381,7 @@ function About({ t }) {
               His policy work confronts what he calls <em>Empire 2.0</em> — the new wave of digital
               extraction in which Indigenous languages, biometric data, cultural knowledge, and
               territorial information are absorbed into AI systems under the language of innovation
-              and open data. He has worked as a Tech Polic Fellow at the Aspen Institute, and drafted
+              and open data. He has worked as a Tech Policy Fellow at the Aspen Institute, drafting
               recommendations bringing OCAP® and the CARE Principles into conversation with
               Access-and-Benefit-Sharing protocols.
             </p>
@@ -520,7 +389,7 @@ function About({ t }) {
             <p>
               At Queen's University he teaches AI, Ethics, and policy at the Smith School of Business and Department of Computing,
               designing more than twelve courses and evaluating over a thousand student projects.
-              He recently is currently drafting the manuscript the for the forthcoming book <em>Reality Tecnologies</em>.
+              He is currently drafting the manuscript for the forthcoming book <em>Reality Technologies</em>.
               {t.colibri === "footnote" && (
                 <span> He also writes poetry as <a className="colibri-link" href="#" onClick={(e)=>e.preventDefault()}>al colibrí</a>.</span>
               )}
@@ -538,7 +407,6 @@ function About({ t }) {
 
             <h2 className="section-head section-head-spaced">
               <span className="sh-num">·</span> Lineages
-              <span className="pending" title="Pending Jordan sign-off">Pending</span>
             </h2>
             <p>
               Names and texts my work answers to. Neither exhaustive nor ranked. The list updates when the
@@ -587,7 +455,7 @@ function Speaking({ t }) {
         <Grid>
           <Body>
             <p className="kicker">Speaking &amp; Consulting</p>
-            <h1 className="page-title">The convesations that need to happen.</h1>
+            <h1 className="page-title">The conversations that need to happen.</h1>
             <p className="lead">
               What follows are not paper abstracts. They are the talks a booker can actually put on a
               program. They have been workshopped on stages from Berlin to Toronto, and calibrated for rooms that
@@ -646,9 +514,8 @@ function Speaking({ t }) {
         </Grid>
       </Inner>
 
-      {/* Rates band — Brief 02 item 14 Option A: clay ground, huge Fraunces numbers */}
       <Band variant="clay" className="rates-band">
-        <div className="rb-head">Rates <span className="pending" title="Pending Jordan sign-off">Pending</span></div>
+        <div className="rb-head">Rates</div>
         <h2 className="rb-title">Listed, because guessing wastes everyone's time.</h2>
         <div className="rates-grid">
           <div className="rate-card">
@@ -715,8 +582,6 @@ function Contact({ t }) {
           <Body>
             <p className="kicker">Contact</p>
             <h1 className="page-title">The shortest page.</h1>
-            <p className="lead">
-            </p>
 
             <dl className="contact-dl">
               <div>
@@ -752,7 +617,7 @@ function Contact({ t }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Footer — adds land acknowledgment + Taíno colophon word (Pending Jordan)
+// Footer
 // ─────────────────────────────────────────────────────────────────────────────
 
 function Footer() {
@@ -760,7 +625,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="footer-inner">
         <div className="f-col">
-          <div className="f-label">Land acknowledgment <span className="pending">Pending</span></div>
+          <div className="f-label">Land acknowledgment</div>
           <p className="land-ack">
             This site is maintained from Tkaronto (Toronto), Ontario, on the traditional territory of the
             Anishinaabe and Haudenosaunee peoples, and from across the Caribbean diaspora.
@@ -779,7 +644,7 @@ function Footer() {
           <div><a href="https://calendly.com/j-l-c" target="_blank" rel="noopener noreferrer">Calendar</a></div>
         </div>
         <div className="f-col">
-          <div className="f-label">Colophon <span className="pending">Pending</span></div>
+          <div className="f-label">Colophon</div>
           <span className="colophon-word">guakía</span>
           <span className="colophon-gloss">Taíno · "we, ours"</span>
           <div style={{marginTop:"14px"}}>Set in Fraunces &amp; Source Serif 4.<br/>Monospace: JetBrains Mono.</div>
@@ -793,6 +658,17 @@ function Footer() {
 // App
 // ─────────────────────────────────────────────────────────────────────────────
 
+const PAGE_TITLES = {
+  "home":             "Jordan Loewen-Colón",
+  "work":             "Work — Jordan Loewen-Colón",
+  "work/publications":"Publications & Talks — Jordan Loewen-Colón",
+  "work/press":       "Press & Media — Jordan Loewen-Colón",
+  "work/projects":    "Projects & Code — Jordan Loewen-Colón",
+  "about":            "About — Jordan Loewen-Colón",
+  "speaking":         "Speaking & Consulting — Jordan Loewen-Colón",
+  "contact":          "Contact — Jordan Loewen-Colón",
+};
+
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "mode": "dark",
   "palette": "warm",
@@ -804,8 +680,6 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "jstyle": "fix1",
   "uifont": "jetbrains",
   "bodyfont": "source-serif",
-  "workarch": "landing",
-  "homeextras": "on",
   "navstyle": "grouped"
 }/*EDITMODE-END*/;
 
@@ -817,24 +691,32 @@ function App() {
     "about", "speaking", "contact"
   ];
   const [page, setPage] = useState(() => {
-    const h = (window.location.hash || "").replace("#", "");
-    return VALID_PAGES.includes(h) ? h : "home";
+    if (typeof window === "undefined") return "home";
+    const pre = window.__INITIAL_PAGE__;
+    if (pre && VALID_PAGES.includes(pre)) return pre;
+    const p = window.location.pathname.replace(/^\//, "") || "home";
+    return VALID_PAGES.includes(p) ? p : "home";
   });
 
   useEffect(() => {
-    const onHash = () => {
-      const h = (window.location.hash || "").replace("#", "");
-      if (VALID_PAGES.includes(h)) setPage(h);
+    const onPop = () => {
+      const p = window.location.pathname.replace(/^\//, "") || "home";
+      if (VALID_PAGES.includes(p)) setPage(p);
     };
-    window.addEventListener("hashchange", onHash);
-    return () => window.removeEventListener("hashchange", onHash);
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
   }, []);
 
   useEffect(() => {
-    if (window.location.hash !== "#" + page) {
-      history.replaceState(null, "", "#" + page);
+    const newPath = page === "home" ? "/" : "/" + page;
+    if (window.location.pathname !== newPath) {
+      history.replaceState(null, "", newPath);
     }
     window.scrollTo({ top: 0, behavior: "instant" });
+  }, [page]);
+
+  useEffect(() => {
+    document.title = PAGE_TITLES[page] || "Jordan Loewen-Colón";
   }, [page]);
 
   // Apply tweak attributes/vars at root
@@ -848,28 +730,25 @@ function App() {
     r.dataset.jstyle = t.jstyle;
     r.dataset.uifont = t.uifont;
     r.dataset.bodyfont = t.bodyfont;
-    r.dataset.workarch = t.workarch;
-    r.dataset.homeextras = t.homeextras;
     r.dataset.navstyle = t.navstyle;
-  }, [t.mode, t.palette, t.stripe, t.display, t.namestyle, t.jstyle, t.uifont, t.bodyfont, t.workarch, t.homeextras, t.navstyle]);
+  }, [t.mode, t.palette, t.stripe, t.display, t.namestyle, t.jstyle, t.uifont, t.bodyfont, t.navstyle]);
 
-  // Top-level section (for data-page on .site, which drives header stripe + margin-note colors)
   const section = page.split("/")[0];
 
   let pageEl = null;
-  if (page === "home")                pageEl = <Home setPage={setPage} t={t} />;
-  else if (page === "work")            pageEl = t.workarch === "flat" ? <WorkFlat t={t} /> : <WorkLanding t={t} setPage={setPage} />;
+  if (page === "home")                  pageEl = <Home setPage={setPage} t={t} />;
+  else if (page === "work")              pageEl = <WorkLanding t={t} setPage={setPage} />;
   else if (page === "work/publications") pageEl = <WorkPublications t={t} setPage={setPage} />;
   else if (page === "work/press")        pageEl = <WorkPress t={t} setPage={setPage} />;
   else if (page === "work/projects")     pageEl = <WorkProjects t={t} setPage={setPage} />;
-  else if (page === "about")            pageEl = <About t={t} />;
-  else if (page === "speaking")         pageEl = <Speaking t={t} />;
-  else if (page === "contact")          pageEl = <Contact t={t} />;
+  else if (page === "about")             pageEl = <About t={t} />;
+  else if (page === "speaking")          pageEl = <Speaking t={t} />;
+  else if (page === "contact")           pageEl = <Contact t={t} />;
 
   return (
     <div className="site" data-page={section} data-subpage={page}>
       <Header page={page} setPage={setPage} t={t} />
-      <main key={page} className="site-main">{pageEl}</main>
+      <main id="main-content" key={page} className="site-main">{pageEl}</main>
       <Footer />
 
       <TweaksPanel>
@@ -881,15 +760,9 @@ function App() {
                     options={["warm", "cool"]}
                     onChange={(v) => setTweak("palette", v)} />
         <TweakSection label="Architecture" />
-        <TweakRadio label="Work" value={t.workarch}
-                    options={["landing", "flat"]}
-                    onChange={(v) => setTweak("workarch", v)} />
         <TweakRadio label="Nav" value={t.navstyle}
                     options={["grouped", "flat"]}
                     onChange={(v) => setTweak("navstyle", v)} />
-        <TweakRadio label="Home extras" value={t.homeextras}
-                    options={["on", "off"]}
-                    onChange={(v) => setTweak("homeextras", v)} />
         <TweakSection label="Shell" />
         <TweakRadio label="Header stripe" value={t.stripe}
                     options={["on", "off"]}
