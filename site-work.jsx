@@ -4,7 +4,7 @@
 const { useState: useStateW } = React;
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Content (verbatim from Update Brief 03)
+// Content
 // ─────────────────────────────────────────────────────────────────────────────
 
 const PUBLICATIONS = [
@@ -43,15 +43,15 @@ const TALKS_ALL = [
   { year: "2026", title: "Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them.", venue: "Syracuse Humanities Tolley Professor Keynote. Syracuse, NY." },
   { year: "2026", title: "Data Res Nullius: The Doctrine of Discovery in the Age of AI.", venue: "US Indigenous Data Sovereignty and Governance Summit. Tucson, AZ." },
   { year: "2025", title: "Responsible Innovation: Hopes & Fears.", venue: "Data Natives. Berlin.", img: "images/talk-whiteboard.webp" },
-  { year: "2025", title: "Ethics in Entrepreneurship.", venue: "Data Natives \u00d7 EIE. Berlin.", img: "images/talk-panel.webp" },
+  { year: "2025", title: "Ethics in Entrepreneurship.", venue: "Data Natives × EIE. Berlin.", img: "images/talk-panel.webp" },
   { year: "2025", title: "Decolonizing AI: Nesting Access Benefit Sharing and Indigenous Data Justice.", venue: "Sustainable AI Conference. University of Bonn, Germany." },
   { year: "2025", title: "Working Across Sectors: Film, Gaming, and AI.", venue: "The Latin Forum, Listo Calisto. Toronto." },
-  { year: "2025", title: "Let’s Explore the Alignment Problem — What Do AIs Value?", venue: "Techqueria. New York." },
+  { year: "2025", title: "Let's Explore the Alignment Problem — What Do AIs Value?", venue: "Techqueria. New York." },
   { year: "2025", title: "Data Leadership and Ethics Amidst Uncertainty: Navigating Governance, Innovation, and Responsibility.", venue: "Big Data & Analytics Summit. Toronto." },
   { year: "2023", title: "Welcomed with Open Arms: A Data Justice Warning from Taíno History.", venue: "The Religious Origins of White Supremacy: Doctrine of Christian Discovery conference. Syracuse University." },
   { year: "2023", title: "AI and Psychedelic Health Sciences: Designing a Data-Augmented Trip Report Generator.", venue: "Practical Big Data Workshop. University of Michigan, Ann Arbor." },
   { year: "2022", title: "Decolonizing Design with New Media Art: The Doctrine of Discovery Podcast and VR Game.", venue: "Indigenous Religious Traditions Unit, American Academy of Religion. Denver." },
-  { year: "2022", title: "How, Why, Should We Digital Twin?: Experiencing AI in Healthcare.", venue: "Center for Health and Innovation Symposium, Queen’s University. Kingston." },
+  { year: "2022", title: "How, Why, Should We Digital Twin?: Experiencing AI in Healthcare.", venue: "Center for Health and Innovation Symposium, Queen's University. Kingston." },
   { year: "2022", title: "“We Will Always Burn the Man”: Taking the Ecstatic Moment of Burning Man into VR.", venue: "American Academy of Religion. Denver." },
   { year: "2022", title: "Simulating Empathy with Spiritual AI.", venue: "Society for Literature, Science and the Arts. Purdue University." },
   { year: "2021", title: "Robot Priests, Virtual Freuds, and Technodelics: A Theoretical Framework for Coupling AI and VR.", venue: "Artificial Intelligence and Religion Seminar, American Academy of Religion. San Antonio." },
@@ -60,17 +60,17 @@ const TALKS_ALL = [
 const PRESS_ALL = [
   { year: "2025", type: "PODCAST", title: "What Does AI Value?", venue: "Pondering AI Podcast, hosted by Kimberly Nevala.",
     href: "https://www.youtube.com/watch?v=ZajcadLF_8I" },
-  { year: "2025", type: "FEATURE", title: "The Culture Clash with AI Bots.", venue: "Smith Business Insight, Queen’s University.",
+  { year: "2025", type: "FEATURE", title: "The Culture Clash with AI Bots.", venue: "Smith Business Insight, Queen's University.",
     href: "https://smith.queensu.ca/insight/content/the-culture-clash-with-AI-bots.php" },
   { year: "2025", type: "FEATURE", title: "Utah Partnered with a Nonprofit to Boost Its AI Governance.", venue: "StateScoop.",
     href: "https://statescoop.com/utah-aspen-institute-policy-academy-ai-governance/" },
-  { year: "2024", type: "INTERVIEW", title: "Data Ethics, Religion, and Gaming: Meet Jordan Loewen-Colón.", venue: "Queen’s University Graduate Research Spotlight.",
+  { year: "2024", type: "INTERVIEW", title: "Data Ethics, Religion, and Gaming: Meet Jordan Loewen-Colón.", venue: "Queen's University Graduate Research Spotlight.",
     href: "https://www.queensu.ca/grad-postdoc/research/research-spotlights/data-ethics-religion-and-gaming-meet-jordan-loewen-colon" },
   { year: "2024", type: "INTERVIEW", title: "Innovation in Motion: The AI Revolution — Transforming Health.", venue: "Centre for Entrepreneurship, Innovation & Social Impact, Smith School of Business.",
     href: "https://www.investkingston.ca/event/innovation-in-motion-the-ai-revolution-transforming-health/" },
-  { year: "2023", type: "PODCAST", title: "The Responsible Use of AI Podcast.", venue: "Queen’s University Centre for Health Innovation.",
+  { year: "2023", type: "PODCAST", title: "The Responsible Use of AI Podcast.", venue: "Queen's University Centre for Health Innovation.",
     href: "https://open.spotify.com/show/5DIpaizqQEtr1GHpaaHmZz" },
-  { year: "2023", type: "PROJECT", title: "The Digital Cancer Twin Project — Podcast and Digital Humanities Archive.", venue: "Queen’s University, Center for Health Innovation. Writer & producer.",
+  { year: "2023", type: "PROJECT", title: "The Digital Cancer Twin Project — Podcast and Digital Humanities Archive.", venue: "Queen's University, Center for Health Innovation. Writer & producer.",
     href: "https://www.queensu.ca/health-innovation/digital-cancer-twin-project/" },
   { year: "2022", type: "PODCAST", title: "“Realities (Altered & Virtual) | Discourse!”", venue: "The Religious Studies Project. Guest scholar.",
     href: "https://www.religiousstudiesproject.com/podcast/discourse-november-2022/" },
@@ -95,13 +95,9 @@ const PROJECTS_ALL = [
     href: "https://github.com/jbloewencolon/Steam-Game-Review-Sentiment-Analysis" },
   { n: 5, title: "Personality & Psychedelic Use Analysis", kind: "Behavioral data analysis",
     tags: ["Statistics", "Psychology", "Drug Research"],
-    body: "An analysis of the correlation between the ‘Openness to experience’ personality factor and psychedelic drug use. Designed to aid researchers and companies in identifying participants for research studies.",
+    body: "An analysis of the correlation between the 'Openness to experience' personality factor and psychedelic drug use. Designed to aid researchers and companies in identifying participants for research studies.",
     href: "https://github.com/jbloewencolon/Predicting-Personality-and-Psychedelic-Experience" },
 ];
-
-// Convenience exports for Home extras
-const HOME_PROJECTS = [PROJECTS_ALL[0], PROJECTS_ALL[2], PROJECTS_ALL[1]];
-const HOME_PRESS = PRESS_ALL.slice(0, 3);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Secondary nav (visible on all three sub-pages)
@@ -115,13 +111,13 @@ function WorkSubnav({ active, setPage }) {
   ];
   return (
     <nav className="work-subnav" aria-label="Work sub-sections">
-      <a className="ws-back" href="#work"
+      <a className="ws-back" href="/work"
          onClick={(e) => { e.preventDefault(); setPage("work"); }}>← Work</a>
       <div className="ws-sep" aria-hidden="true">/</div>
       {items.map(([k, label], i) => (
         <React.Fragment key={k}>
           {i > 0 && <span className="ws-dot" aria-hidden="true">·</span>}
-          <a href={"#" + k}
+          <a href={"/" + k}
              className={"ws-link " + (active === k ? "is-active" : "")}
              onClick={(e) => { e.preventDefault(); setPage(k); }}>
             {label}
@@ -161,14 +157,14 @@ function TalkPhotoNotes() {
       <div className="margin-note">
         <div className="mn-tag">Berlin · 2025</div>
         <figure className="mn-figure">
-          <img src="images/talk-whiteboard.webp" alt="" width="1600" height="1068" loading="lazy" decoding="async" />
+          <img src="images/talk-whiteboard.webp" alt="Jordan Loewen-Colón at the whiteboard during Responsible Innovation: Hopes &amp; Fears at Data Natives Berlin." width="1600" height="1068" loading="lazy" decoding="async" />
           <figcaption><em>Responsible Innovation: Hopes &amp; Fears.</em> Data Natives.</figcaption>
         </figure>
       </div>
       <div className="margin-note">
         <div className="mn-tag">Berlin · 2025</div>
         <figure className="mn-figure">
-          <img src="images/talk-panel.webp" alt="" width="1600" height="1068" loading="lazy" decoding="async" />
+          <img src="images/talk-panel.webp" alt="Jordan Loewen-Colón on a panel at Ethics in Entrepreneurship, Data Natives Berlin." width="1600" height="1068" loading="lazy" decoding="async" />
           <figcaption><em>Ethics in Entrepreneurship.</em> Data Natives × EIE.</figcaption>
         </figure>
       </div>
@@ -212,7 +208,6 @@ function PressItem({ p, tagColor = "sun" }) {
 function PubGroup({ heading, items, accent = "clay", italicTitle = true, defaultShow = 3, itemKindNoun = "publications" }) {
   const [open, setOpen] = useStateW(false);
   const visible = open ? items : items.slice(0, defaultShow);
-  const hiddenCount = items.length - defaultShow;
   const canToggle = items.length > defaultShow;
   return (
     <section className={"pub-group accent-" + accent}>
@@ -272,7 +267,7 @@ function WorkLanding({ t, setPage }) {
               {tiles.map((tile) => (
                 <a key={tile.to}
                    className={"work-tile accent-" + tile.accent}
-                   href={"#" + tile.to}
+                   href={"/" + tile.to}
                    onClick={(e) => { e.preventDefault(); setPage(tile.to); }}>
                   <div className="wt-n">{tile.n}</div>
                   <h3 className="wt-title">{tile.title}</h3>
@@ -291,7 +286,7 @@ function WorkLanding({ t, setPage }) {
               </div>
               <div className="margin-note">
                 <div className="mn-tag">On omissions</div>
-                <div className="mn-body">Conference papers, podcast appearances, and a long tail of teaching artifacts live on the CV. They are not the work; they are the receipt.</div>
+                <div className="mn-body">Conference papers and a long tail of teaching artifacts live on the CV. They are not the work; they are the receipt.</div>
               </div>
               <TalkPhotoNotes />
             </aside>
@@ -335,7 +330,7 @@ function WorkPublications({ t, setPage }) {
             <aside className="grid-margin">
               <div className="margin-note">
                 <div className="mn-tag">By the count</div>
-                <div className="mn-body">8 peer-reviewed · 2 book chapters · 2 public essays · 13 talks since 2021.</div>
+                <div className="mn-body">8 peer-reviewed · 2 book chapters · 2 public essays · 15 talks since 2021.</div>
               </div>
               <div className="margin-note">
                 <div className="mn-tag">Citation style</div>
@@ -466,124 +461,10 @@ function WorkProjects({ t, setPage }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Flat-architecture fallback (the original v2 stream)
-// ─────────────────────────────────────────────────────────────────────────────
-
-const WORK_FLAT = [
-  ...PUBLIC_WRITING.map((p) => ({ kind: "Essay",      date: p.year, venue: p.venue.replace(/\.$/, ""), title: p.title, note: "Public writing.", href: p.href })),
-  { kind: "Talk",      date: "2025", venue: "Data Natives · Berlin", title: "Responsible Innovation: Hopes & Fears",
-    note: "A facilitated public mapping of what people actually hope from AI and what they actually fear. The whiteboard is the deliverable.",
-    img: "images/talk-whiteboard.webp" },
-  { kind: "Panel",     date: "2025", venue: "Data Natives × EIE", title: "Ethics in Entrepreneurship",
-    note: "On what changes when an ethics conversation has to survive contact with a product roadmap.",
-    img: "images/talk-panel.webp" },
-  { kind: "Policy",    date: "2024", venue: "Aspen Institute", title: "AI in Drug Development & Indigenous Knowledge",
-    note: "Tech Policy Writing Fellowship. Bringing OCAP®, CARE, and Access-and-Benefit-Sharing into the same room as the model card." },
-  { kind: "Book",      date: "Forthcoming", venue: "—", title: "Reality Technologies",
-    note: "A book on AI, VR, and what it means to mistake the model for the world." },
-  { kind: "Co-author", date: "2024", venue: "—", title: "Preventing AI Extractivism",
-    note: "On human-AI ensembles that preserve agency, judgment, and interpretive depth." },
-  { kind: "Venture",   date: "2022–24", venue: "Supernova Immersives", title: "Cofounder & CEO",
-    note: "AI-augmented VR for mental health, informed by Internal Family Systems. Founder Institute; $1M+ valuation." },
-  { kind: "Teaching",  date: "Ongoing", venue: "Queen’s University", title: "Adjunct Professor · AI Ethics Coordinator",
-    note: "12+ courses designed, 1,000+ student projects evaluated. Where the questions get pressure-tested first." },
-];
-
-function WorkFlat({ t }) {
-  return (
-    <article className="page page-work">
-      <section className="band band-bohio work-title-band">
-        <div className="band-inner">
-          <div className="wt-kicker">Work</div>
-          <h1>A stream, not three buckets.</h1>
-        </div>
-      </section>
-      <div className="page-inner">
-        <div className="grid">
-          <div className="grid-body">
-            <p className="lead">
-              Essays, talks, policy, ventures, teaching — one practice, not three buckets.
-              In this lineage they answer to each other.
-            </p>
-            <ol className="work-stream">
-              {WORK_FLAT.map((w, i) => (
-                <li key={i} className="work-item">
-                  <div className="wi-meta">
-                    <span className="wi-kind">{w.kind}</span>
-                    <span className="wi-date">{w.date}</span>
-                  </div>
-                  <div className="wi-main">
-                    <div className="wi-venue">{w.venue}</div>
-                    <h3 className="wi-title">
-                      {w.href ? <a href={w.href} target="_blank" rel="noopener noreferrer">{w.title} <span className="ext">↗</span></a> : w.title}
-                    </h3>
-                    <p className="wi-note">{w.note}</p>
-                  </div>
-                  {w.img && (
-                    <div className="wi-figure"><img src={w.img} alt="" width="1600" height="1068" loading="lazy" decoding="async" /></div>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Home extras — exported for site.jsx
-// ─────────────────────────────────────────────────────────────────────────────
-
-function HomeRecentlyBuilt({ setPage }) {
-  return (
-    <section className="home-section home-recently-built">
-      <p className="kicker kicker-shell">Recently built</p>
-      <h2 className="section-head">
-        <span className="sh-num">04</span> In public, in code
-      </h2>
-      <div className="hrb-grid">
-        {HOME_PROJECTS.map((proj, i) => (
-          <a key={i} className="hrb-card" href={proj.href} target="_blank" rel="noopener noreferrer">
-            <h3 className="hrb-title">{proj.title}</h3>
-            <p className="hrb-body">{proj.kind}.</p>
-            <span className="hrb-link">View on GitHub <span aria-hidden="true">↗</span></span>
-          </a>
-        ))}
-      </div>
-      <a className="quiet-link" href="#work/projects"
-         onClick={(e) => { e.preventDefault(); setPage("work/projects"); }}>
-        All projects &nbsp;→
-      </a>
-    </section>
-  );
-}
-
-function HomeInConversation({ setPage }) {
-  return (
-    <section className="home-section home-in-conversation">
-      <p className="kicker kicker-sun">In the conversation</p>
-      <h2 className="section-head">
-        <span className="sh-num">05</span> Where the work lands
-      </h2>
-      <ul className="press-list press-list-condensed">
-        {HOME_PRESS.map((p, i) => <PressItem key={i} p={p} tagColor="sun" />)}
-      </ul>
-      <a className="quiet-link" href="#work/press"
-         onClick={(e) => { e.preventDefault(); setPage("work/press"); }}>
-        All press &nbsp;→
-      </a>
-    </section>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
 // Export to window
 // ─────────────────────────────────────────────────────────────────────────────
 
 Object.assign(window, {
-  WorkLanding, WorkPublications, WorkPress, WorkProjects, WorkFlat,
-  HomeRecentlyBuilt, HomeInConversation,
+  WorkLanding, WorkPublications, WorkPress, WorkProjects,
   TalkPhotoNotes,
 });
