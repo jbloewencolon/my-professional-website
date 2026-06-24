@@ -1910,8 +1910,8 @@ p strong{ color: var(--paper); font-weight: 600; }
 @media (max-width: 480px) {
   .home-hero{ padding: 48px 20px 16px; }
   .home-hero .home-name{
-    font-size: clamp(56px, 18vw, 88px);
-    letter-spacing: -.04em;
+    /* ponytail: single-size mobile fix; if names change, switch to per-line fitted text. */
+    font-size: clamp(48px, 14vw, 68px);
   }
   .home-hero .home-subtitle{ font-size: 14px; letter-spacing: .1em; }
 
