@@ -1,6 +1,8 @@
 // site.jsx — Jordan Loewen-Colón
 
 const { useState, useEffect, useRef } = React;
+const COLIBRI_URL = "https://alcolibri.com/";
+const BIO_PACK_URL = "/bio-and-headshot-pack-jordan-loewen-colon.md";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Content
@@ -315,7 +317,7 @@ function Home({ setPage, t }) {
             </MarginNote>
             {t.colibri === "surfaced" && (
               <MarginNote tag="Also">
-                Writes poetry as <a className="colibri-link" href="#" onClick={(e)=>e.preventDefault()}>al colibrí</a> — separate site, on purpose.
+                Writes poetry as <a className="colibri-link" href={COLIBRI_URL} target="_blank" rel="noopener noreferrer">al colibrí</a> — separate site, on purpose.
               </MarginNote>
             )}
           </Margin>
@@ -391,7 +393,7 @@ function About({ t }) {
               designing more than twelve courses and evaluating over a thousand student projects.
               He is currently drafting the manuscript for the forthcoming book <em>Reality Technologies</em>.
               {t.colibri === "footnote" && (
-                <span> He also writes poetry as <a className="colibri-link" href="#" onClick={(e)=>e.preventDefault()}>al colibrí</a>.</span>
+                <span> He also writes poetry as <a className="colibri-link" href={COLIBRI_URL} target="_blank" rel="noopener noreferrer">al colibrí</a>.</span>
               )}
             </p>
 
@@ -434,7 +436,7 @@ function About({ t }) {
             </MarginNote>
             {t.colibri === "surfaced" && (
               <MarginNote tag="Other practice">
-                Writes poetry as <a className="colibri-link" href="#" onClick={(e)=>e.preventDefault()}>al colibrí</a>. The art does not need to explain itself.
+                Writes poetry as <a className="colibri-link" href={COLIBRI_URL} target="_blank" rel="noopener noreferrer">al colibrí</a>. The art does not need to explain itself.
               </MarginNote>
             )}
           </Margin>
@@ -599,7 +601,7 @@ function Contact({ t }) {
               <div>
                 <dt>Press</dt>
                 <dd>
-                  <a className="inline-link" href="#">Download bio &amp; headshot pack</a><br/>
+                  <a className="inline-link" href={BIO_PACK_URL}>Download bio &amp; headshot pack</a><br/>
                   <span className="quiet">Includes 50 / 150 / 400 word bios and a usable portrait.</span>
                 </dd>
               </div>
