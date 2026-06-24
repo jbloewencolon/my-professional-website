@@ -550,6 +550,26 @@ p strong{ color: var(--paper); font-weight: 600; }
   text-transform: uppercase;
 }
 
+.band.home-portrait-band {
+  padding: 0;          /* override Band's default padding */
+  overflow: hidden;
+  margin-top: 3px;     /* hairline gap between clay and ink-lifted */
+}
+.home-portrait-band .band-inner {
+  max-width: none;     /* ponytail: Band wraps children; remove cap for full-bleed crop. */
+}
+.home-pb-img {
+  display: block;
+  width: 100%;
+  height: clamp(240px, 28vw, 380px);
+  object-fit: cover;
+  object-position: center 18%;
+  filter: contrast(1.03);
+}
+/* Mobile: collapse to a shorter crop so it doesn't eat the screen */
+@media (max-width: 720px) {
+  .home-pb-img { height: 200px; object-position: center 12%; }
+}
 /* Talks list */
 .home-section{ margin-bottom: 24px; }
 .talk-list{ list-style: none; padding: 0; margin: 0 0 20px; }
