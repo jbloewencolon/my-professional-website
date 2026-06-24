@@ -2,13 +2,15 @@ import { build } from "esbuild";
 import { readFile, writeFile, mkdir, cp, rm, stat } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
-const ROOT = new URL(".", import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL(".", import.meta.url));
 const DIST = join(ROOT, "dist");
 const SITE_URL = "https://jordanloewencolon.com";
+const CUSTOM_DOMAIN = "jordanloewencolon.com";
 
 const SOURCE_FILES = ["tweaks-panel.jsx", "site-work.jsx", "site.jsx"];
-const STATIC_COPY  = ["images", "robots.txt", ".well-known", "llms.txt"];
+const STATIC_COPY  = ["images", "robots.txt", ".well-known", "llms.txt", "bio-and-headshot-pack-jordan-loewen-colon.md"];
 
 // ── Per-route metadata ───────────────────────────────────────────────────────
 const ROUTES = [
@@ -189,7 +191,7 @@ await build({
   external: ["react", "react-dom"],
 });
 
-const { renderPage } = await import(ssrFile);
+const { renderPage } = await import(pathToFileURL(ssrFile).href);
 
 // ── Read HTML template ───────────────────────────────────────────────────────
 const tpl = await readFile(join(ROOT, "index.html"), "utf8");
@@ -270,6 +272,8 @@ ${ROUTES.map((r) => {
 }).join("\n")}
 </urlset>`;
 await writeFile(join(DIST, "sitemap.xml"), sitemap);
+await writeFile(join(DIST, ".nojekyll"), "");
+await writeFile(join(DIST, "CNAME"), CUSTOM_DOMAIN + "\n");
 
 // ── Static assets ────────────────────────────────────────────────────────────
 for (const item of STATIC_COPY) {
