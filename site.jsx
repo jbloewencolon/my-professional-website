@@ -181,11 +181,11 @@ function Header({ page, setPage, t }) {
     <React.Fragment>
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <header className="site-header">
-        <a className="wordmark" href="/" onClick={(e) => go("home", e)}>
-          <span className="wm-first">Jordan</span>
-          <span className="wm-second">Loewen-Colón</span>
+        <a className="wordmark" href="/" aria-label="Jordan Loewen-Colón home" onClick={(e) => go("home", e)}>
+          <span className="wm-first">JLC</span>
         </a>
-        <button className="nav-toggle"
+        <button type="button"
+                className="nav-toggle"
                 aria-label={navOpen ? "Close navigation" : "Open navigation"}
                 aria-expanded={navOpen}
                 onClick={() => setNavOpen(!navOpen)}>
@@ -197,6 +197,7 @@ function Header({ page, setPage, t }) {
           {pages.map(([k, label]) => (
             <a key={k} href={k === "home" ? "/" : "/" + k}
                className={"nav-link " + (sectionMatch(k) ? "is-active" : "")}
+               aria-current={sectionMatch(k) ? "page" : undefined}
                onClick={(e) => go(k, e)}>
               {label}
             </a>
@@ -249,12 +250,18 @@ function Home({ setPage, t }) {
         </blockquote>
       </Band>
       <Band variant="ink-lifted" className="home-portrait-band">
-        <img
-          src="images/portrait-window.jpg"
-          alt=""
-          className="home-pb-img"
-          loading="lazy"
-        />
+        <picture>
+          <source srcSet="images/portrait-window.webp" type="image/webp" />
+          <img
+            src="images/portrait-window.jpg"
+            alt=""
+            className="home-pb-img"
+            width="1272"
+            height="1272"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </Band>
 
       <Inner>
@@ -695,6 +702,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const shouldPushPath = useRef(false);
 
   const VALID_PAGES = [
     "home", "work", "work/publications", "work/press", "work/projects",
@@ -717,12 +725,19 @@ function App() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
+  const goToPage = (nextPage) => {
+    shouldPushPath.current = true;
+    setPage(nextPage);
+  };
+
   useEffect(() => {
     const newPath = page === "home" ? "/" : "/" + page;
     if (window.location.pathname !== newPath) {
-      history.replaceState(null, "", newPath);
+      const method = shouldPushPath.current ? "pushState" : "replaceState";
+      window.history[method](null, "", newPath);
     }
-    window.scrollTo({ top: 0, behavior: "instant" });
+    shouldPushPath.current = false;
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [page]);
 
   useEffect(() => {
@@ -746,18 +761,18 @@ function App() {
   const section = page.split("/")[0];
 
   let pageEl = null;
-  if (page === "home")                  pageEl = <Home setPage={setPage} t={t} />;
-  else if (page === "work")              pageEl = <WorkLanding t={t} setPage={setPage} />;
-  else if (page === "work/publications") pageEl = <WorkPublications t={t} setPage={setPage} />;
-  else if (page === "work/press")        pageEl = <WorkPress t={t} setPage={setPage} />;
-  else if (page === "work/projects")     pageEl = <WorkProjects t={t} setPage={setPage} />;
+  if (page === "home")                  pageEl = <Home setPage={goToPage} t={t} />;
+  else if (page === "work")              pageEl = <WorkLanding t={t} setPage={goToPage} />;
+  else if (page === "work/publications") pageEl = <WorkPublications t={t} setPage={goToPage} />;
+  else if (page === "work/press")        pageEl = <WorkPress t={t} setPage={goToPage} />;
+  else if (page === "work/projects")     pageEl = <WorkProjects t={t} setPage={goToPage} />;
   else if (page === "about")             pageEl = <About t={t} />;
   else if (page === "speaking")          pageEl = <Speaking t={t} />;
   else if (page === "contact")           pageEl = <Contact t={t} />;
 
   return (
     <div className="site" data-page={section} data-subpage={page}>
-      <Header page={page} setPage={setPage} t={t} />
+      <Header page={page} setPage={goToPage} t={t} />
       <main id="main-content" key={page} className="site-main">{pageEl}</main>
       <Footer />
 

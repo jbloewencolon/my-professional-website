@@ -220,10 +220,9 @@ function buildHTML(route, body) {
       /<link rel="stylesheet" href="site\.css" \/>/,
       `<link rel="stylesheet" href="/${css.name}" integrity="${css.sri}" crossorigin="anonymous" />`
     )
-    // JS — inject __INITIAL_PAGE__ before the deferred bundle
+    // JS bundle
     .replace(
       /<script type="text\/babel" src="tweaks-panel\.jsx"><\/script>\s*<script type="text\/babel" src="site-work\.jsx"><\/script>\s*<script type="text\/babel" src="site\.jsx"><\/script>/m,
-      `<script>window.__INITIAL_PAGE__="${route.key}";</script>\n` +
       `<script src="/${js.name}" integrity="${js.sri}" crossorigin="anonymous" defer></script>`
     )
     // Portrait preload (per-route)

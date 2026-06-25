@@ -119,6 +119,7 @@ function WorkSubnav({ active, setPage }) {
           {i > 0 && <span className="ws-dot" aria-hidden="true">·</span>}
           <a href={"/" + k}
              className={"ws-link " + (active === k ? "is-active" : "")}
+             aria-current={active === k ? "page" : undefined}
              onClick={(e) => { e.preventDefault(); setPage(k); }}>
             {label}
           </a>
@@ -209,13 +210,14 @@ function PubGroup({ heading, items, accent = "clay", italicTitle = true, default
   const [open, setOpen] = useStateW(false);
   const visible = open ? items : items.slice(0, defaultShow);
   const canToggle = items.length > defaultShow;
+  const listId = "pub-group-" + heading.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   return (
     <section className={"pub-group accent-" + accent}>
       <header className="pg-head">
         <h3 className="pg-title">{heading}</h3>
         <span className="pg-count">— {items.length}</span>
       </header>
-      <ul className="pub-list">
+      <ul id={listId} className="pub-list">
         {visible.map((p, i) => (
           heading === "Selected talks"
             ? <TalkItem key={i} p={p} />
@@ -223,7 +225,11 @@ function PubGroup({ heading, items, accent = "clay", italicTitle = true, default
         ))}
       </ul>
       {canToggle && (
-        <button className="pg-toggle" onClick={() => setOpen(!open)}>
+        <button type="button"
+                className="pg-toggle"
+                aria-expanded={open}
+                aria-controls={listId}
+                onClick={() => setOpen(!open)}>
           {open
             ? <React.Fragment>Collapse <span aria-hidden="true">▴</span></React.Fragment>
             : <React.Fragment>View all {items.length} {itemKindNoun} <span aria-hidden="true">▾</span></React.Fragment>}
