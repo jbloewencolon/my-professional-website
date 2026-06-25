@@ -248,6 +248,14 @@ function Home({ setPage, t }) {
           <cite>— Gilles Deleuze</cite>
         </blockquote>
       </Band>
+      <Band variant="ink-lifted" className="home-portrait-band">
+        <img
+          src="images/portrait-window.jpg"
+          alt=""
+          className="home-pb-img"
+          loading="lazy"
+        />
+      </Band>
 
       <Inner>
         <Grid>
