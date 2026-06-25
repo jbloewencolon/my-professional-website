@@ -553,14 +553,14 @@ p strong{ color: var(--paper); font-weight: 600; }
 .home-pb-img {
   display: block;
   width: 100%;
-  height: clamp(240px, 28vw, 380px);
+  height: clamp(360px, 42vw, 560px);
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 22%;
   filter: contrast(1.03);
 }
-/* Mobile: collapse to a shorter crop so it doesn't eat the screen */
+/* Mobile: taller crop keeps the face intact without taking over the page. */
 @media (max-width: 720px) {
-  .home-pb-img { height: 200px; object-position: center 12%; }
+  .home-pb-img { height: 320px; object-position: center 24%; }
 }
 /* Talks list */
 .home-section{ margin-bottom: 24px; }
