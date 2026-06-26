@@ -3,6 +3,9 @@
 const { useState, useEffect, useRef } = React;
 const COLIBRI_URL = "https://alcolibri.com/";
 const BIO_PACK_URL = "/bio-and-headshot-pack-jordan-loewen-colon.md";
+const ROUTES = globalThis.SITE_ROUTES || [];
+const VALID_PAGES = globalThis.SITE_VALID_PAGES || [];
+const PAGE_TITLES = globalThis.SITE_PAGE_TITLES || {};
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Content
@@ -154,22 +157,12 @@ function MarginNote({ tag, children }) {
 function Header({ page, setPage, t }) {
   const [navOpen, setNavOpen] = useState(false);
 
-  const groupedPages = [
-    ["home", "Home"],
-    ["work", "Work"],
-    ["about", "About"],
-    ["speaking", "Speaking & Consulting"],
-    ["contact", "Contact"],
-  ];
-  const flatPages = [
-    ["home", "Home"],
-    ["work/publications", "Writing"],
-    ["work/press", "Press"],
-    ["work/projects", "Projects"],
-    ["about", "About"],
-    ["speaking", "Speaking"],
-    ["contact", "Contact"],
-  ];
+  const groupedPages = ROUTES
+    .filter((route) => route.primaryNav)
+    .map((route) => [route.key, route.navLabel]);
+  const flatPages = ROUTES
+    .filter((route) => route.flatNav)
+    .map((route) => [route.key, route.flatNavLabel || route.navLabel]);
   const pages = t.navstyle === "flat" ? flatPages : groupedPages;
   const sectionMatch = (k) => {
     if (k === page) return true;
@@ -675,17 +668,6 @@ function Footer() {
 // App
 // ─────────────────────────────────────────────────────────────────────────────
 
-const PAGE_TITLES = {
-  "home":             "Jordan Loewen-Colón",
-  "work":             "Work — Jordan Loewen-Colón",
-  "work/publications":"Publications & Talks — Jordan Loewen-Colón",
-  "work/press":       "Press & Media — Jordan Loewen-Colón",
-  "work/projects":    "Projects & Code — Jordan Loewen-Colón",
-  "about":            "About — Jordan Loewen-Colón",
-  "speaking":         "Speaking & Consulting — Jordan Loewen-Colón",
-  "contact":          "Contact — Jordan Loewen-Colón",
-};
-
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "mode": "dark",
   "palette": "warm",
@@ -704,10 +686,6 @@ function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const shouldPushPath = useRef(false);
 
-  const VALID_PAGES = [
-    "home", "work", "work/publications", "work/press", "work/projects",
-    "about", "speaking", "contact"
-  ];
   const [page, setPage] = useState(() => {
     if (typeof window === "undefined") return "home";
     const pre = window.__INITIAL_PAGE__;

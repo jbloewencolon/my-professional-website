@@ -1,22 +1,14 @@
 import { readFile, stat } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const DIST = join(ROOT, "dist");
 const SITE = "https://jordanloewencolon.com";
 
-const routes = [
-  "/",
-  "/about",
-  "/speaking",
-  "/work",
-  "/work/publications",
-  "/work/press",
-  "/work/projects",
-  "/contact",
-];
+await import(pathToFileURL(join(ROOT, "content/routes.js")).href);
+const routes = globalThis.SITE_ROUTES.map((route) => route.path);
 
 function pageFile(route) {
   return route === "/"
