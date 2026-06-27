@@ -9,7 +9,7 @@ const DIST = join(ROOT, "dist");
 const SITE_URL = "https://jordanloewencolon.com";
 const CUSTOM_DOMAIN = "jordanloewencolon.com";
 
-const SOURCE_FILES = ["content/routes.js", "tweaks-panel.jsx", "site-work.jsx", "site.jsx"];
+const SOURCE_FILES = ["content/routes.js", "content/text.js", "content/work.js", "tweaks-panel.jsx", "site-work.jsx", "site.jsx"];
 const STATIC_COPY  = ["images", "robots.txt", ".well-known", "llms.txt", "bio-and-headshot-pack-jordan-loewen-colon.md"];
 
 await import(pathToFileURL(join(ROOT, "content/routes.js")).href);
@@ -200,7 +200,7 @@ function buildHTML(route, body) {
     )
     // JS bundle
     .replace(
-      /<script src="content\/routes\.js"><\/script>\s*<script type="text\/babel" src="tweaks-panel\.jsx"><\/script>\s*<script type="text\/babel" src="site-work\.jsx"><\/script>\s*<script type="text\/babel" src="site\.jsx"><\/script>/m,
+      /<script src="content\/routes\.js"><\/script>\s*<script src="content\/text\.js"><\/script>\s*<script src="content\/work\.js"><\/script>\s*<script type="text\/babel" src="tweaks-panel\.jsx"><\/script>\s*<script type="text\/babel" src="site-work\.jsx"><\/script>\s*<script type="text\/babel" src="site\.jsx"><\/script>/m,
       `<script src="/${js.name}" integrity="${js.sri}" crossorigin="anonymous" defer></script>`
     )
     // Portrait preload (per-route)
