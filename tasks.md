@@ -20,6 +20,13 @@
 - [x] Run `npm run check`.
 - [x] Move work page headlines/leads and work lists into editable content.
 
+## Accessibility Palette Phase
+
+- [x] Add contrast-safe clay and bohio text tokens.
+- [x] Update small labels, links, metadata, focus ring, skip link, and CTA colors to pass AA contrast.
+- [x] Preserve original accent tokens for decorative stripes, borders, and visual accents.
+- [x] Run `npm run check`.
+
 ## Change Log
 
 - 2026-06-26: Added `tasks.md` to track copy-editing architecture changes.
@@ -31,6 +38,8 @@
 - 2026-06-26: Ran `npm run check`; text content build passed.
 - 2026-06-26: Added `content/work.js` and moved work publications, press, talks, projects, headlines, leads, and tiles into editable content files.
 - 2026-06-26: Ran `npm run check`; work content build passed.
+- 2026-06-27: Added contrast-safe palette tokens and updated small text, focus, skip-link, CTA, and band colors for WCAG AA contrast.
+- 2026-06-27: Ran `npm run check`; accessibility palette build passed.
 ## Remaining Tasks From Main
 
 ## Priority 1: Verification & Testing
