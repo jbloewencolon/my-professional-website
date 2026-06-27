@@ -3,80 +3,32 @@
 const { useState, useEffect, useRef } = React;
 const COLIBRI_URL = "https://alcolibri.com/";
 const BIO_PACK_URL = "/bio-and-headshot-pack-jordan-loewen-colon.md";
+const ROUTES = globalThis.SITE_ROUTES || [];
+const VALID_PAGES = globalThis.SITE_VALID_PAGES || [];
+const PAGE_TITLES = globalThis.SITE_PAGE_TITLES || {};
+const SITE_TEXT = globalThis.SITE_TEXT || { main: {}, pages: {} };
+const MAIN_TEXT = SITE_TEXT.main;
+const PAGE_COPY = SITE_TEXT.pages;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Content
 // ─────────────────────────────────────────────────────────────────────────────
 
-const TALKS = [
-  { n: "01", title: "Doing AI Differently", sub: "How orgs can build with AI while staying human.", len: "45–60 min · keynote or workshop" },
-  { n: "02", title: "Empire 2.0", sub: "What business leaders need to know about AI, data extraction, and digital colonialism.", len: "45 min · keynote" },
-  { n: "03", title: "Many Models, One World", sub: "Why culture, context, and meaning matter in responsible AI.", len: "30–45 min · keynote" },
-  { n: "04", title: "Human–AI Ensembles", sub: "The future of work beyond automation and replacement.", len: "60 min · keynote + Q&A" },
-  { n: "05", title: "Artificial Opportunity", sub: "The actual promises and problems of artificial intelligence.", len: "45 min · keynote" },
-];
-
-const HOME_RECENT = [
-  { kind: "Essay",   venue: "Harvard Business Review", date: "May 2025",
-    title: "Research: Do LLMs Have Values?",
-    href: "https://hbr.org/2025/05/research-do-llms-have-values", external: true },
-  { kind: "Code",    venue: "Github", date: "2025",
-    title: "BookBack: a public-domain reclamation against extractive scraping.",
-    href: "https://github.com/jbloewencolon/BookBack", external: true },
-  { kind: "Talk",    venue: "Syracuse University", date: "2026",
-    title: "Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them.",
-    href: "/work/publications", page: "work/publications" },
-  { kind: "Podcast", venue: "Pondering AI", date: "2025",
-    title: "What Does AI Value? — with Kimberly Nevala",
-    href: "https://www.youtube.com/watch?v=ZajcadLF_8I", external: true },
-  { kind: "Paper",   venue: "AI & Society", date: "2026",
-    title: "Preventing AI Extractivism",
-    href: "https://link.springer.com/article/10.1007/s00146-026-02931-z", external: true },
-];
-
-const AFFILIATIONS_LOGOS = [
-  { name: "Indigenous Values Initiative", short: "IVI",
-    href: "https://indigenousvalues.org/",
-    logo: "images/affil-ivi.webp", w: 250, h: 250 },
-  { name: "Nera Lake", short: "NL",
-    href: "https://www.neralake.com/",
-    logo: "images/affil-neralake.webp", w: 162, h: 172 },
-  { name: "Candidly AI", short: "CA",
-    href: "https://candidly-ai.com/about/",
-    logo: "images/affil-candidly.webp", w: 158, h: 225 },
-  { name: "Aspen Policy Academy (Tech)", short: "APA",
-    href: "https://aspenpolicyacademy.org/tech/",
-    logo: "images/affil-aspen.webp", w: 417, h: 237 },
-];
-const AFFILIATIONS_TEXT = [
-  { name: "FASPE", full: "Fellowship at Auschwitz for the Study of Professional Ethics",
-    href: "https://www.faspe-ethics.org/" },
-  { name: "Smith School of Business, Queen's University",
-    href: "https://smith.queensu.ca/" },
-  { name: "Founder Institute",
-    href: "https://fi.co/" },
-  { name: "TIDEL", full: "Union Theological Seminary",
-    href: "https://utsnyc.edu/tidel/" },
-];
-
-const LINEAGES = [
-  { name: "Édouard Glissant",        meta: "Poetics of Relation · 1990" },
-  { name: "Sylvia Wynter",           meta: "On being human · 2003" },
-  { name: "Katherine Hayles",        meta: "How we became Posthuman · 1999" },
-  { name: "Vine Deloria",            meta: "God is Red · 1973" },
-  { name: "Gilles Deleuze",          meta: "Difference and Repetition · 1968" },
-  { name: "Ruha Benjamin",           meta: "Race after technology · 2019" },
-];
+const TALKS = MAIN_TEXT.talks || [];
+const HOME_RECENT = MAIN_TEXT.homeRecent || [];
+const AFFILIATIONS_LOGOS = MAIN_TEXT.affiliationsLogos || [];
+const AFFILIATIONS_TEXT = MAIN_TEXT.affiliationsText || [];
+const LINEAGES = MAIN_TEXT.lineages || [];
 
 function HomeAffiliations({ n = "02" }) {
+  const copy = PAGE_COPY.home || {};
   return (
     <section className="home-section home-affiliations">
       <h2 className="section-head">
-        <span className="sh-num">{n}</span> The Where and What of my Work
+        <span className="sh-num">{n}</span> {copy.affiliationsHeading || "The Where and What of my Work"}
       </h2>
       <p className="lead-mute">
-        Indigenous sovereignty, applied AI, policy training, universities,
-        humanities ethics. Even though the rooms are different, some questions stay the same.
+        {copy.affiliationsLead || "Indigenous sovereignty, applied AI, policy training, universities, humanities ethics. Even though the rooms are different, some questions stay the same."}
       </p>
 
       <ul className="affil-logo-grid">
@@ -154,22 +106,12 @@ function MarginNote({ tag, children }) {
 function Header({ page, setPage, t }) {
   const [navOpen, setNavOpen] = useState(false);
 
-  const groupedPages = [
-    ["home", "Home"],
-    ["work", "Work"],
-    ["about", "About"],
-    ["speaking", "Speaking & Consulting"],
-    ["contact", "Contact"],
-  ];
-  const flatPages = [
-    ["home", "Home"],
-    ["work/publications", "Writing"],
-    ["work/press", "Press"],
-    ["work/projects", "Projects"],
-    ["about", "About"],
-    ["speaking", "Speaking"],
-    ["contact", "Contact"],
-  ];
+  const groupedPages = ROUTES
+    .filter((route) => route.primaryNav)
+    .map((route) => [route.key, route.navLabel]);
+  const flatPages = ROUTES
+    .filter((route) => route.flatNav)
+    .map((route) => [route.key, route.flatNavLabel || route.navLabel]);
   const pages = t.navstyle === "flat" ? flatPages : groupedPages;
   const sectionMatch = (k) => {
     if (k === page) return true;
@@ -215,6 +157,7 @@ function Header({ page, setPage, t }) {
 
 function Home({ setPage, t }) {
   const epigraphRef = useRef(null);
+  const copy = PAGE_COPY.home || {};
   useEffect(() => {
     const el = epigraphRef.current;
     if (!el || el.dataset.animated) return;
@@ -236,17 +179,22 @@ function Home({ setPage, t }) {
   return (
     <article className="page page-home">
       <header className="home-hero">
-        <h1 className="home-name"><span className="wm-line">Jordan</span><span className="wm-line">Loewen-Colón</span></h1>
+        <h1 className="home-name">
+          {(copy.nameLines || ["Jordan", "Loewen-Colón"]).map((line) => (
+            <span key={line} className="wm-line">{line}</span>
+          ))}
+        </h1>
         <div className="home-subtitle">
-          Indigenous Taíno technologist<br/>
-          Responsible AI strategist
+          {(copy.subtitleLines || ["Indigenous Taíno technologist", "Responsible AI strategist"]).map((line, i, lines) => (
+            <React.Fragment key={line}>{line}{i < lines.length - 1 && <br/>}</React.Fragment>
+          ))}
         </div>
       </header>
 
       <Band variant="clay" className="epigraph-band">
         <blockquote>
-          <p ref={epigraphRef}>The task of perception entails pulverizing the world, but also one of spiritualizing its dust.</p>
-          <cite>— Gilles Deleuze</cite>
+          <p ref={epigraphRef}>{copy.epigraph || "The task of perception entails pulverizing the world, but also one of spiritualizing its dust."}</p>
+          <cite>{copy.epigraphCite || "— Gilles Deleuze"}</cite>
         </blockquote>
       </Band>
       <Band variant="ink-lifted" className="home-portrait-band">
@@ -268,7 +216,7 @@ function Home({ setPage, t }) {
         <Grid>
           <Body>
             <section className="home-section">
-              <h2 className="section-head"><span className="sh-num">01</span> Recently</h2>
+              <h2 className="section-head"><span className="sh-num">01</span> {copy.recentHeading || "Recently"}</h2>
               <ul className="home-recent-list">
                 {HOME_RECENT.map((item, i) => (
                   <li key={i} className="hr-item">
@@ -304,7 +252,7 @@ function Home({ setPage, t }) {
 
             <section className="home-section">
               <h2 className="section-head">
-                <span className="sh-num">03</span> Start a conversation
+                <span className="sh-num">03</span> {copy.startHeading || "Start a conversation"}
               </h2>
               <p className="lead">
                 Booking, consulting, press, advisory. The fastest way is to{" "}
@@ -347,6 +295,7 @@ function Home({ setPage, t }) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function About({ t }) {
+  const copy = PAGE_COPY.about || {};
   return (
     <article className="page page-about">
       <Band variant="ink-lifted" className="about-portrait-band">
@@ -356,13 +305,10 @@ function About({ t }) {
             <figcaption>Toronto, 2025. Photograph by Dan Campo.</figcaption>
           </figure>
           <div className="apb-text">
-            <p className="kicker-double">Taíno · in the present tense</p>
-            <h1>The model is not the world.</h1>
+            <p className="kicker-double">{copy.kicker || "Taíno · in the present tense"}</p>
+            <h1>{copy.title || "The model is not the world."}</h1>
             <p className="lead apb-lead">
-              Jordan Loewen-Colón is an Indigenous Taíno technologist, Responsible AI strategist,
-              scholar, educator, and organizational transformation consultant working at the
-              intersection of artificial intelligence, culture, new media, and data
-              justice.
+              {copy.heroLead || "Jordan Loewen-Colón is an Indigenous Taíno technologist, Responsible AI strategist, scholar, educator, and organizational transformation consultant working at the intersection of artificial intelligence, culture, new media, and data justice."}
             </p>
           </div>
         </div>
@@ -372,9 +318,7 @@ function About({ t }) {
         <Grid>
           <Body>
             <p className="lead">
-              The work moves across the lab, the classroom, the startup floor, and the
-              policy arena, bringing technical fluency together with humanistic depth and a clear
-              commitment to communities too often flattened by emerging technologies.
+              {copy.intro || "The work moves across the lab, the classroom, the startup floor, and the policy arena, bringing technical fluency together with humanistic depth and a clear commitment to communities too often flattened by emerging technologies."}
             </p>
 
             <p>
@@ -413,7 +357,7 @@ function About({ t }) {
             </p>
 
             <h2 className="section-head section-head-spaced">
-              <span className="sh-num">·</span> Currently thinking about
+              <span className="sh-num">·</span> {copy.thinkingHeading || "Currently thinking about"}
             </h2>
             <ul className="thinking-list">
               <li>The difference between an AI <em>model</em> and an AI <em>system</em>, and why bookers keep using one word when they mean the other.</li>
@@ -423,11 +367,10 @@ function About({ t }) {
             </ul>
 
             <h2 className="section-head section-head-spaced">
-              <span className="sh-num">·</span> Lineages
+              <span className="sh-num">·</span> {copy.lineagesHeading || "Lineages"}
             </h2>
             <p>
-              Names and texts my work answers to. Neither exhaustive nor ranked. The list updates when the
-              reading list does.
+              {copy.lineagesIntro || "Names and texts my work answers to. Neither exhaustive nor ranked. The list updates when the reading list does."}
             </p>
             <ul className="lineages">
               {LINEAGES.map((l, i) => (
@@ -466,17 +409,16 @@ function About({ t }) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function Speaking({ t }) {
+  const copy = PAGE_COPY.speaking || {};
   return (
     <article className="page page-speaking">
       <Inner first>
         <Grid>
           <Body>
-            <p className="kicker">Speaking &amp; Consulting</p>
-            <h1 className="page-title">The conversations that need to happen.</h1>
+            <p className="kicker">{copy.kicker || "Speaking & Consulting"}</p>
+            <h1 className="page-title">{copy.title || "The conversations that need to happen."}</h1>
             <p className="lead">
-              What follows are not paper abstracts. They are the talks a booker can actually put on a
-              program. They have been workshopped on stages from Berlin to Toronto, and calibrated for rooms that
-              contain both engineers and the people who pay them.
+              {copy.lead || "What follows are not paper abstracts. They are the talks a booker can actually put on a program. They have been workshopped on stages from Berlin to Toronto, and calibrated for rooms that contain both engineers and the people who pay them."}
             </p>
 
             <ol className="topics">
@@ -493,7 +435,7 @@ function Speaking({ t }) {
             </ol>
 
             <h2 className="section-head section-head-spaced">
-              <span className="sh-num">·</span> What working together looks like
+              <span className="sh-num">·</span> {copy.workingTogetherHeading || "What working together looks like"}
             </h2>
             <p>
               <strong>Keynotes &amp; panels.</strong> 30–60 minutes, with or without Q&amp;A.
@@ -532,8 +474,8 @@ function Speaking({ t }) {
       </Inner>
 
       <Band variant="clay" className="rates-band">
-        <div className="rb-head">Rates</div>
-        <h2 className="rb-title">Listed, because guessing wastes everyone's time.</h2>
+        <div className="rb-head">{copy.ratesLabel || "Rates"}</div>
+        <h2 className="rb-title">{copy.ratesTitle || "Listed, because guessing wastes everyone's time."}</h2>
         <div className="rates-grid">
           <div className="rate-card">
             <div className="rate-label">Keynote</div>
@@ -561,13 +503,13 @@ function Speaking({ t }) {
         <Grid>
           <Body>
             <h2 className="section-head">
-              <span className="sh-num">·</span> Start a conversation
+              <span className="sh-num">·</span> {copy.calendarHeading || "Start a conversation"}
             </h2>
             <div className="cal-embed" aria-label="Calendar booking">
               <div className="cal-inner">
-                <div className="cal-h">Book a 15-minute call</div>
+                <div className="cal-h">{copy.calendarTitle || "Book a 15-minute call"}</div>
                 <p className="cal-lead">
-                  Pick a time that works — Calendly handles the rest. No back-and-forth.
+                  {copy.calendarLead || "Pick a time that works — Calendly handles the rest. No back-and-forth."}
                 </p>
                 <a
                   className="cal-cta"
@@ -592,13 +534,14 @@ function Speaking({ t }) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function Contact({ t }) {
+  const copy = PAGE_COPY.contact || {};
   return (
     <article className="page page-contact">
       <Inner first>
         <Grid>
           <Body>
-            <p className="kicker">Contact</p>
-            <h1 className="page-title">The shortest page.</h1>
+            <p className="kicker">{copy.kicker || "Contact"}</p>
+            <h1 className="page-title">{copy.title || "The shortest page."}</h1>
 
             <dl className="contact-dl">
               <div>
@@ -675,17 +618,6 @@ function Footer() {
 // App
 // ─────────────────────────────────────────────────────────────────────────────
 
-const PAGE_TITLES = {
-  "home":             "Jordan Loewen-Colón",
-  "work":             "Work — Jordan Loewen-Colón",
-  "work/publications":"Publications & Talks — Jordan Loewen-Colón",
-  "work/press":       "Press & Media — Jordan Loewen-Colón",
-  "work/projects":    "Projects & Code — Jordan Loewen-Colón",
-  "about":            "About — Jordan Loewen-Colón",
-  "speaking":         "Speaking & Consulting — Jordan Loewen-Colón",
-  "contact":          "Contact — Jordan Loewen-Colón",
-};
-
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "mode": "dark",
   "palette": "warm",
@@ -704,10 +636,6 @@ function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const shouldPushPath = useRef(false);
 
-  const VALID_PAGES = [
-    "home", "work", "work/publications", "work/press", "work/projects",
-    "about", "speaking", "contact"
-  ];
   const [page, setPage] = useState(() => {
     if (typeof window === "undefined") return "home";
     const pre = window.__INITIAL_PAGE__;

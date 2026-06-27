@@ -1,0 +1,56 @@
+(function () {
+  globalThis.SITE_WORK_CONTENT = {
+    publications: [
+      { year: "2026", title: "AI and Personal Values: An Alignment Problem.", venue: "AI and Ethics, Springer.", status: "in preparation" },
+      { year: "2026", title: "Preventing AI Extractivism: The Case for Braiding Indigenous Data Justice with ABS for Stronger AI Data Governance.", venue: "AI and Indigenous Studies, Springer Special Issue.", authors: "With M. Schulz.", href: "https://link.springer.com/article/10.1007/s00146-026-02931-z" },
+      { year: "2024", title: "Virtual Memory, Real Power: How Memes Resist Data Colonialism.", venue: "Convergence: The International Journal of Research into New Media Technologies.", authors: "With A. Smith.", href: "https://journals.sagepub.com/doi/abs/10.1177/13548565241262421" },
+      { year: "2023", title: "The Age of (the Algorithmic) Aquarius: How AI Meets Our Esoteric Needs.", venue: "Journal for the American Academy of Religion, Special Issue.", authors: "With S. Mosurinjohn.", href: "https://muse.jhu.edu/pub/3/article/916429" },
+      { year: "2022", title: "Fabulation, Machine Agents, and Spiritually Authorizing Encounters.", venue: "Religions, special issue.", authors: "With S. Mosurinjohn.", href: "https://www.mdpi.com/2077-1444/13/4/333" },
+      { year: "2021", title: "Revisiting Teaching and Games: mapping out ecosystems of learning.", venue: "Gamevironments, University of Bremen.", authors: "With B. Marklund and M. Saridaki.", href: "https://journals.suub.uni-bremen.de/index.php/gamevironments/article/view/144" },
+      { year: "2019", title: "Death, Fabulation, and Virtual Reality Gaming.", venue: "Gamevironments, No. 9, 202-221. University of Bremen.", href: "https://media.suub.uni-bremen.de/handle/elib/3494" },
+      { year: "2015", title: "On Being Made Stupid: Developing a Religious Ethic of Anti-Propaganda.", venue: "The Journal for the Fellowship at Auschwitz for the Study of Professional Ethics (FASPE).", href: "https://www.academia.edu/10269683" },
+    ],
+    bookChapters: [
+      { year: "2025", title: "Virtual Reality and the Vulnerability of the Self: A Critical Analysis of Self-Hacking.", venue: "In Security of the Self, a SSHRC-funded project.", authors: "With A. Amarasingam and S. Mosurinjohn.", href: "https://press.uottawa.ca/en/9780776645612/the-security-of-self/" },
+      { year: "2024", title: "“We Will Always Burn the Man”: The Ecstatic Moment of Burning Man VR.", venue: "Bloomsbury Handbook of Ecstatic Religion. Bloomsbury Press.", authors: "With A. Amarasingam and S. Mosurinjohn.", href: "https://www.bloomsbury.com/ca/bloomsbury-handbook-of-religious-ecstasy-9781350346994/" },
+    ],
+    publicWriting: [
+      { year: "2025", title: "Do LLMs Have Values?", venue: "Harvard Business Review.", href: "https://hbr.org/2025/05/research-do-llms-have-values" },
+      { year: "2025", title: "AI tools promise efficiency at work, but they can erode trust, creativity and agency.", venue: "The Conversation.", href: "https://theconversation.com/ai-tools-promise-efficiency-at-work-264865" },
+    ],
+    talks: [
+      { year: "2026", title: "Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them.", venue: "Syracuse Humanities Tolley Professor Keynote. Syracuse, NY." },
+      { year: "2026", title: "Data Res Nullius: The Doctrine of Discovery in the Age of AI.", venue: "US Indigenous Data Sovereignty and Governance Summit. Tucson, AZ." },
+      { year: "2025", title: "Responsible Innovation: Hopes & Fears.", venue: "Data Natives. Berlin.", img: "images/talk-whiteboard.webp" },
+      { year: "2025", title: "Ethics in Entrepreneurship.", venue: "Data Natives × EIE. Berlin.", img: "images/talk-panel.webp" },
+      { year: "2025", title: "Decolonizing AI: Nesting Access Benefit Sharing and Indigenous Data Justice.", venue: "Sustainable AI Conference. University of Bonn, Germany." },
+      { year: "2025", title: "Working Across Sectors: Film, Gaming, and AI.", venue: "The Latin Forum, Listo Calisto. Toronto." },
+      { year: "2025", title: "Let's Explore the Alignment Problem — What Do AIs Value?", venue: "Techqueria. New York." },
+      { year: "2025", title: "Data Leadership and Ethics Amidst Uncertainty: Navigating Governance, Innovation, and Responsibility.", venue: "Big Data & Analytics Summit. Toronto." },
+      { year: "2023", title: "Welcomed with Open Arms: A Data Justice Warning from Taíno History.", venue: "The Religious Origins of White Supremacy: Doctrine of Christian Discovery conference. Syracuse University." },
+      { year: "2023", title: "AI and Psychedelic Health Sciences: Designing a Data-Augmented Trip Report Generator.", venue: "Practical Big Data Workshop. University of Michigan, Ann Arbor." },
+      { year: "2022", title: "Decolonizing Design with New Media Art: The Doctrine of Discovery Podcast and VR Game.", venue: "Indigenous Religious Traditions Unit, American Academy of Religion. Denver." },
+      { year: "2022", title: "How, Why, Should We Digital Twin?: Experiencing AI in Healthcare.", venue: "Center for Health and Innovation Symposium, Queen's University. Kingston." },
+      { year: "2022", title: "“We Will Always Burn the Man”: Taking the Ecstatic Moment of Burning Man into VR.", venue: "American Academy of Religion. Denver." },
+      { year: "2022", title: "Simulating Empathy with Spiritual AI.", venue: "Society for Literature, Science and the Arts. Purdue University." },
+      { year: "2021", title: "Robot Priests, Virtual Freuds, and Technodelics: A Theoretical Framework for Coupling AI and VR.", venue: "Artificial Intelligence and Religion Seminar, American Academy of Religion. San Antonio." },
+    ],
+    press: [
+      { year: "2025", type: "PODCAST", title: "What Does AI Value?", venue: "Pondering AI Podcast, hosted by Kimberly Nevala.", href: "https://www.youtube.com/watch?v=ZajcadLF_8I" },
+      { year: "2025", type: "FEATURE", title: "The Culture Clash with AI Bots.", venue: "Smith Business Insight, Queen's University.", href: "https://smith.queensu.ca/insight/content/the-culture-clash-with-AI-bots.php" },
+      { year: "2025", type: "FEATURE", title: "Utah Partnered with a Nonprofit to Boost Its AI Governance.", venue: "StateScoop.", href: "https://statescoop.com/utah-aspen-institute-policy-academy-ai-governance/" },
+      { year: "2024", type: "INTERVIEW", title: "Data Ethics, Religion, and Gaming: Meet Jordan Loewen-Colón.", venue: "Queen's University Graduate Research Spotlight.", href: "https://www.queensu.ca/grad-postdoc/research/research-spotlights/data-ethics-religion-and-gaming-meet-jordan-loewen-colon" },
+      { year: "2024", type: "INTERVIEW", title: "Innovation in Motion: The AI Revolution — Transforming Health.", venue: "Centre for Entrepreneurship, Innovation & Social Impact, Smith School of Business.", href: "https://www.investkingston.ca/event/innovation-in-motion-the-ai-revolution-transforming-health/" },
+      { year: "2023", type: "PODCAST", title: "The Responsible Use of AI Podcast.", venue: "Queen's University Centre for Health Innovation.", href: "https://open.spotify.com/show/5DIpaizqQEtr1GHpaaHmZz" },
+      { year: "2023", type: "PROJECT", title: "The Digital Cancer Twin Project — Podcast and Digital Humanities Archive.", venue: "Queen's University, Center for Health Innovation. Writer & producer.", href: "https://www.queensu.ca/health-innovation/digital-cancer-twin-project/" },
+      { year: "2022", type: "PODCAST", title: "“Realities (Altered & Virtual) | Discourse!”", venue: "The Religious Studies Project. Guest scholar.", href: "https://www.religiousstudiesproject.com/podcast/discourse-november-2022/" },
+    ],
+    projects: [
+      { n: 1, title: "BookBack — Reclaim the Commons", kind: "Public-domain reclamation project", tags: ["Indigenous Data", "Data Justice", "Provenance"], body: "A project for restoring public-domain works to public access in the face of extractive scraping. Built around the principle that AI training data should honor provenance, not erase it.", href: "https://github.com/jbloewencolon/BookBack" },
+      { n: 2, title: "The Demographics of Faerûn", kind: "D&D dataset for data-science education", tags: ["Data Science Education", "Tabletop Gaming", "Synthetic Data"], body: "A dynamic fictional dataset built on the Forgotten Realms setting, designed to make data-science pedagogy more engaging and immersive. Used in classroom contexts to teach analysis, visualization, and modeling.", href: "https://github.com/jbloewencolon/Creating-Dataset-for-The-Demographics-of-Faerun/" },
+      { n: 3, title: "Psychedelic Trip Report LLM", kind: "Large-language-model research tool", tags: ["NLP", "LLM", "Health Research"], body: "Built on 70,000 entries from the Erowid dataset, this tool uses large language models to assess subjective elements in psychedelic experiences. Designed with applications in synthetic drug discovery and qualitative health research.", href: "https://github.com/jbloewencolon/Psychedelic-Trip-Report-Text-Generator" },
+      { n: 4, title: "Video Game Review Analysis Tool", kind: "Sentiment analysis & classification", tags: ["NLP", "Sentiment Analysis", "Gaming"], body: "A sentiment-analysis tool trained on 30,000 Steam reviews for Hades by Supergiant Games. Combines unsupervised learning and multi-class classification to surface patterns in player feedback.", href: "https://github.com/jbloewencolon/Steam-Game-Review-Sentiment-Analysis" },
+      { n: 5, title: "Personality & Psychedelic Use Analysis", kind: "Behavioral data analysis", tags: ["Statistics", "Psychology", "Drug Research"], body: "An analysis of the correlation between the 'Openness to experience' personality factor and psychedelic drug use. Designed to aid researchers and companies in identifying participants for research studies.", href: "https://github.com/jbloewencolon/Predicting-Personality-and-Psychedelic-Experience" },
+    ],
+  };
+})();

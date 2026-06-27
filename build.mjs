@@ -9,36 +9,14 @@ const DIST = join(ROOT, "dist");
 const SITE_URL = "https://jordanloewencolon.com";
 const CUSTOM_DOMAIN = "jordanloewencolon.com";
 
-const SOURCE_FILES = ["tweaks-panel.jsx", "site-work.jsx", "site.jsx"];
+const SOURCE_FILES = ["content/routes.js", "content/text.js", "content/work.js", "tweaks-panel.jsx", "site-work.jsx", "site.jsx"];
 const STATIC_COPY  = ["images", "robots.txt", ".well-known", "llms.txt", "bio-and-headshot-pack-jordan-loewen-colon.md"];
 
-// ── Per-route metadata ───────────────────────────────────────────────────────
-const ROUTES = [
-  { key: "home",              path: "/",                  portrait: true,
-    title: "Jordan Loewen-Colón — Responsible AI Strategist",
-    desc:  "Indigenous Taíno technologist and Responsible AI strategist. Available for keynotes, workshops, and advisory on AI ethics and data justice." },
-  { key: "about",             path: "/about",             portrait: true,
-    title: "About — Jordan Loewen-Colón",
-    desc:  "Jordan Loewen-Colón is an Indigenous Taíno technologist and Responsible AI strategist teaching AI ethics and policy at Queen's University." },
-  { key: "speaking",          path: "/speaking",          portrait: false,
-    title: "Speaking & Consulting — Jordan Loewen-Colón",
-    desc:  "Keynotes, workshops, advisory, and consulting on responsible AI, Indigenous data justice, and AI ethics. Rates listed." },
-  { key: "work",              path: "/work",              portrait: false,
-    title: "Work — Jordan Loewen-Colón",
-    desc:  "Publications, talks, press, and projects on AI ethics, Indigenous data sovereignty, and responsible technology." },
-  { key: "work/publications", path: "/work/publications", portrait: false,
-    title: "Publications & Talks — Jordan Loewen-Colón",
-    desc:  "Peer-reviewed essays, book chapters, public writing, and conference talks on AI ethics, Indigenous data justice, and technology." },
-  { key: "work/press",        path: "/work/press",        portrait: false,
-    title: "Press & Media — Jordan Loewen-Colón",
-    desc:  "Podcast appearances, journalist interviews, and media coverage of Jordan Loewen-Colón's work in responsible AI and Indigenous data sovereignty." },
-  { key: "work/projects",     path: "/work/projects",     portrait: false,
-    title: "Projects & Code — Jordan Loewen-Colón",
-    desc:  "Technical AI and data-science projects including BookBack, psychedelic health research tools, and educational datasets." },
-  { key: "contact",           path: "/contact",           portrait: false,
-    title: "Contact — Jordan Loewen-Colón",
-    desc:  "Book a keynote, start a consulting engagement, or reach out for press and advisory inquiries." },
-];
+await import(pathToFileURL(join(ROOT, "content/routes.js")).href);
+const ROUTES = globalThis.SITE_ROUTES;
+if (!Array.isArray(ROUTES) || ROUTES.length === 0) {
+  throw new Error("No routes loaded from content/routes.js");
+}
 
 // ── JSON-LD schemas ──────────────────────────────────────────────────────────
 const PERSON_LD = {
@@ -222,7 +200,7 @@ function buildHTML(route, body) {
     )
     // JS bundle
     .replace(
-      /<script type="text\/babel" src="tweaks-panel\.jsx"><\/script>\s*<script type="text\/babel" src="site-work\.jsx"><\/script>\s*<script type="text\/babel" src="site\.jsx"><\/script>/m,
+      /<script src="content\/routes\.js"><\/script>\s*<script src="content\/text\.js"><\/script>\s*<script src="content\/work\.js"><\/script>\s*<script type="text\/babel" src="tweaks-panel\.jsx"><\/script>\s*<script type="text\/babel" src="site-work\.jsx"><\/script>\s*<script type="text\/babel" src="site\.jsx"><\/script>/m,
       `<script src="/${js.name}" integrity="${js.sri}" crossorigin="anonymous" defer></script>`
     )
     // Portrait preload (per-route)
