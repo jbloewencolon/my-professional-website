@@ -1,5 +1,4 @@
 import { readFile, stat } from "node:fs/promises";
-import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -20,16 +19,9 @@ function fail(message) {
   throw new Error(message);
 }
 
-function inlineScriptHashes(html) {
-  return [...html.matchAll(/<script(?![^>]*\ssrc=)[^>]*>([\s\S]*?)<\/script>/g)]
-    .map((match) => "sha256-" + createHash("sha256").update(match[1]).digest("base64"));
-}
-
 await stat(DIST);
 
 const sitemap = await readFile(join(DIST, "sitemap.xml"), "utf8");
-const netlify = await readFile(join(ROOT, "netlify.toml"), "utf8");
-const csp = netlify.match(/Content-Security-Policy = "([^"]+)"/)?.[1] || "";
 
 for (const route of routes) {
   const file = pageFile(route);
@@ -47,9 +39,6 @@ for (const route of routes) {
   }
   if ((html.match(/<h1\b/g) || []).length !== 1) {
     fail(`${route}: expected one h1`);
-  }
-  for (const hash of inlineScriptHashes(html)) {
-    if (!csp.includes(`'${hash}'`)) fail(`${route}: CSP missing ${hash}`);
   }
 }
 

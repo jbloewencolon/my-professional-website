@@ -40,6 +40,7 @@
 - 2026-06-26: Ran `npm run check`; work content build passed.
 - 2026-06-27: Added contrast-safe palette tokens and updated small text, focus, skip-link, CTA, and band colors for WCAG AA contrast.
 - 2026-06-27: Ran `npm run check`; accessibility palette build passed.
+- 2026-06-27: Removed `netlify.toml` and Netlify-specific checks because deployment now runs through GitHub Pages.
 ## Remaining Tasks From Main
 
 ## Priority 1: Verification & Testing
@@ -57,7 +58,7 @@
 ## Priority 2: Deployment & Go-Live
 
 - [ ] **Create pull request** — Merge `claude/zealous-planck-qr2iql` → `main`
-- [ ] **Deploy to production** — Push to main, trigger Netlify build
+- [ ] **Deploy to production** — Push to main and let GitHub Pages deploy
 - [ ] **Verify live site** — Check jordanloewencolon.com for all features working in production
 - [ ] **Check search console** — Verify sitemap.xml is indexed and robots.txt policies are applied
 - [ ] **Monitor 404s** — Ensure no broken route navigation due to pathname routing
@@ -78,7 +79,7 @@
 - [ ] **Refresh projects** — Add new technical projects or update existing ones
 - [ ] **Contact form integration** — If not already present, consider adding email/contact backend
 - [ ] **Analytics setup** — Consider adding privacy-respecting analytics (e.g., Plausible, Fathom) to track engagement
-- [ ] **CDN/caching optimization** — Set appropriate cache headers for static assets and prerendered HTML
+- [ ] **CDN/caching optimization** — Review what can be improved within GitHub Pages constraints
 
 ## Notes
 
