@@ -49,7 +49,7 @@
     },
     about: {
       kicker: "Taíno · in the present tense",
-      title: "The model is not the world.",
+      title: "New worlds recquire new ways of seeing.",
       heroLead: "Jordan Loewen-Colón is an Indigenous Taíno technologist, Responsible AI strategist, scholar, educator, and organizational transformation consultant working at the intersection of artificial intelligence, culture, new media, and data justice.",
       intro: "The work moves across the lab, the classroom, the startup floor, and the policy arena, bringing technical fluency together with humanistic depth and a clear commitment to communities too often flattened by emerging technologies.",
       thinkingHeading: "Currently thinking about",
