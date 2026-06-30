@@ -29,6 +29,9 @@
 
 ## Change Log
 
+- 2026-06-30: Shifted mobile homepage banner further right so the microphone portrait anchors small-screen crop.
+- 2026-06-30: Shifted mobile homepage banner crop right to keep microphone portrait centered on small screens.
+- 2026-06-30: Replaced homepage banner image with new speaking panel photo and promoted Syracuse keynote flyer above Berlin talk image in homepage marginalia.
 - 2026-06-26: Added `tasks.md` to track copy-editing architecture changes.
 - 2026-06-26: Added `content/routes.js` as the route/title/meta/nav label source of truth.
 - 2026-06-26: Wired build output, local fallback scripts, client nav labels, client page titles, and dist checks to `content/routes.js`.

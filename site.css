@@ -568,7 +568,7 @@ p strong{ color: var(--paper); font-weight: 600; }
 }
 /* Mobile: taller crop keeps the face intact without taking over the page. */
 @media (max-width: 720px) {
-  .home-pb-img { height: 320px; object-position: center 24%; }
+  .home-pb-img { height: 320px; object-position: 92% 24%; }
 }
 /* Talks list */
 .home-section{ margin-bottom: 24px; }
