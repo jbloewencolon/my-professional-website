@@ -515,6 +515,33 @@ p strong{ color: var(--paper); font-weight: 600; }
   margin-bottom: 6px;
 }
 
+/* Home tagline — the plain-English offer statement */
+.home-tagline{
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--paper-soft);
+  margin: 16px 0 0;
+  max-width: 480px;
+}
+
+/* AI Alt Lab intro band — green accent introducing the practice */
+.ai-alt-lab-band{
+  margin: 24px 0 0;
+  padding: 56px 56px;
+}
+.ai-alt-lab-band .band-inner{
+  max-width: 560px;
+  margin: 0 auto;
+}
+.ai-alt-lab-band p{
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0;
+  color: var(--paper);
+}
+
 /* Epigraph band — Home's loud event — sized down per Amendment 03.1
    so it reads as a pulled quote, not a billboard. */
 .epigraph-band{
@@ -1873,6 +1900,16 @@ p strong{ color: var(--paper); font-weight: 600; }
 .affil-text-list li{ line-height: 1.45; }
 .affil-full{ color: var(--paper-mute); }
 
+/* Affiliation role note */
+.affil-role-note{
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--paper-soft);
+  margin: 32px 0 0;
+  line-height: 1.6;
+  max-width: 560px;
+}
+
 @media (max-width: 1100px){
   .affil-logo-grid{ grid-template-columns: repeat(2, 1fr); }
 }
@@ -1968,6 +2005,10 @@ p strong{ color: var(--paper); font-weight: 600; }
     font-size: clamp(48px, 14vw, 68px);
   }
   .home-hero .home-subtitle{ font-size: 14px; letter-spacing: .1em; }
+  .home-tagline{ font-size: 15px; }
+
+  .ai-alt-lab-band{ padding: 40px 20px; }
+  .ai-alt-lab-band p{ font-size: 16px; }
 
   .epigraph-band{ padding: 24px 20px; }
   .epigraph-band p{ font-size: 18px; }
