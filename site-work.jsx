@@ -175,7 +175,7 @@ function WorkLanding({ t, setPage }) {
         <div className="grid">
           <div className="grid-body">
             <p className="lead">
-              {WORK_PAGE_COPY.lead || "Essays, talks, policy, ventures, teaching, code, press — one practice, not seven buckets. In this lineage they answer to each other. Three doorways below."}
+              {WORK_PAGE_COPY.lead || "Essays, talks, policy, ventures, teaching, code, press — one practice, but multiple outputs. In this lineage they answer to each other. Three categories below."}
             </p>
 
             <div className="work-tiles">
