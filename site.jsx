@@ -194,12 +194,6 @@ function Home({ setPage, t }) {
         {copy.tagline && <p className="home-tagline">{copy.tagline}</p>}
       </header>
 
-      {copy.aiAltLabIntro && (
-        <Band variant="bohio" className="ai-alt-lab-band">
-          <p>{copy.aiAltLabIntro}</p>
-        </Band>
-      )}
-
       <Band variant="clay" className="epigraph-band">
         <blockquote>
           <p ref={epigraphRef}>{copy.epigraph || "The task of perception entails pulverizing the world, but also one of spiritualizing its dust."}</p>

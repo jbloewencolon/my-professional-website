@@ -41,7 +41,6 @@
       nameLines: ["Jordan", "Loewen-Colón"],
       subtitleLines: ["Indigenous Taíno technologist", "Responsible AI strategist"],
       tagline: "I help organizations build AI practices they can stand behind — and make the hard trade-offs concrete enough to decide.",
-      aiAltLabIntro: "Through the AI Alt Lab, I help governments, AI startups, and health teams get their data and AI governance ready for generative AI — before they ship, not after. Recent partners include the State of Utah and the City of Berkeley.",
       epigraph: "The task of perception entails pulverizing the world, but also one of spiritualizing its dust.",
       epigraphCite: "— Gilles Deleuze",
       recentHeading: "Recently",
@@ -77,8 +76,8 @@
     },
     work: {
       kicker: "Body of work",
-      title: "A stream, not three buckets.",
-      lead: "Essays, talks, policy, ventures, teaching, code, press — one practice, not seven buckets. In this lineage they answer to each other. Three doorways below.",
+      title: "How results are actualized.",
+      lead: "Essays, talks, policy, ventures, teaching, code, press — one practice, but multiple outputs. In this lineage they answer to each other. Three categories below.",
       publicationsKicker: "Publications & talks",
       publicationsTitle: "The paper trail.",
       publicationsLead: "Peer-reviewed work, book chapters, public writing, and selected talks. Most are linked; a few are forthcoming.",
