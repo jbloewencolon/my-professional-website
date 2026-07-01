@@ -46,6 +46,8 @@ function HomeAffiliations({ n = "02" }) {
         ))}
       </ul>
 
+      <p className="affil-role-note">Advisor to Candidly AI and Nera Lake on responsible data and AI practice.</p>
+
       <p className="affil-also-label">Also affiliated with</p>
       <ul className="affil-text-list">
         {AFFILIATIONS_TEXT.map((a, i) => (
@@ -189,7 +191,14 @@ function Home({ setPage, t }) {
             <React.Fragment key={line}>{line}{i < lines.length - 1 && <br/>}</React.Fragment>
           ))}
         </div>
+        {copy.tagline && <p className="home-tagline">{copy.tagline}</p>}
       </header>
+
+      {copy.aiAltLabIntro && (
+        <Band variant="bohio" className="ai-alt-lab-band">
+          <p>{copy.aiAltLabIntro}</p>
+        </Band>
+      )}
 
       <Band variant="clay" className="epigraph-band">
         <blockquote>
@@ -345,7 +354,7 @@ function About({ t }) {
               As Cofounder and CEO of Supernova Immersives, he led a cross-functional team of
               engineers, scientists, and therapists in developing AI-augmented virtual reality for
               mental health. The company built a therapeutic VR experience informed by Internal
-              Family Systems Therapy, entered the Founder Institute accelerator in Silicon Valley.
+              Family Systems Therapy and entered the Founder Institute accelerator in Silicon Valley.
             </p>
 
             <p>
@@ -445,6 +454,11 @@ function Speaking({ t }) {
             </ol>
 
             <h2 className="section-head section-head-spaced">
+              <span className="sh-num">·</span> {copy.engagementHeading || "One practice, four ways in"}
+            </h2>
+            {copy.engagementIntro && <p>{copy.engagementIntro}</p>}
+
+            <h2 className="section-head section-head-spaced">
               <span className="sh-num">·</span> {copy.workingTogetherHeading || "What working together looks like"}
             </h2>
             <p>
@@ -458,9 +472,12 @@ function Speaking({ t }) {
               needs help thinking about what shipping it will do.
             </p>
             <p>
-              <strong>Advisory.</strong> Quarterly retainer. For teams building or governing AI
-              systems who want a standing voice in the room that is neither the optimist nor the
-              doomer.
+              <strong>Advisory.</strong> Quarterly retainer for teams building or governing AI
+              systems. A standing voice that is neither the optimist nor the doomer — plus the work
+              that voice produces: data-governance and AI-use policies your legal and product teams
+              can actually apply, a review cadence for new models and vendors, and a defensible
+              position on the data you draw from communities. Built to satisfy scrutiny (AI Act,
+              NIST AI RMF, procurement) without collapsing into checkbox ethics.
             </p>
             <p>
               <strong>Consulting projects.</strong> 4–12 weeks. Scoped to a specific question:

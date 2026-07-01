@@ -40,6 +40,8 @@
     home: {
       nameLines: ["Jordan", "Loewen-Colón"],
       subtitleLines: ["Indigenous Taíno technologist", "Responsible AI strategist"],
+      tagline: "I help organizations build AI practices they can stand behind — and make the hard trade-offs concrete enough to decide.",
+      aiAltLabIntro: "Through the AI Alt Lab, I help governments, AI startups, and health teams get their data and AI governance ready for generative AI — before they ship, not after. Recent partners include the State of Utah and the City of Berkeley.",
       epigraph: "The task of perception entails pulverizing the world, but also one of spiritualizing its dust.",
       epigraphCite: "— Gilles Deleuze",
       recentHeading: "Recently",
@@ -49,7 +51,7 @@
     },
     about: {
       kicker: "Taíno · in the present tense",
-      title: "New worlds recquire new ways of seeing.",
+      title: "New worlds require new ways of seeing.",
       heroLead: "Jordan Loewen-Colón is an Indigenous Taíno technologist, Responsible AI strategist, scholar, educator, and organizational transformation consultant working at the intersection of artificial intelligence, culture, new media, and data justice.",
       intro: "The work moves across the lab, the classroom, the startup floor, and the policy arena, bringing technical fluency together with humanistic depth and a clear commitment to communities too often flattened by emerging technologies.",
       thinkingHeading: "Currently thinking about",
@@ -60,6 +62,8 @@
       kicker: "Speaking & Consulting",
       title: "The conversations that need to happen.",
       lead: "What follows are not paper abstracts. They are the talks a booker can actually put on a program. They have been workshopped on stages from Berlin to Toronto, and calibrated for rooms that contain both engineers and the people who pay them.",
+      engagementHeading: "One practice, four ways in",
+      engagementIntro: "A talk for the room that needs to think differently. A workshop for the team about to ship. An advisory retainer for the group governing AI over time. A scoped project for the single hard question — 'should we build this,' 'what do we owe the community whose data we use,' 'what policy survives the next model.'",
       workingTogetherHeading: "What working together looks like",
       ratesLabel: "Rates",
       ratesTitle: "Listed, because guessing wastes everyone's time.",
