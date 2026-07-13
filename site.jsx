@@ -431,41 +431,58 @@ function Speaking({ t }) {
             <p className="kicker">{copy.kicker || "Consulting & Speaking"}</p>
             <h1 className="page-title">{copy.title || "The conversations that need to happen."}</h1>
             <p className="lead">
-              {copy.lead || "One practice, four ways in: an advisory retainer for the group governing AI over time, a scoped project for the single hard question, a workshop for the team about to ship, and a talk for the room that needs to think differently. Advisory is the core of the practice; a keynote is often how it starts."}
+              {copy.lead || "Advisory is the core of this practice; a keynote is often how it starts. Below: what working together looks like, and what it costs."}
             </p>
 
             <h2 className="section-head section-head-spaced">
               <span className="sh-num">·</span> {copy.workingTogetherHeading || "What working together looks like"}
             </h2>
             <p>
-              <strong>Advisory.</strong> Quarterly retainer for teams building or governing AI
-              systems. A standing voice that is neither the optimist nor the doomer — plus the work
-              that voice produces: data-governance and AI-use policies your legal and product teams
-              can actually apply, a review cadence for new models and vendors, and a defensible
-              position on the data you draw from communities. Built to satisfy scrutiny (AI Act,
-              NIST AI RMF, procurement) without collapsing into checkbox ethics.
+              <strong>Advisory.</strong> Quarterly retainer for teams building or governing AI.
+              A standing voice that is neither the optimist nor the doomer — and the work that
+              voice produces: AI-use and data-governance policies your teams can actually apply,
+              a review cadence for new models and vendors, and a position on the data you draw
+              from communities that survives scrutiny (AI Act, NIST AI RMF, procurement).
             </p>
             <p>
-              <strong>Consulting projects.</strong> 4–12 weeks. Scoped to a specific question:
-              "should we build this," "what frameworks do we owe the community we are drawing data
-              from," "how do we write a policy that survives the next model."
+              <strong>Consulting projects.</strong> 4–12 weeks, scoped to a specific question:
+              "should we build this," "what do we owe the community whose data we use,"
+              "what policy survives the next model."
             </p>
             <p>
-              <strong>Workshops.</strong> Half-day to two-day formats for product, policy, and
-              leadership teams. Useful when an organization already knows what it wants to ship and
-              needs help thinking about what shipping it will do.
+              <strong>Workshops.</strong> Half-day to two days, for product, policy, and
+              leadership teams that know what they want to ship and need to think through what
+              shipping it will do.
             </p>
             <p>
-              <strong>Keynotes &amp; panels.</strong> 30–60 minutes, with or without Q&amp;A.
-              Custom framing for the room — a corporate offsite is not a university seminar and
-              should not be billed as one.
+              <strong>Keynotes &amp; panels.</strong> 30–60 minutes, framed for the room —
+              a corporate offsite is not a university seminar and should not be billed as one.
             </p>
+          </Body>
 
-            <h2 className="section-head section-head-spaced">
-              <span className="sh-num">·</span> {copy.talksHeading || "The talks"}
-            </h2>
-            <p>
-              {copy.talksLead || "Not paper abstracts — these are talks a booker can actually put on a program, workshopped on stages from Berlin to Toronto and calibrated for rooms that contain both engineers and the people who pay them."}
+          <Margin hidden={!t.marginalia}>
+            <MarginNote tag="What I am useful for">
+              Rooms where the technical and the humanistic have to share a microphone. Decisions that have not yet been made.
+            </MarginNote>
+            <MarginNote tag="What I am not">
+              A hype keynote. A doom keynote. A vendor for ethics-washing.
+            </MarginNote>
+          </Margin>
+        </Grid>
+      </Inner>
+
+      <section className="band band-sun work-title-band talks-band">
+        <div className="band-inner">
+          <div className="wt-kicker">{copy.talksKicker || "On stage"}</div>
+          <h2 className="tb-title">{copy.talksHeading || "The talks."}</h2>
+        </div>
+      </section>
+
+      <Inner>
+        <Grid>
+          <Body>
+            <p className="lead">
+              {copy.talksLead || "Not paper abstracts — talks a booker can put on a program, workshopped from Berlin to Toronto for rooms that contain both engineers and the people who pay them."}
             </p>
 
             <ol className="topics">
@@ -490,19 +507,19 @@ function Speaking({ t }) {
             <dl className="rates-lite">
               <div>
                 <dt>Advisory</dt>
-                <dd>Quarterly retainer — scoped on a fifteen-minute call.</dd>
+                <dd>Quarterly retainer · scoped on a call</dd>
               </div>
               <div>
                 <dt>Consulting project</dt>
-                <dd>4–12 weeks — scoped to the question.</dd>
+                <dd>4–12 weeks · scoped to the question</dd>
               </div>
               <div>
                 <dt>Workshop · per day</dt>
-                <dd>$4–12k — scope varies with prep and team size.</dd>
+                <dd>$4–12k</dd>
               </div>
               <div>
                 <dt>Keynote</dt>
-                <dd>$5–15k domestic — international negotiated per travel.</dd>
+                <dd>$5–15k domestic · international per travel</dd>
               </div>
             </dl>
             <p className="rates-foot-lite">
@@ -511,12 +528,7 @@ function Speaking({ t }) {
           </Body>
 
           <Margin hidden={!t.marginalia}>
-            <MarginNote tag="What I am useful for">
-              Rooms where the technical and the humanistic have to share a microphone. Decisions that have not yet been made.
-            </MarginNote>
-            <MarginNote tag="What I am not">
-              A hype keynote. A doom keynote. A vendor for ethics-washing.
-            </MarginNote>
+            <TalkPhotoNotes />
           </Margin>
         </Grid>
       </Inner>
