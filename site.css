@@ -912,6 +912,47 @@ p strong{ color: var(--paper); font-weight: 600; }
   margin: 0;
 }
 
+/* Rates — quiet list. Demoted from the clay band so advisory leads and the
+   fee stops being the loudest element on the page. (Band styles kept below
+   in case the loud treatment ever comes back.) */
+.rates-lite{
+  margin: 24px 0 0;
+  padding: 0;
+  max-width: 36em;
+}
+.rates-lite > div{
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  padding: 16px 0;
+  border-top: 1px solid var(--rule);
+}
+.rates-lite > div:last-child{ border-bottom: 1px solid var(--rule); }
+.rates-lite dt{
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--paper-mute);
+  padding-top: 3px;
+}
+.rates-lite dd{
+  margin: 0;
+  font-size: 17px;
+  color: var(--paper);
+}
+:root[data-mode="paper"] .rates-lite dd{ color: var(--ink); }
+.rates-foot-lite{
+  font-size: 14px;
+  font-style: italic;
+  color: var(--paper-mute);
+  margin-top: 16px;
+  max-width: 36em;
+}
+@media (max-width: 720px){
+  .rates-lite > div{ grid-template-columns: 1fr; gap: 4px; }
+}
+
 /* Rates band — Brief 02 item 14, Option A: clay ground, huge Fraunces numbers */
 .rates-band{ padding: 96px 56px; }
 .rates-band .rb-head{

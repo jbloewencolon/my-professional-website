@@ -258,7 +258,7 @@ function Home({ setPage, t }) {
                 <span className="sh-num">03</span> {copy.startHeading || "Start a conversation"}
               </h2>
               <p className="lead">
-                Booking, consulting, press, advisory. The fastest way is to{" "}
+                Advisory, consulting, booking, press. The fastest way is to{" "}
                 <a className="inline-link" href="https://calendly.com/j-l-c" target="_blank" rel="noopener noreferrer">put fifteen minutes on the calendar</a>{" "}
                 or write to <a className="inline-link" href="mailto:jbl6@queensu.ca">jbl6@queensu.ca</a>.
               </p>
@@ -283,7 +283,7 @@ function Home({ setPage, t }) {
               </figure>
             </MarginNote>
             <MarginNote tag="On view">
-              Available for keynotes, workshops, advisory seats, and select consulting engagements through 2026.
+              Available for advisory seats, select consulting engagements, workshops, and keynotes through 2026.
             </MarginNote>
             <MarginNote tag="Based in">
               Toronto, Ontario · traveling for talks.
@@ -428,10 +428,44 @@ function Speaking({ t }) {
       <Inner first>
         <Grid>
           <Body>
-            <p className="kicker">{copy.kicker || "Speaking & Consulting"}</p>
+            <p className="kicker">{copy.kicker || "Consulting & Speaking"}</p>
             <h1 className="page-title">{copy.title || "The conversations that need to happen."}</h1>
             <p className="lead">
-              {copy.lead || "What follows are not paper abstracts. They are the talks a booker can actually put on a program. They have been workshopped on stages from Berlin to Toronto, and calibrated for rooms that contain both engineers and the people who pay them."}
+              {copy.lead || "One practice, four ways in: an advisory retainer for the group governing AI over time, a scoped project for the single hard question, a workshop for the team about to ship, and a talk for the room that needs to think differently. Advisory is the core of the practice; a keynote is often how it starts."}
+            </p>
+
+            <h2 className="section-head section-head-spaced">
+              <span className="sh-num">·</span> {copy.workingTogetherHeading || "What working together looks like"}
+            </h2>
+            <p>
+              <strong>Advisory.</strong> Quarterly retainer for teams building or governing AI
+              systems. A standing voice that is neither the optimist nor the doomer — plus the work
+              that voice produces: data-governance and AI-use policies your legal and product teams
+              can actually apply, a review cadence for new models and vendors, and a defensible
+              position on the data you draw from communities. Built to satisfy scrutiny (AI Act,
+              NIST AI RMF, procurement) without collapsing into checkbox ethics.
+            </p>
+            <p>
+              <strong>Consulting projects.</strong> 4–12 weeks. Scoped to a specific question:
+              "should we build this," "what frameworks do we owe the community we are drawing data
+              from," "how do we write a policy that survives the next model."
+            </p>
+            <p>
+              <strong>Workshops.</strong> Half-day to two-day formats for product, policy, and
+              leadership teams. Useful when an organization already knows what it wants to ship and
+              needs help thinking about what shipping it will do.
+            </p>
+            <p>
+              <strong>Keynotes &amp; panels.</strong> 30–60 minutes, with or without Q&amp;A.
+              Custom framing for the room — a corporate offsite is not a university seminar and
+              should not be billed as one.
+            </p>
+
+            <h2 className="section-head section-head-spaced">
+              <span className="sh-num">·</span> {copy.talksHeading || "The talks"}
+            </h2>
+            <p>
+              {copy.talksLead || "Not paper abstracts — these are talks a booker can actually put on a program, workshopped on stages from Berlin to Toronto and calibrated for rooms that contain both engineers and the people who pay them."}
             </p>
 
             <ol className="topics">
@@ -448,42 +482,35 @@ function Speaking({ t }) {
             </ol>
 
             <h2 className="section-head section-head-spaced">
-              <span className="sh-num">·</span> {copy.engagementHeading || "One practice, four ways in"}
-            </h2>
-            {copy.engagementIntro && <p>{copy.engagementIntro}</p>}
-
-            <h2 className="section-head section-head-spaced">
-              <span className="sh-num">·</span> {copy.workingTogetherHeading || "What working together looks like"}
+              <span className="sh-num">·</span> {copy.ratesHeading || "Rates & logistics"}
             </h2>
             <p>
-              <strong>Keynotes &amp; panels.</strong> 30–60 minutes, with or without Q&amp;A.
-              Custom framing for the room — a corporate offsite is not a university seminar and
-              should not be billed as one.
+              {copy.ratesNote || "Listed because guessing wastes everyone's time. If your budget is real and falls outside these, write anyway."}
             </p>
-            <p>
-              <strong>Workshops.</strong> Half-day to two-day formats for product, policy, and
-              leadership teams. Useful when an organization already knows what it wants to ship and
-              needs help thinking about what shipping it will do.
-            </p>
-            <p>
-              <strong>Advisory.</strong> Quarterly retainer for teams building or governing AI
-              systems. A standing voice that is neither the optimist nor the doomer — plus the work
-              that voice produces: data-governance and AI-use policies your legal and product teams
-              can actually apply, a review cadence for new models and vendors, and a defensible
-              position on the data you draw from communities. Built to satisfy scrutiny (AI Act,
-              NIST AI RMF, procurement) without collapsing into checkbox ethics.
-            </p>
-            <p>
-              <strong>Consulting projects.</strong> 4–12 weeks. Scoped to a specific question:
-              "should we build this," "what frameworks do we owe the community we are drawing data
-              from," "how do we write a policy that survives the next model."
+            <dl className="rates-lite">
+              <div>
+                <dt>Advisory</dt>
+                <dd>Quarterly retainer — scoped on a fifteen-minute call.</dd>
+              </div>
+              <div>
+                <dt>Consulting project</dt>
+                <dd>4–12 weeks — scoped to the question.</dd>
+              </div>
+              <div>
+                <dt>Workshop · per day</dt>
+                <dd>$4–12k — scope varies with prep and team size.</dd>
+              </div>
+              <div>
+                <dt>Keynote</dt>
+                <dd>$5–15k domestic — international negotiated per travel.</dd>
+              </div>
+            </dl>
+            <p className="rates-foot-lite">
+              {copy.ratesFoot || "Honoraria for universities, public-interest organizations, and Indigenous-led work are negotiated separately and gladly."}
             </p>
           </Body>
 
           <Margin hidden={!t.marginalia}>
-            <MarginNote tag="On rates">
-              Listed because guessing wastes everyone's time. If your budget is real and falls outside, write anyway.
-            </MarginNote>
             <MarginNote tag="What I am useful for">
               Rooms where the technical and the humanistic have to share a microphone. Decisions that have not yet been made.
             </MarginNote>
@@ -493,32 +520,6 @@ function Speaking({ t }) {
           </Margin>
         </Grid>
       </Inner>
-
-      <Band variant="clay" className="rates-band">
-        <div className="rb-head">{copy.ratesLabel || "Rates"}</div>
-        <h2 className="rb-title">{copy.ratesTitle || "Listed, because guessing wastes everyone's time."}</h2>
-        <div className="rates-grid">
-          <div className="rate-card">
-            <div className="rate-label">Keynote</div>
-            <div className="rate-amount">$5–15k</div>
-            <div className="rate-note">Domestic. International negotiated per travel.</div>
-          </div>
-          <div className="rate-card">
-            <div className="rate-label">Workshop · per day</div>
-            <div className="rate-amount">$4–12k</div>
-            <div className="rate-note">Scope varies with prep and team size.</div>
-          </div>
-          <div className="rate-card">
-            <div className="rate-label">Advisory</div>
-            <div className="rate-amount">Quarterly</div>
-            <div className="rate-note">Retainer. Start with a fifteen-minute call.</div>
-          </div>
-        </div>
-        <p className="rb-foot">
-          Honoraria for universities, public-interest organizations, and Indigenous-led work are
-          negotiated separately and gladly.
-        </p>
-      </Band>
 
       <Inner tight>
         <Grid>
