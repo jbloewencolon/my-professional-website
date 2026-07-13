@@ -14,7 +14,7 @@
     { id: "work-press",      section: "work",     label: "Press & Media",              el: <WorkPress t={t} setPage={noop} /> },
     { id: "work-projects",   section: "work",     label: "Projects & Code",            el: <WorkProjects t={t} setPage={noop} /> },
     { id: "about",           section: "about",    label: "About",                      el: <About t={t} /> },
-    { id: "speaking",        section: "speaking", label: "Speaking & Consulting",      el: <Speaking t={t} /> },
+    { id: "speaking",        section: "speaking", label: "Consulting & Speaking",      el: <Speaking t={t} /> },
     { id: "contact",         section: "contact",  label: "Contact",                    el: <Contact t={t} /> },
   ];
 

@@ -1,6 +1,6 @@
 # Jordan Loewen-Colón
 
-> Indigenous Taíno technologist and Responsible AI strategist — keynotes, workshops, and advisory on AI ethics, Indigenous data sovereignty, and the politics of emerging technology.
+> Indigenous Taíno technologist and Responsible AI strategist — advisory, consulting, workshops, and keynotes on AI ethics, Indigenous data sovereignty, and the politics of emerging technology.
 
 Jordan Loewen-Colón works at the intersection of artificial intelligence, culture, new media, and data justice. He is a professor at Queen's University's Smith School of Business and Department of Computing, a former Tech Policy Fellow at the Aspen Institute, and has co-authored research published in Harvard Business Review and Springer's AI & Society. He is cofounder and former CEO of Supernova Immersives, an AI-augmented VR mental health company ($1M+ valuation, Founder Institute). His forthcoming book is Reality Technologies.
 
@@ -8,10 +8,10 @@ He defends the Right to Opacity — that people, cultures, and knowledge systems
 
 ## Available for
 
-- Keynotes (30–60 min): "Doing AI Differently", "Empire 2.0", "Many Models One World", "Human–AI Ensembles", "Artificial Opportunity"
-- Workshops (half-day to two-day) for product, policy, and leadership teams
 - Quarterly advisory retainer
 - Consulting projects (4–12 weeks, scoped)
+- Workshops (half-day to two-day) for product, policy, and leadership teams
+- Keynotes (30–60 min): "Doing AI Differently", "Empire 2.0", "Many Models One World", "Human–AI Ensembles", "Artificial Opportunity"
 - Honoraria adjusted for universities, public-interest organizations, and Indigenous-led work
 
 ## Affiliations
@@ -35,7 +35,7 @@ He defends the Right to Opacity — that people, cultures, and knowledge systems
 
 - [Home](https://jordanloewencolon.com/)
 - [About](https://jordanloewencolon.com/about)
-- [Speaking & Consulting](https://jordanloewencolon.com/speaking)
+- [Consulting & Speaking](https://jordanloewencolon.com/speaking)
 - [Publications & Talks](https://jordanloewencolon.com/work/publications)
 - [Press & Media](https://jordanloewencolon.com/work/press)
 - [Projects & Code](https://jordanloewencolon.com/work/projects)
