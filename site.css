@@ -1235,6 +1235,7 @@ p strong{ color: var(--paper); font-weight: 600; }
   .home-hero{ padding: 64px 32px 24px; grid-template-columns: 1fr; row-gap: 24px; }
   .home-hero .home-subtitle{ border-left: none; padding-left: 0; }
   .work-title-band{ padding: 64px 32px; }
+  .talks-band{ padding: 56px 32px; }
   .about-portrait-band{ padding: 56px 32px; }
   .about-portrait-band .apb-grid{ grid-template-columns: 1fr; gap: 32px; }
   .rates-band{ padding: 72px 32px; }
@@ -2071,6 +2072,7 @@ p strong{ color: var(--paper); font-weight: 600; }
 
   .page-inner{ padding-left: 20px; padding-right: 20px; }
   .band{ padding: 48px 20px; }
+  .talks-band{ padding: 40px 20px; }
   .site-header{ padding: 14px 20px 10px; }
   .site-footer{ padding: 40px 20px 56px; }
 
