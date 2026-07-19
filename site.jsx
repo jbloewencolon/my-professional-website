@@ -193,6 +193,12 @@ function Home({ setPage, t }) {
           ))}
         </div>
         {copy.tagline && <p className="home-tagline">{copy.tagline}</p>}
+        {/* Marginalia is hidden on mobile; this repeats the "On view" note in
+            the body flow so mobile visitors still see current availability. */}
+        <p className="mobile-note home-mobile-availability">
+          <span className="mn-tag">On view</span>
+          Available for advisory seats, select consulting engagements, workshops, and keynotes through 2026.
+        </p>
       </header>
 
       <Band variant="clay" className="epigraph-band">
@@ -459,6 +465,13 @@ function Speaking({ t }) {
               <strong>Keynotes &amp; panels.</strong> 30–60 minutes, framed for the room —
               a corporate offsite is not a university seminar and should not be billed as one.
             </p>
+
+            {/* Marginalia is hidden on mobile; repeat the page's voice in the
+                body flow so it isn't lost on small screens. */}
+            <div className="mobile-note mobile-note-pair">
+              <p><span className="mn-tag">What I am useful for</span>Rooms where the technical and the humanistic have to share a microphone. Decisions that have not yet been made.</p>
+              <p><span className="mn-tag">What I am not</span>A hype keynote. A doom keynote. A vendor for ethics-washing.</p>
+            </div>
           </Body>
 
           <Margin hidden={!t.marginalia}>
@@ -485,6 +498,12 @@ function Speaking({ t }) {
             <p className="lead">
               {copy.talksLead || "Not paper abstracts — talks a booker can put on a program, workshopped from Berlin to Toronto for rooms that contain both engineers and the people who pay them."}
             </p>
+
+            {/* Marginalia (and its Berlin photos) is hidden on mobile; show one inline. */}
+            <figure className="mobile-note mobile-stage-photo">
+              <img src="images/talk-whiteboard.webp" alt="Jordan Loewen-Colón at the whiteboard during Responsible Innovation: Hopes &amp; Fears at Data Natives Berlin." width="1600" height="1068" loading="lazy" decoding="async" />
+              <figcaption><em>Responsible Innovation: Hopes &amp; Fears.</em> Data Natives, Berlin.</figcaption>
+            </figure>
 
             <ol className="topics">
               {TALKS.map((talk) => (
