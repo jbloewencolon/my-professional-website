@@ -100,7 +100,10 @@
 
 /* ── Base ──────────────────────────────────────────────────────────── */
 *{ box-sizing:border-box; }
-html,body{ margin:0; padding:0; overflow-x:hidden; }
+/* overflow-x:clip (not hidden) contains horizontal overflow WITHOUT
+   establishing a scroll container — hidden forces overflow-y to auto and
+   breaks the sticky header. */
+html,body{ margin:0; padding:0; overflow-x:clip; }
 body{
   background: var(--ink);
   color: var(--paper);
@@ -875,6 +878,12 @@ p strong{ color: var(--paper); font-weight: 600; }
 }
 
 /* ── Speaking ──────────────────────────────────────────────────────── */
+/* The calendar section follows a full Inner; without this the seam stacks
+   inner bottom pad + tight top pad + head margin (~212px), double the
+   page's section rhythm. */
+.page-speaking .page-inner.tight{ padding-top: 0; }
+.page-speaking .page-inner.tight .section-head{ margin-top: 0; }
+
 .topics{
   list-style: none;
   padding: 0;
