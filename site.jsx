@@ -147,8 +147,9 @@ function Header({ page, setPage, t }) {
             </a>
           ))}
         </nav>
+        {/* Inside the sticky header so the page-color stripe travels with it on scroll */}
+        <div className="header-stripe" aria-hidden="true"></div>
       </header>
-      <div className="header-stripe" aria-hidden="true"></div>
     </React.Fragment>
   );
 }

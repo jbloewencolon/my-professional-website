@@ -276,9 +276,14 @@ a{ color: inherit; text-decoration: none; }
 :root[data-mode="paper"] .nav-toggle{ color: var(--ink-mute); }
 
 /* ── Per-page header stripe ────────────────────────────────────────── */
+/* Lives inside the sticky header, pinned to its bottom edge, so the
+   page-color accent stays visible while scrolling. */
 .header-stripe{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
   height: 3px;
-  width: 100%;
   background: transparent;
 }
 .site[data-page="home"]     .header-stripe{ background: var(--clay); }
