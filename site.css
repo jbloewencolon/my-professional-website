@@ -276,9 +276,14 @@ a{ color: inherit; text-decoration: none; }
 :root[data-mode="paper"] .nav-toggle{ color: var(--ink-mute); }
 
 /* ── Per-page header stripe ────────────────────────────────────────── */
+/* Lives inside the sticky header, pinned to its bottom edge, so the
+   page-color accent stays visible while scrolling. */
 .header-stripe{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
   height: 3px;
-  width: 100%;
   background: transparent;
 }
 .site[data-page="home"]     .header-stripe{ background: var(--clay); }
@@ -382,11 +387,22 @@ a{ color: inherit; text-decoration: none; }
 :root[data-mode="paper"] .margin-note .mn-figure figcaption em{ color: var(--ink); }
 
 /* Per-page margin-note tag color (matches kicker) */
-.site[data-page="home"]     .margin-note{ --mn-tag: var(--clay-text); }
-.site[data-page="work"]     .margin-note{ --mn-tag: var(--bohio-text); }
-.site[data-page="about"]    .margin-note{ --mn-tag: var(--sun); }
-.site[data-page="speaking"] .margin-note{ --mn-tag: var(--sun); }
-.site[data-page="contact"]  .margin-note{ --mn-tag: var(--paper-mute); }
+.site[data-page="home"]     .margin-note,
+.site[data-page="home"]     .mobile-note{ --mn-tag: var(--clay-text); }
+.site[data-page="work"]     .margin-note,
+.site[data-page="work"]     .mobile-note{ --mn-tag: var(--bohio-text); }
+.site[data-page="about"]    .margin-note,
+.site[data-page="about"]    .mobile-note{ --mn-tag: var(--sun); }
+.site[data-page="speaking"] .margin-note,
+.site[data-page="speaking"] .mobile-note{ --mn-tag: var(--sun); }
+.site[data-page="contact"]  .margin-note,
+.site[data-page="contact"]  .mobile-note{ --mn-tag: var(--paper-mute); }
+
+/* Mobile-note: repeats select marginalia content in the body flow, since
+   .grid-margin is hidden below 720px (Verge-style — clean, no sidebar
+   clutter on small screens). Hidden on desktop where the real margin note
+   already shows it; see the 720px query below for the shown state. */
+.mobile-note{ display: none; }
 
 /* ── Type primitives ───────────────────────────────────────────────── */
 .kicker{
@@ -1307,7 +1323,10 @@ p strong{ color: var(--paper); font-weight: 600; }
   .work-item{ grid-template-columns: 1fr; row-gap: 12px; }
   .work-item .wi-meta{ flex-direction: row; gap: 12px; }
   .wi-figure{ grid-column: 1; max-width: 100%; }
-  .footer-inner{ grid-template-columns: 1fr; gap: 28px; }
+  /* Land ack + copyright stay full-width; Elsewhere + Colophon pair up. */
+  .footer-inner{ grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+  .footer-inner > .f-col:nth-child(1),
+  .footer-inner > .f-col:nth-child(2){ grid-column: 1 / -1; }
   .footer-inner a, .f-col div > a{ min-height: 44px; display: inline-flex; align-items: center; }
   .cal-grid{ grid-template-columns: repeat(3, 1fr); }
   .contact-dl > div{ grid-template-columns: 1fr; gap: 4px; }
@@ -1980,7 +1999,7 @@ p strong{ color: var(--paper); font-weight: 600; }
   .affil-logo-grid{ grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 720px){
-  .affil-logo-grid{ grid-template-columns: 1fr; gap: 24px; }
+  .affil-logo-grid{ grid-template-columns: repeat(2, 1fr); gap: 24px 20px; }
   .hr-item a{ grid-template-columns: auto 1fr; }
   .hr-venue, .hr-date{ font-size: 10px; }
 }
@@ -2061,6 +2080,36 @@ p strong{ color: var(--paper); font-weight: 600; }
   /* Work landing tiles: drop body copy, keep kicker + title + enter */
   .work-tile .wt-body{ display: none; }
   .work-tile{ padding: 22px 18px 18px; }
+
+  /* ── Mobile-note: show the content promoted from the hidden marginalia ── */
+  .mobile-note{
+    display: block;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--paper-mute);
+    padding-left: 14px;
+    border-left: 1px solid rgba(143,160,176,.30);
+    margin: 24px 0 0;
+  }
+  .mobile-note .mn-tag{
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-size: 10px;
+    margin-bottom: 6px;
+    color: var(--mn-tag, var(--clay-text));
+  }
+  .home-mobile-availability{ max-width: 480px; }
+  .mobile-note-pair p + p{ margin-top: 20px; }
+  .mobile-stage-photo{ margin: 24px 0 40px; }
+  .mobile-stage-photo img{ display: block; width: 100%; height: auto; border-radius: 2px; }
+  .mobile-stage-photo figcaption{
+    margin-top: 8px;
+    font-size: 12px;
+    letter-spacing: .02em;
+  }
+  .mobile-stage-photo figcaption em{ color: var(--paper); font-style: italic; }
 }
 
 /* Very narrow phones (iPhone SE etc.): keep the wordmark on one line per row */
