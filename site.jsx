@@ -193,12 +193,6 @@ function Home({ setPage, t }) {
           ))}
         </div>
         {copy.tagline && <p className="home-tagline">{copy.tagline}</p>}
-        {/* Marginalia is hidden on mobile; this repeats the "On view" note in
-            the body flow so mobile visitors still see current availability. */}
-        <p className="mobile-note home-mobile-availability">
-          <span className="mn-tag">On view</span>
-          Available for advisory seats, select consulting engagements, workshops, and keynotes through 2026.
-        </p>
       </header>
 
       <Band variant="clay" className="epigraph-band">
