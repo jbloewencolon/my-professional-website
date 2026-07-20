@@ -2100,7 +2100,6 @@ p strong{ color: var(--paper); font-weight: 600; }
     margin-bottom: 6px;
     color: var(--mn-tag, var(--clay-text));
   }
-  .home-mobile-availability{ max-width: 480px; }
   .mobile-note-pair p + p{ margin-top: 20px; }
   .mobile-stage-photo{ margin: 24px 0 40px; }
   .mobile-stage-photo img{ display: block; width: 100%; height: auto; border-radius: 2px; }
@@ -2128,15 +2127,23 @@ p strong{ color: var(--paper); font-weight: 600; }
   .epigraph-band{ padding: 24px 20px; }
   .epigraph-band p{ font-size: 18px; }
 
-  .page-inner{ padding-left: 20px; padding-right: 20px; }
+  .page-inner{ padding-left: 20px; padding-right: 20px; padding-bottom: 56px; }
   .band{ padding: 48px 20px; }
   .talks-band{ padding: 40px 20px; }
   .site-header{ padding: 14px 20px 10px; }
-  .site-footer{ padding: 40px 20px 56px; }
+  /* Footer seam: without this, page-inner's bottom pad + this margin + the
+     footer's own top pad stacked to ~190-210px of dead space before any
+     footer content on a single-column mobile layout. */
+  .site-footer{ margin-top: 24px; padding: 40px 20px 56px; }
 
   /* Section heads and page titles ratchet down */
   .page-title{ font-size: clamp(40px, 11vw, 64px); }
   .section-head{ font-size: clamp(22px, 6vw, 32px); }
+
+  /* Home: the first section-head right after the portrait band was stacking
+     page-inner's top padding with the heading's own 64px top margin (~124px
+     total, roughly double every other inter-section gap on the page). */
+  .page-home .grid-body > .home-section:first-child > .section-head{ margin-top: 0; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
