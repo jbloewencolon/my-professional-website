@@ -37,4 +37,6 @@ Disallow: /
 User-agent: omgili
 Disallow: /
 
+User-agent: *
+Allow: /
 Sitemap: https://jordanloewencolon.com/sitemap.xml
