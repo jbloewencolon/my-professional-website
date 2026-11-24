@@ -41,3 +41,5 @@ All 8 routes verified:
 - [x] `npm run check` validates photo alt text/files and upcoming-event shape
 - [x] Removed dead `img` field; banner served as webp; build no longer publishes raw jpg/png, Bios.txt, manifest.json
 
+
+- [x] Added Aspen Policy Academy Demo Day (Nov 10, 2026) COMPASS talk: margin photo + wide photo under the Publications row, photographer credit, Home "Recently" entry; talk titles can now link (`href`) and carry a `wide` photo

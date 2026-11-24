@@ -23,9 +23,13 @@
     upcoming: [],
     // Past talks, newest first. Optional `photo` puts the event in the margins
     // (the newest 3 photos are shown). Shape:
-    //   photo: { src: "images/x.webp", avif?: "images/x.avif", w, h, alt, tag: "City · Year", short: "Italic title", note: "Caption tail." }
+    //   photo: { src: "images/x.webp", avif?: "images/x.avif", w, h, alt, tag: "City · Year", short: "Italic title", note: "Caption tail.", credit?: "Photographer" }
+    // Optional `wide` (same shape) shows a full-width photo under the row on the Publications page. Optional `href` links the title.
     // Alt text is required (npm run check fails without it).
     talks: [
+      { year: "2026", title: "Aspen Institute's COMPASS Project: State AI Policy Monitoring.", venue: "Aspen Policy Academy Demo Day. Washington, DC.", href: "https://aspenpolicyacademy.org/project/state-ai-policy-monitoring-2026/",
+        photo: { src: "images/talk-aspen-demo-day-panel.webp", w: 1600, h: 1067, alt: "Jordan Loewen-Colón speaking into a microphone on a panel in front of an Aspen Institute backdrop at the Aspen Policy Academy Demo Day.", tag: "Washington, DC · 2026", short: "COMPASS: State AI Policy Monitoring.", note: "Aspen Policy Academy Demo Day.", credit: "Farrah Skeiky" },
+        wide: { src: "images/talk-aspen-demo-day-room.webp", w: 1600, h: 1067, alt: "Four panelists seated on stage in front of an Aspen Institute backdrop, facing a seated audience, with an Aspen Policy Academy slide on the screen.", short: "COMPASS panel at the Aspen Policy Academy Demo Day.", note: "Washington, DC.", credit: "Farrah Skeiky" } },
       { year: "2026", title: "Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them.", venue: "Syracuse Humanities Tolley Professor Keynote. Syracuse, NY.",
         photo: { src: "images/talk-artificial-opportunity-flyer.webp", avif: "images/talk-artificial-opportunity-flyer.avif", w: 1214, h: 2000, alt: "Poster for Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them at Syracuse University.", tag: "Syracuse · 2026", short: "Artificial Opportunity", note: "Syracuse University keynote." } },
       { year: "2026", title: "Data Res Nullius: The Doctrine of Discovery in the Age of AI.", venue: "US Indigenous Data Sovereignty and Governance Summit. Tucson, AZ." },

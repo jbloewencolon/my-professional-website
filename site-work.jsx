@@ -79,7 +79,7 @@ function TalkFigure({ photo: p, className = "mn-figure" }) {
         {p.avif && <source srcSet={"/" + p.avif} type="image/avif" />}
         <img src={"/" + p.src} alt={p.alt} width={p.w} height={p.h} loading="lazy" decoding="async" />
       </picture>
-      <figcaption><em>{p.short}</em> {p.note}</figcaption>
+      <figcaption><em>{p.short}</em> {p.note}{p.credit && <span className="mn-credit"> Photo: {p.credit}.</span>}</figcaption>
     </figure>
   );
 }
@@ -142,8 +142,13 @@ function TalkItem({ p }) {
     <li className="pub-item">
       <div className="pi-year">{p.year}</div>
       <div className="pi-main">
-        <h4 className="pi-title is-italic">{p.title}</h4>
+        <h4 className="pi-title is-italic">
+          {p.href
+            ? <a href={p.href} target="_blank" rel="noopener noreferrer">{p.title}<span className="ext"> ↗</span></a>
+            : p.title}
+        </h4>
         <div className="pi-venue">{p.venue}</div>
+        {p.wide && <TalkFigure photo={p.wide} className="talk-wide" />}
       </div>
     </li>
   );

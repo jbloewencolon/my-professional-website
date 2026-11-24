@@ -78,5 +78,13 @@
   "home-banner-panel.webp": {
     "w": 1920,
     "h": 1068
+  },
+  "talk-aspen-demo-day-panel.webp": {
+    "w": 1600,
+    "h": 1067
+  },
+  "talk-aspen-demo-day-room.webp": {
+    "w": 1600,
+    "h": 1067
   }
 }
