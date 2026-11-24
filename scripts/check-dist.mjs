@@ -42,6 +42,18 @@ for (const route of routes) {
   }
 }
 
+// Talk photos: file must be published and must carry alt text.
+await import(pathToFileURL(join(ROOT, "content/work.js")).href);
+for (const t of globalThis.SITE_WORK_CONTENT.talks) {
+  const p = t.photo;
+  if (!p) continue;
+  if (!p.alt || !p.w || !p.h || !p.tag || !p.short) fail(`talk photo "${p.src}": needs alt, w, h, tag, short`);
+  for (const f of [p.src, p.avif].filter(Boolean)) await stat(join(DIST, f)).catch(() => fail(`talk photo missing from dist: ${f}`));
+}
+for (const e of globalThis.SITE_WORK_CONTENT.upcoming) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(e.date) || !e.title || !e.venue) fail(`upcoming event needs ISO date, title, venue: ${JSON.stringify(e)}`);
+}
+
 const home = await readFile(join(DIST, "index.html"), "utf8");
 if (!/href="\/site\.[a-f0-9]{10}\.css" integrity="sha384-[^"]+"/.test(home)) {
   fail("missing hashed CSS with SRI");

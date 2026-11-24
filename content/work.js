@@ -18,11 +18,21 @@
       { year: "2025", title: "Do LLMs Have Values?", venue: "Harvard Business Review.", href: "https://hbr.org/2025/05/research-do-llms-have-values" },
       { year: "2025", title: "AI tools promise efficiency at work, but they can erode trust, creativity and agency.", venue: "The Conversation.", href: "https://theconversation.com/ai-tools-promise-efficiency-at-work-264865" },
     ],
+    // Future events. Add { date: "YYYY-MM-DD", title, venue, href? }; each one
+    // disappears from the site automatically the day after its date.
+    upcoming: [],
+    // Past talks, newest first. Optional `photo` puts the event in the margins
+    // (the newest 3 photos are shown). Shape:
+    //   photo: { src: "images/x.webp", avif?: "images/x.avif", w, h, alt, tag: "City · Year", short: "Italic title", note: "Caption tail." }
+    // Alt text is required (npm run check fails without it).
     talks: [
-      { year: "2026", title: "Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them.", venue: "Syracuse Humanities Tolley Professor Keynote. Syracuse, NY." },
+      { year: "2026", title: "Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them.", venue: "Syracuse Humanities Tolley Professor Keynote. Syracuse, NY.",
+        photo: { src: "images/talk-artificial-opportunity-flyer.webp", avif: "images/talk-artificial-opportunity-flyer.avif", w: 1214, h: 2000, alt: "Poster for Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them at Syracuse University.", tag: "Syracuse · 2026", short: "Artificial Opportunity", note: "Syracuse University keynote." } },
       { year: "2026", title: "Data Res Nullius: The Doctrine of Discovery in the Age of AI.", venue: "US Indigenous Data Sovereignty and Governance Summit. Tucson, AZ." },
-      { year: "2025", title: "Responsible Innovation: Hopes & Fears.", venue: "Data Natives. Berlin.", img: "images/talk-whiteboard.webp" },
-      { year: "2025", title: "Ethics in Entrepreneurship.", venue: "Data Natives × EIE. Berlin.", img: "images/talk-panel.webp" },
+      { year: "2025", title: "Responsible Innovation: Hopes & Fears.", venue: "Data Natives. Berlin.",
+        photo: { src: "images/talk-whiteboard.webp", w: 1600, h: 1068, alt: "Jordan Loewen-Colón at the whiteboard during Responsible Innovation: Hopes & Fears at Data Natives Berlin.", tag: "Berlin · 2025", short: "Responsible Innovation: Hopes & Fears.", note: "Data Natives." } },
+      { year: "2025", title: "Ethics in Entrepreneurship.", venue: "Data Natives × EIE. Berlin.",
+        photo: { src: "images/talk-panel.webp", w: 1600, h: 1068, alt: "Jordan Loewen-Colón on a panel at Ethics in Entrepreneurship, Data Natives Berlin.", tag: "Berlin · 2025", short: "Ethics in Entrepreneurship.", note: "Data Natives × EIE." } },
       { year: "2025", title: "Decolonizing AI: Nesting Access Benefit Sharing and Indigenous Data Justice.", venue: "Sustainable AI Conference. University of Bonn, Germany." },
       { year: "2025", title: "Working Across Sectors: Film, Gaming, and AI.", venue: "The Latin Forum, Listo Calisto. Toronto." },
       { year: "2025", title: "Let's Explore the Alignment Problem — What Do AIs Value?", venue: "Techqueria. New York." },
