@@ -31,3 +31,15 @@ All 8 routes verified:
 - Portrait preload only on home/about
 - Sitemap has 8 entries
 - Service LD only on speaking page
+
+## Round 3: Events & Photos
+
+- [x] Talk photos live on the talk entries in `content/work.js`; Home, Work, Publications and Speaking margins (and the mobile inline photo) render the newest 3 from one component
+- [x] Fixed photo 404s on nested routes (relative `images/` paths -> root-absolute) and wrong flyer dimensions
+- [x] Added `upcoming` events (Home, Speaking, Publications; auto-expire after their date)
+- [x] Talk/publication counts in the Publications margin are computed
+- [x] `npm run check` validates photo alt text/files and upcoming-event shape
+- [x] Removed dead `img` field; banner served as webp; build no longer publishes raw jpg/png, Bios.txt, manifest.json
+
+
+- [x] Added Aspen Policy Academy Demo Day (Nov 10, 2026) COMPASS talk: margin photo + wide photo under the Publications row, photographer credit, Home "Recently" entry; talk titles can now link (`href`) and carry a `wide` photo

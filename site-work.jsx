@@ -69,24 +69,71 @@ function PubItem({ p, italicTitle = true }) {
   );
 }
 
+// Newest 3 talk photos (talks are listed newest-first in content/work.js).
+const TALK_PHOTOS = TALKS_ALL.filter((x) => x.photo).slice(0, 3);
+
+function TalkFigure({ photo: p, className = "mn-figure" }) {
+  return (
+    <figure className={className}>
+      <picture>
+        {p.avif && <source srcSet={"/" + p.avif} type="image/avif" />}
+        <img src={"/" + p.src} alt={p.alt} width={p.w} height={p.h} loading="lazy" decoding="async" />
+      </picture>
+      <figcaption><em>{p.short}</em> {p.note}{p.credit && <span className="mn-credit"> Photo: {p.credit}.</span>}</figcaption>
+    </figure>
+  );
+}
+
 function TalkPhotoNotes() {
   return (
     <React.Fragment>
-      <div className="margin-note">
-        <div className="mn-tag">Berlin · 2025</div>
-        <figure className="mn-figure">
-          <img src="images/talk-whiteboard.webp" alt="Jordan Loewen-Colón at the whiteboard during Responsible Innovation: Hopes &amp; Fears at Data Natives Berlin." width="1600" height="1068" loading="lazy" decoding="async" />
-          <figcaption><em>Responsible Innovation: Hopes &amp; Fears.</em> Data Natives.</figcaption>
-        </figure>
-      </div>
-      <div className="margin-note">
-        <div className="mn-tag">Berlin · 2025</div>
-        <figure className="mn-figure">
-          <img src="images/talk-panel.webp" alt="Jordan Loewen-Colón on a panel at Ethics in Entrepreneurship, Data Natives Berlin." width="1600" height="1068" loading="lazy" decoding="async" />
-          <figcaption><em>Ethics in Entrepreneurship.</em> Data Natives × EIE.</figcaption>
-        </figure>
-      </div>
+      {TALK_PHOTOS.map(({ photo }) => (
+        <div className="margin-note" key={photo.src}>
+          <div className="mn-tag">{photo.tag}</div>
+          <TalkFigure photo={photo} />
+        </div>
+      ))}
     </React.Fragment>
+  );
+}
+
+// First landscape photo, for mobile where the margin is hidden.
+function MobileStagePhoto() {
+  const p = (TALK_PHOTOS.find((x) => x.photo.w > x.photo.h) || {}).photo;
+  return p ? <TalkFigure photo={p} className="mobile-note mobile-stage-photo" /> : null;
+}
+
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+// Upcoming events still in the future (ISO dates compare as strings).
+const UPCOMING = (WORK_CONTENT.upcoming || []).filter((e) => e.date >= new Date().toISOString().slice(0, 10)).sort((a, b) => a.date.localeCompare(b.date));
+
+function UpcomingEvents() {
+  if (!UPCOMING.length) return null;
+  return (
+    <section className="pub-group accent-sun">
+      <header className="pg-head">
+        <h3 className="pg-title">Upcoming</h3>
+        <span className="pg-count">— {UPCOMING.length}</span>
+      </header>
+      <ul className="pub-list">
+        {UPCOMING.map((e) => {
+          const [y, m, d] = e.date.split("-");
+          return (
+            <li className="pub-item" key={e.date + e.title}>
+              <div className="pi-year">{y}</div>
+              <div className="pi-main">
+                <h4 className="pi-title is-italic">
+                  {e.href
+                    ? <a href={e.href} target="_blank" rel="noopener noreferrer">{e.title}<span className="ext"> ↗</span></a>
+                    : e.title}
+                </h4>
+                <div className="pi-venue">{MONTHS[m - 1]} {+d} · {e.venue}</div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 }
 
@@ -95,8 +142,13 @@ function TalkItem({ p }) {
     <li className="pub-item">
       <div className="pi-year">{p.year}</div>
       <div className="pi-main">
-        <h4 className="pi-title is-italic">{p.title}</h4>
+        <h4 className="pi-title is-italic">
+          {p.href
+            ? <a href={p.href} target="_blank" rel="noopener noreferrer">{p.title}<span className="ext"> ↗</span></a>
+            : p.title}
+        </h4>
         <div className="pi-venue">{p.venue}</div>
+        {p.wide && <TalkFigure photo={p.wide} className="talk-wide" />}
       </div>
     </li>
   );
@@ -234,6 +286,7 @@ function WorkPublications({ t, setPage }) {
               {WORK_PAGE_COPY.publicationsLead || "Peer-reviewed work, book chapters, public writing, and selected talks. Most are linked; a few are forthcoming."}
             </p>
 
+            <UpcomingEvents />
             <PubGroup heading="Peer-reviewed publications" items={PUBLICATIONS} accent="clay" defaultShow={3} itemKindNoun="publications" />
             <PubGroup heading="Book chapters"            items={BOOK_CHAPTERS} accent="sun"  defaultShow={2} italicTitle={false} itemKindNoun="chapters" />
             <PubGroup heading="Public writing"           items={PUBLIC_WRITING} accent="clay" defaultShow={2} itemKindNoun="essays" />
@@ -244,7 +297,7 @@ function WorkPublications({ t, setPage }) {
             <aside className="grid-margin">
               <div className="margin-note">
                 <div className="mn-tag">By the count</div>
-                <div className="mn-body">8 peer-reviewed · 2 book chapters · 2 public essays · 15 talks since 2021.</div>
+                <div className="mn-body">{PUBLICATIONS.length} peer-reviewed · {BOOK_CHAPTERS.length} book chapters · {PUBLIC_WRITING.length} public essays · {TALKS_ALL.length} talks since {TALKS_ALL[TALKS_ALL.length - 1].year}.</div>
               </div>
               <div className="margin-note">
                 <div className="mn-tag">Citation style</div>

@@ -380,6 +380,11 @@ a{ color: inherit; text-decoration: none; }
   letter-spacing: .02em;
   color: var(--paper-mute);
 }
+.talk-wide{ margin: 14px 0 0; }
+.talk-wide img{ display: block; width: 100%; height: auto; border: 1px solid color-mix(in oklab, var(--paper-mute) 25%, transparent); }
+.talk-wide figcaption{ margin-top: 8px; font-family: var(--mono); font-size: 11px; line-height: 1.5; color: var(--paper-mute); }
+.talk-wide figcaption em{ color: var(--paper); font-style: italic; }
+:root[data-mode="paper"] .talk-wide figcaption em{ color: var(--ink); }
 .margin-note .mn-figure figcaption em{
   color: var(--paper);
   font-style: italic;

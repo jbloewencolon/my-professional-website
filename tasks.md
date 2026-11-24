@@ -44,6 +44,13 @@
 - 2026-06-27: Added contrast-safe palette tokens and updated small text, focus, skip-link, CTA, and band colors for WCAG AA contrast.
 - 2026-06-27: Ran `npm run check`; accessibility palette build passed.
 - 2026-06-27: Removed `netlify.toml` and Netlify-specific checks because deployment now runs through GitHub Pages.
+## Events & Photos (how to add)
+
+New past talk: add an object at the top of `talks` in `content/work.js` (newest first). Add `photo: {...}` to show it in the margins (newest 3 photos are used; shape documented in the file).
+New upcoming event: add `{ date: "YYYY-MM-DD", title, venue, href? }` to `upcoming`. It shows on Home, Speaking and Publications, and drops off the day after.
+New image: put the jpg/png in `images/`, run `node scripts/images.mjs`, commit the generated webp (and avif).
+`npm run check` fails if a photo lacks alt text or its file isn't published.
+
 ## Remaining Tasks From Main
 
 ## Priority 1: Verification & Testing
@@ -76,7 +83,7 @@
 
 ## Priority 4: Content & Future Enhancements (Backlog)
 
-- [ ] **Add new speaking engagements** — Update speaking page with recent talks/engagements as they occur
+- [ ] **Add new speaking engagements** (see "Events & Photos") — Update speaking page with recent talks/engagements as they occur
 - [ ] **Expand publications list** — Add new papers, book chapters, public writing
 - [ ] **Update press/media** — Add new podcast appearances, interviews, media coverage
 - [ ] **Refresh projects** — Add new technical projects or update existing ones
@@ -90,3 +97,10 @@
 - **Current branch:** `codex/github-pages-links`
 - **Build output:** `dist/` directory with 8 prerendered routes, sitemap.xml, JSON-LD on all pages
 - **Key improvements:** SEO (sitemap, JSON-LD, per-route metadata), mobile (hamburger nav, tap targets), AISEO (llms.txt, robots.txt, structured data)
+
+## Follow-ups from site review
+
+- [ ] `images/talk-reception.webp` is unused and shows third parties; decide whether to use it or delete it (it is currently published).
+- [ ] Home "Recently" (`homeRecent` in `content/text.js`) is still hand-curated.
+- [ ] Sitemap `lastmod` is the build date for every route.
+- [ ] Remove stale branch/PR items above.

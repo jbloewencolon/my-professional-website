@@ -8,6 +8,7 @@
       { n: "05", title: "Artificial Opportunity", sub: "The actual promises and problems of artificial intelligence.", len: "45 min · keynote" },
     ],
     homeRecent: [
+      { kind: "Project", venue: "Aspen Policy Academy", date: "Nov 2026", title: "COMPASS: State AI Policy Monitoring — Demo Day, Washington, DC", href: "https://aspenpolicyacademy.org/project/state-ai-policy-monitoring-2026/", external: true },
       { kind: "Essay", venue: "Harvard Business Review", date: "May 2025", title: "Research: Do LLMs Have Values?", href: "https://hbr.org/2025/05/research-do-llms-have-values", external: true },
       { kind: "Code", venue: "Github", date: "2025", title: "BookBack: a public-domain reclamation against extractive scraping.", href: "https://github.com/jbloewencolon/BookBack", external: true },
       { kind: "Talk", venue: "Syracuse University", date: "2026", title: "Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them.", href: "/work/publications", page: "work/publications" },

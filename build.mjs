@@ -255,7 +255,9 @@ await writeFile(join(DIST, "CNAME"), CUSTOM_DOMAIN + "\n");
 // ── Static assets ────────────────────────────────────────────────────────────
 for (const item of STATIC_COPY) {
   const src = join(ROOT, item);
-  if (await exists(src)) await cp(src, join(DIST, item), { recursive: true });
+  // Images: ship web formats only (no raw png/jpg sources, Bios.txt, manifest) — except the og:image jpg.
+  const filter = item === "images" ? (f) => /(\.(webp|avif|svg)|portrait-window\.jpg|\/images)$/.test(f) : undefined;
+  if (await exists(src)) await cp(src, join(DIST, item), { recursive: true, filter });
 }
 
 // Clean up SSR temp file

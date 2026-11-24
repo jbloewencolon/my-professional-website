@@ -204,7 +204,7 @@ function Home({ setPage, t }) {
       <Band variant="ink-lifted" className="home-portrait-band">
         <picture>
           <img
-            src="images/home-banner-panel.jpg"
+            src="images/home-banner-panel.webp"
             alt=""
             className="home-pb-img"
             width="1600"
@@ -221,6 +221,7 @@ function Home({ setPage, t }) {
           <Body>
             <section className="home-section">
               <h2 className="section-head"><span className="sh-num">01</span> {copy.recentHeading || "Recently"}</h2>
+              <UpcomingEvents />
               <ul className="home-recent-list">
                 {HOME_RECENT.map((item, i) => (
                   <li key={i} className="hr-item">
@@ -267,22 +268,7 @@ function Home({ setPage, t }) {
           </Body>
 
           <Margin hidden={!t.marginalia}>
-            <MarginNote tag="Syracuse · 2026">
-              <figure className="mn-figure">
-                <picture>
-                  <source srcSet="images/talk-artificial-opportunity-flyer.avif" type="image/avif" />
-                  <source srcSet="images/talk-artificial-opportunity-flyer.webp" type="image/webp" />
-                  <img src="images/talk-artificial-opportunity-flyer.webp" alt="Poster for Artificial Opportunity: Universities are Doomed and the Humanities Can Save Them at Syracuse University." width="728" height="940" loading="lazy" decoding="async" />
-                </picture>
-                <figcaption><em>Artificial Opportunity</em> — Syracuse University keynote.</figcaption>
-              </figure>
-            </MarginNote>
-            <MarginNote tag="Berlin · 2025">
-              <figure className="mn-figure">
-                <img src="images/talk-whiteboard.webp" alt="Jordan Loewen-Colón at the whiteboard during Responsible Innovation: Hopes &amp; Fears at Data Natives Berlin." width="1600" height="1068" loading="lazy" decoding="async" />
-                <figcaption><em>Responsible Innovation: Hopes &amp; Fears</em> — Data Natives, Berlin.</figcaption>
-              </figure>
-            </MarginNote>
+            <TalkPhotoNotes />
             <MarginNote tag="On view">
               Available for advisory seats, select consulting engagements, workshops, and keynotes through 2026.
             </MarginNote>
@@ -493,11 +479,10 @@ function Speaking({ t }) {
               {copy.talksLead || "Not paper abstracts — talks a booker can put on a program, workshopped from Berlin to Toronto for rooms that contain both engineers and the people who pay them."}
             </p>
 
-            {/* Marginalia (and its Berlin photos) is hidden on mobile; show one inline. */}
-            <figure className="mobile-note mobile-stage-photo">
-              <img src="images/talk-whiteboard.webp" alt="Jordan Loewen-Colón at the whiteboard during Responsible Innovation: Hopes &amp; Fears at Data Natives Berlin." width="1600" height="1068" loading="lazy" decoding="async" />
-              <figcaption><em>Responsible Innovation: Hopes &amp; Fears.</em> Data Natives, Berlin.</figcaption>
-            </figure>
+            <UpcomingEvents />
+
+            {/* Marginalia (and its photos) is hidden on mobile; show one inline. */}
+            <MobileStagePhoto />
 
             <ol className="topics">
               {TALKS.map((talk) => (
